@@ -14,8 +14,12 @@ public class Account {
     //private Portfolio portfolio;
     //private List<Post> posts;
 
-    public Account(){
-
+    public Account(int pcn,String email,String password,String academicType,String bio){
+        this.pcn=pcn;
+        this.email=email;
+        this.password=password;
+        this.academicType=academicType;
+        this.bio=bio;
     }
 
 
