@@ -13,7 +13,7 @@ public class FakeDataClass implements IDataClass {
     private final List<Account> accountList=new ArrayList<>();
 
     public FakeDataClass(){
-        accountList.add(new Account(2323,"peter@gmail.com","peter123","student","I am a first year student at Fontys"));
+        accountList.add(new Account(1, 2323,"peter@gmail.com","peter123","student","I am a first year student at Fontys", null));
     }
 
     @Override
