@@ -1,6 +1,8 @@
 package com.mannan.demoapp.Repository;
 
 import com.mannan.demoapp.Model.Account;
+import com.mannan.demoapp.Model.Portfolio;
+import com.mannan.demoapp.Model.Project;
 import com.mannan.demoapp.Repository.Interfaces.IDataClass;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +15,7 @@ public class FakeDataClass implements IDataClass {
     private final List<Account> accountList=new ArrayList<>();
 
     public FakeDataClass(){
-        accountList.add(new Account(1, 2323,"peter@gmail.com","peter123","student","I am a first year student at Fontys", null));
+        accountList.add(new Account(1, 2323,"peter@gmail.com","peter123","student","I am a first year student at Fontys", null,null));
     }
 
     @Override
@@ -26,6 +28,21 @@ public class FakeDataClass implements IDataClass {
         for(Account account:accountList){
             if(account.getId()==accountId){
                     return account;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Project> getAllProjectsPerAccount(long accId){
+        for(Account account:accountList){
+            if(account.getId()==accId){
+                Portfolio portfolio=account.getPortfolio();
+                if (portfolio!=null){
+                    if(portfolio.getProjects()!=null){
+                        return portfolio.getProjects();
+                    }
+                }
             }
         }
         return null;
