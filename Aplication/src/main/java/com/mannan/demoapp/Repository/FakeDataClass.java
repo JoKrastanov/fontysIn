@@ -15,7 +15,7 @@ public class FakeDataClass implements IDataClass {
     private final List<Account> accountList=new ArrayList<>();
 
     public FakeDataClass(){
-        accountList.add(new Account(1, 2323,"peter@gmail.com","peter123","student","I am a first year student at Fontys", null,null));
+        accountList.add(new Account(1, 2323,"peter@gmail.com","peter123","student","I am a first year student at Fontys",null));
     }
 
     @Override
@@ -35,17 +35,18 @@ public class FakeDataClass implements IDataClass {
 
     @Override
     public List<Project> getAllProjectsPerAccount(long accId){
-        for(Account account:accountList){
-            if(account.getId()==accId){
-                Portfolio portfolio=account.getPortfolio();
-                if (portfolio!=null){
-                    if(portfolio.getProjects()!=null){
-                        return portfolio.getProjects();
-                    }
-                }
-            }
-        }
         return null;
+//        for(Account account:accountList){
+//            if(account.getId()==accId){
+//                Portfolio portfolio=account.getPortfolio();
+//                if (portfolio!=null){
+//                    if(portfolio.getProjects()!=null){
+//                        return portfolio.getProjects();
+//                    }
+//                }
+//            }
+//        }
+//        return null;
     }
 
     @Override

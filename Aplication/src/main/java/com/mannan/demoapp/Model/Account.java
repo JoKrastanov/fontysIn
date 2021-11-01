@@ -13,7 +13,7 @@ public class Account {
     private String academicType;
     private String bio;
     private List<Account> connections;
-    private Portfolio portfolio;
+    //private Portfolio portfolio;
 
     //private List<Post> posts;
 }
