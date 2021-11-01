@@ -1,21 +1,26 @@
 package com.mannan.demoapp.Repository;
 
 import com.mannan.demoapp.Model.Account;
-import com.mannan.demoapp.Model.Portfolio;
+import com.mannan.demoapp.Model.Interest;
 import com.mannan.demoapp.Model.Project;
 import com.mannan.demoapp.Repository.Interfaces.IDataClass;
+import com.mannan.demoapp.Repository.Interfaces.IInterestDataClass;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class FakeDataClass implements IDataClass {
+public class FakeDataClass implements IDataClass, IInterestDataClass {
 
     private final List<Account> accountList=new ArrayList<>();
+    private List<Interest> interests = new ArrayList<>();
 
     public FakeDataClass(){
-        accountList.add(new Account(1, 2323,"peter@gmail.com","peter123","student","I am a first year student at Fontys",null));
+        List<Interest> interests2 = new ArrayList<>(); //make a new list for account to prevent it also changing with interests list
+        interests2.add(new Interest(1, "Frond-End", "making frond-ends in javascript"));
+        interests.add(new Interest(1, "Frond-End", "making frond-ends in javascript"));
+        accountList.add(new Account(1, 2323,"Joe","I am a first year student at Fontys",1,null,interests2, null));
     }
 
     @Override
@@ -28,6 +33,16 @@ public class FakeDataClass implements IDataClass {
         for(Account account:accountList){
             if(account.getId()==accountId){
                     return account;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Account getAccountByPcn(long pcn) {
+        for(Account account:accountList){
+            if(account.getPcn()==pcn){
+                return account;
             }
         }
         return null;
@@ -69,15 +84,33 @@ public class FakeDataClass implements IDataClass {
 
     @Override
     public boolean updateAccount(Account account) {
-        Account oldAccount=this.getAccount(account.getId());
-        if (oldAccount==null){
-            return false;
+        for (int i = 0; i < accountList.size(); i++) {
+            if (accountList.get(i).getId() == account.getId()){
+                accountList.set(i, account);
+                return true;
+            }
         }
-        oldAccount.setPcn(account.getPcn());
-        oldAccount.setEmail(account.getEmail());
-        oldAccount.setPassword(account.getPassword());
-        oldAccount.setAcademicType(account.getAcademicType());
-        oldAccount.setBio(account.getBio());
+        return false;
+    }
+
+    @Override
+    public List<Interest> getAllInterests() {
+        return interests;
+    }
+
+    @Override
+    public Boolean addInterest(Interest interest) {
+        interests.add(interest);
         return true;
+    }
+
+    @Override
+    public Interest getInterestById(int id) {
+        for (int i = 0; i < interests.size(); i++) {
+            if (interests.get(i).getId() == id){
+                return interests.get(i);
+            }
+        }
+        return null;
     }
 }
