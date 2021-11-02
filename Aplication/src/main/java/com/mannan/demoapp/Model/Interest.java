@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class Interest {
     private long id;
     private String name;
-    private String description;
 }
