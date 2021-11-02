@@ -8,12 +8,13 @@ import java.util.List;
 public class Account {
     private long id;
     private int pcn;
-    private String email;
-    private String password;
-    private String academicType;
+    private String name;
     private String bio;
+    private int type; //1 for student and 2 for teacher
     private List<Account> connections;
-
+    private List<Interest> interests;
+    private List<Skill> skills;
     //private Portfolio portfolio;
+
     //private List<Post> posts;
 }

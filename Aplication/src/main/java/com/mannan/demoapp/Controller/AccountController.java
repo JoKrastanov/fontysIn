@@ -3,6 +3,8 @@ package com.mannan.demoapp.Controller;
 
 import com.mannan.demoapp.Manager.Interfaces.IAccountManager;
 import com.mannan.demoapp.Model.Account;
+import com.mannan.demoapp.Model.Interest;
+import com.sun.tools.javac.util.Convert;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
+
+import static java.lang.Integer.parseInt;
 
 @Controller
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/accounts")
 public class AccountController {
 
@@ -33,9 +39,9 @@ public class AccountController {
         }
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Account> getAccount(@PathVariable(value = "id") int id){
-        Account account= accountManager.getAccount(id);
+    @GetMapping("{pcn}")
+    public ResponseEntity<Account> getAccount(@PathVariable(value = "pcn") int pcn){
+        Account account= accountManager.getAccountByPcn(pcn);
         if (account!=null){
             return ResponseEntity.ok().body(account);
         }
@@ -73,4 +79,19 @@ public class AccountController {
         }
     }
 
+    @PostMapping("/Interest")
+    public ResponseEntity<Interest> addInterest(@RequestParam int interestId, @RequestParam int accountId){
+        if (accountManager.addInterest(interestId, accountId)){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/bio")
+    public ResponseEntity<Account> editBio(@RequestParam int accountId, @RequestParam String bio){
+        if (accountManager.editBio(accountId, bio)){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
