@@ -2,6 +2,8 @@ import { PureComponent } from 'react';
 
 const axios = require('axios');
 
+const url = "http://localhost:8080"
+
 export const getAccount = () => {
     const value = "; " + document.Login;
     const parts = value.split("; " + "Login" + "=");
@@ -21,7 +23,7 @@ export const setAccount = (pcnAccount, nameAccount) => {
 
 export const getAccountData = async (pcn) => {
     try {
-        const resp = await axios.get('http://localhost:8080/accounts/' + pcn);
+        const resp = await axios.get( url + '/accounts/' + pcn);
         return resp.data;
     } catch (err) {
         // Handle Error Here
@@ -31,7 +33,7 @@ export const getAccountData = async (pcn) => {
 
 export const getInterests = async () => {
     try {
-        const resp = await axios.get('http://localhost:8080/interest');
+        const resp = await axios.get( url + '/interest');
         return resp.data;
     } catch (err) {
         // Handle Error Here
