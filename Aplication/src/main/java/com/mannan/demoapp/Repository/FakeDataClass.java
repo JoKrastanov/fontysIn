@@ -19,9 +19,12 @@ public class FakeDataClass implements IDataClass, IInterestDataClass {
 
     public FakeDataClass(){
         List<Interest> interests2 = new ArrayList<>(); //make a new list for account to prevent it also changing with interests list
-        interests2.add(new Interest(1, "Frond-End", "making frond-ends in javascript"));
-        interests.add(new Interest(1, "Frond-End", "making frond-ends in javascript"));
-        accountList.add(new Account(1, 2323,"Joe","I am a first year student at Fontys",1,null,interests2, null, new Portfolio(new ArrayList<Project>())));
+        interests2.add(new Interest(1, "Frond-End"));
+        interests.add(new Interest(1, "Frond-End"));
+        Portfolio portfolio = new Portfolio(new ArrayList<Project>());
+        portfolio.addProject(new Project(1, "Linux", "I'd just like to interject for a moment. What you're referring to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux. Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.", "www.Linux.org"));
+        portfolio.addProject(new Project(2, "Hacking the pantagon", "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco", "www.boo.com"));
+        accountList.add(new Account(1, 2323,"Joe","I am a first year student at Fontys",1,null,interests2, null, portfolio));
     }
 
     @Override
