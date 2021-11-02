@@ -11,5 +11,5 @@ public class Project {
     private String title;
     private String description;
     private String link;
-    private var uploadedProject;
+    //private var uploadedProject;
 }

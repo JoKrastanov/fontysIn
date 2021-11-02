@@ -13,4 +13,5 @@ public interface IDataClass {
      boolean addAccount(Account account);
      boolean updateAccount(Account account);
      List<Project> getAllProjectsPerAccount(long accId);
+     void addProject(long accId,Project project);
 }

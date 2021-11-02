@@ -14,7 +14,7 @@ public class Account {
     private List<Account> connections;
     private List<Interest> interests;
     private List<Skill> skills;
-    //private Portfolio portfolio;
+    private Portfolio portfolio;
 
     //private List<Post> posts;
 }

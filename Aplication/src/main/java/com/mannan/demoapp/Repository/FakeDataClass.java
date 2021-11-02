@@ -2,6 +2,7 @@ package com.mannan.demoapp.Repository;
 
 import com.mannan.demoapp.Model.Account;
 import com.mannan.demoapp.Model.Interest;
+import com.mannan.demoapp.Model.Portfolio;
 import com.mannan.demoapp.Model.Project;
 import com.mannan.demoapp.Repository.Interfaces.IDataClass;
 import com.mannan.demoapp.Repository.Interfaces.IInterestDataClass;
@@ -20,7 +21,7 @@ public class FakeDataClass implements IDataClass, IInterestDataClass {
         List<Interest> interests2 = new ArrayList<>(); //make a new list for account to prevent it also changing with interests list
         interests2.add(new Interest(1, "Frond-End", "making frond-ends in javascript"));
         interests.add(new Interest(1, "Frond-End", "making frond-ends in javascript"));
-        accountList.add(new Account(1, 2323,"Joe","I am a first year student at Fontys",1,null,interests2, null));
+        accountList.add(new Account(1, 2323,"Joe","I am a first year student at Fontys",1,null,interests2, null, new Portfolio(new ArrayList<Project>())));
     }
 
     @Override
@@ -49,19 +50,29 @@ public class FakeDataClass implements IDataClass, IInterestDataClass {
     }
 
     @Override
+    public void addProject(long accId,Project project){
+        for (Account account:accountList){
+            if (account.getId()==accId){
+                Portfolio portfolio=account.getPortfolio();
+                if (portfolio!=null){
+                    portfolio.addProject(project);
+                }
+            }
+        }
+    }
+    @Override
     public List<Project> getAllProjectsPerAccount(long accId){
+        for(Account account:accountList){
+            if(account.getId()==accId){
+                Portfolio portfolio=account.getPortfolio();
+                if (portfolio!=null){
+                    if(portfolio.getProjects()!=null){
+                        return portfolio.getProjects();
+                    }
+                }
+            }
+        }
         return null;
-//        for(Account account:accountList){
-//            if(account.getId()==accId){
-//                Portfolio portfolio=account.getPortfolio();
-//                if (portfolio!=null){
-//                    if(portfolio.getProjects()!=null){
-//                        return portfolio.getProjects();
-//                    }
-//                }
-//            }
-//        }
-//        return null;
     }
 
     @Override

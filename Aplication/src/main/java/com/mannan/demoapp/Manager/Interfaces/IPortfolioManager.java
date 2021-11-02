@@ -4,7 +4,9 @@ import com.mannan.demoapp.Model.Project;
 
 import java.util.List;
 
-public interface IProjectManager {
+public interface IPortfolioManager {
+
 
     List<Project> getAllProjectsPerAccount(long accId);
+    boolean addProject(long accId, Project project);
 }

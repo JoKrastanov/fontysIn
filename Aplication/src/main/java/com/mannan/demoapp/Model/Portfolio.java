@@ -2,6 +2,7 @@ package com.mannan.demoapp.Model;
 
 import lombok.*;
 
+import java.beans.PropertyEditor;
 import java.util.List;
 
 @Getter
@@ -13,4 +14,8 @@ public class Portfolio {
     //private List<Skill> skills;
     //private List<Experience> experiences;
     private List<Project> projects;
+
+    public void addProject(Project project){
+        this.projects.add(project);
+    }
 }
