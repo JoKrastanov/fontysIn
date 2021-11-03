@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+#Web_1920__1 {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    background-color: rgba(255,255,255,1);
+    overflow: hidden;
+    --web-view-name: Web 1920 – 1;
+    --web-view-id: Web_1920__1;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+#TopBar {
+    position: relative;
+    width: 100%;
+    height: 71px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+    background-color: #86639f;
+}
+#TopbarBg {
+    fill: rgba(134,99,159,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.TopbarBg {
+    overflow: visible;
+    position: absolute;
+    width: 1920px;
+    height: 71px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#Logo {
+    left: 19px;
+    top: 16px;
+    position: absolute;
+    overflow: visible;
+    width: 125px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    color: rgba(212,203,203,1);
+}
+#LoggedUser {
+    top: 0;
+    width: auto;
+    right: 4%;
+    bottom: 0;
+    position: absolute;
+}
+#UserName {
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    white-space: nowrap;
+    text-align: right;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    color: #d4cbcb;
+}
+#UserPic {
+    fill: rgba(255,255,255,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+#SearchBar, .UserPic {
+    position: absolute;
+    left: -100%;
+    top: 10%;
+    overflow: hidden;
+}
+#SearchBar {
+    position: absolute;
+    width: 704px;
+    height: 41px;
+    left: 608px;
+    top: 15px;
+    overflow: visible;
+}
+#SearchBg {
+    fill: rgba(255,255,255,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.SearchBg {
+    position: absolute;
+    overflow: visible;
+    width: 704px;
+    height: 41px;
+    left: 0px;
+    top: 0px;
+}
+#Search {
+    left: 15px;
+    top: 6px;
+    position: absolute;
+    overflow: visible;
+    width: 79px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    color: rgba(168,166,166,1);
+}
