@@ -5,6 +5,7 @@ import com.mannan.demoapp.Manager.Interfaces.IAccountManager;
 import com.mannan.demoapp.Model.Account;
 import com.mannan.demoapp.Model.Interest;
 import com.sun.tools.javac.util.Convert;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import static java.lang.Integer.parseInt;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/accounts")
 public class AccountController {
+
 
     private IAccountManager accountManager;
 

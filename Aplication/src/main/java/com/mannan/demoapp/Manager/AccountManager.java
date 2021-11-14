@@ -3,22 +3,22 @@ package com.mannan.demoapp.Manager;
 import com.mannan.demoapp.Manager.Interfaces.IAccountManager;
 import com.mannan.demoapp.Model.Account;
 import com.mannan.demoapp.Model.Interest;
-import com.mannan.demoapp.Repository.Interfaces.IDataClass;
+import com.mannan.demoapp.Repository.Interfaces.IAccountRepository;
 import com.mannan.demoapp.Repository.Interfaces.IInterestDataClass;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
 import java.util.List;
 
 @Component
 public class AccountManager implements IAccountManager {
 
-    private IDataClass dataClass;
+    private IAccountRepository dataClass;
     private IInterestDataClass interestDataClass;
 
-    public AccountManager(IDataClass dataClass, IInterestDataClass interestDataClass){
+    public AccountManager(IAccountRepository dataClass){
         this.dataClass=dataClass;
-        this.interestDataClass = interestDataClass;
+
     }
 
 

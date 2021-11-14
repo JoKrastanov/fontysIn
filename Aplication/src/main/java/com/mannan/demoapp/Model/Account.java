@@ -10,7 +10,7 @@ public class Account {
     private int pcn;
     private String name;
     private String bio;
-    private int type; //1 for student and 2 for teacher
+    private String type; //1 for student and 2 for teacher
     private List<Account> connections;
     private List<Interest> interests;
     private List<Skill> skills;

@@ -2,7 +2,7 @@ package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Manager.Interfaces.IPortfolioManager;
 import com.mannan.demoapp.Model.Project;
-import com.mannan.demoapp.Repository.Interfaces.IDataClass;
+import com.mannan.demoapp.Repository.Interfaces.IAccountRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,20 +10,21 @@ import java.util.List;
 @Component
 public class PortfolioManager implements IPortfolioManager {
 
-    private IDataClass dataClass;
+    private IAccountRepository dataClass;
 
-    public PortfolioManager(IDataClass dataClass){
+    public PortfolioManager(IAccountRepository dataClass){
         this.dataClass=dataClass;
     }
 
     @Override
     public List<Project> getAllProjectsPerAccount(long accId) {
-        return this.dataClass.getAllProjectsPerAccount(accId);
+//        return this.dataClass.getAllProjectsPerAccount(accId);
+        return null;
     }
 
     @Override
     public boolean addProject(long accId, Project project){
-        this.dataClass.addProject(accId,project);
+//        this.dataClass.addProject(accId,project);
         return true;
     }
 }
