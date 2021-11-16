@@ -1,97 +1,246 @@
 package com.mannan.demoapp.Controller;
 
-
-import com.mannan.demoapp.Manager.Interfaces.IAccountManager;
-import com.mannan.demoapp.Model.Account;
-import com.mannan.demoapp.Model.Interest;
-import com.sun.tools.javac.util.Convert;
+import com.mannan.demoapp.Interfaces.*;
+import com.mannan.demoapp.Model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.lang.model.type.IntersectionType;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import static java.lang.Integer.parseInt;
 
 @Controller
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/accounts")
+@RequestMapping("/account")
 public class AccountController {
 
     private IAccountManager accountManager;
+    private IInterestManager interestManager;
+    private IProjectManager projectManager;
+    private IExperienceManager experienceManager;
+    private ISkillManager skillManager;
 
-    public AccountController(IAccountManager accountManager){
-        this.accountManager=accountManager;
+    public AccountController(IAccountManager accountManager, IInterestManager interestManager, IProjectManager projectManager, IExperienceManager experienceManager, ISkillManager skillManager) {
+        this.accountManager = accountManager;
+        this.interestManager = interestManager;
+        this.projectManager = projectManager;
+        this.experienceManager = experienceManager;
+        this.skillManager = skillManager;
     }
 
+
+    //region Account REST API Methods
     @GetMapping
-    public ResponseEntity<List<Account>> getAllAccounts(){
-        List<Account> accounts=accountManager.getAccounts();
-        if (accounts!=null){
+    public ResponseEntity<List<Account>> getAllAccounts() {
+        List<Account> accounts = accountManager.getAccounts();
+        if (accounts != null) {
             return ResponseEntity.ok().body(accounts);
-        }
-        else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @GetMapping("{pcn}")
-    public ResponseEntity<Account> getAccount(@PathVariable(value = "pcn") int pcn){
-        Account account= accountManager.getAccountByPcn(pcn);
-        if (account!=null){
+    @GetMapping("{PCN}")
+    public ResponseEntity<Account> getAccount(@PathVariable(value = "PCN") Long pcn) {
+        Account account = accountManager.getAccountByPcn(pcn);
+        if (account != null) {
             return ResponseEntity.ok().body(account);
-        }
-        else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity deleteAccount(@PathVariable int id)
-    {
-        accountManager.deleteAccount(id);
+    @DeleteMapping("{pcn}")
+    public ResponseEntity deleteAccount(@PathVariable Long pcn) {
+        accountManager.deleteAccount(pcn);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping()
-    public ResponseEntity<Account> createAccount(@RequestBody Account account){
-        if (!accountManager.addAccount(account)){
-            String entity= "Account with id" +account.getId()+ "already exists.";
+    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
+        if (!accountManager.addAccount(account)) {
+            String entity = "Account with id" + account.getPcn() + "already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
-        }else{
-            String url= "account" + "/" + account.getId();
-            URI uri=URI.create(url);
-            return new ResponseEntity(uri,HttpStatus.CREATED);
+        } else {
+            String url = "account" + "/" + account.getPcn();
+            URI uri = URI.create(url);
+            return new ResponseEntity(uri, HttpStatus.CREATED);
         }
     }
 
     @PutMapping
-    public ResponseEntity<Account> updateAccount(@RequestBody Account account){
-        if (accountManager.updateAccount(account)){
+    public ResponseEntity<Account> updateAccount(@RequestBody Account account) {
+        if (accountManager.updateAccount(account)) {
             return ResponseEntity.noContent().build();
+        } else {
+            return new ResponseEntity("Please provide a valid id.", HttpStatus.NOT_FOUND);
         }
-        else {
-            return  new ResponseEntity("Please provide a valid id.",HttpStatus.NOT_FOUND);
+    }
+    //endregion
+
+    //region Interest REST API Methods
+    @GetMapping("{pcn}/interests")
+    public ResponseEntity<List<Interest>> getInterests(@PathVariable(value = "pcn") Long pcn) {
+        List<Interest> interests = interestManager.getInterestsByPcn(pcn);
+
+        if (interests != null) {
+            return ResponseEntity.ok().body(interests);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
-    @PostMapping("/Interest")
-    public ResponseEntity<Interest> addInterest(@RequestParam int interestId, @RequestParam int accountId){
-        if (accountManager.addInterest(interestId, accountId)){
-            return ResponseEntity.ok().build();
+    @PostMapping("/interests")
+    public ResponseEntity<Interest> createInterest(@RequestBody Interest interest) {
+        if (!interestManager.addInterest(interest)) {
+            String entity = "Interest " + interest.getInterest() + "already exists.";
+            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+        } else {
+            String url = "interest" + "/" + interest.getInterest();
+            URI uri = URI.create(url);
+            return new ResponseEntity(uri, HttpStatus.CREATED);
         }
-        return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/bio")
-    public ResponseEntity<Account> editBio(@RequestParam int accountId, @RequestParam String bio){
-        if (accountManager.editBio(accountId, bio)){
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.notFound().build();
+    @DeleteMapping("/interests")
+    public ResponseEntity<Interest> deleteInterest(@RequestBody Interest interest)
+    {
+        interestManager.deleteInterest(interest);
+        return ResponseEntity.ok().build();
     }
+    //endregion
+
+    //region Project REST API Methods
+    @GetMapping("{pcn}/projects")
+    public ResponseEntity<List<Project>> getProjects(@PathVariable(value = "pcn") Long pcn) {
+        List<Project> projects = projectManager.getProjectsByPcn(pcn);
+
+        if (projects != null) {
+            return ResponseEntity.ok().body(projects);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/projects")
+    public ResponseEntity<Project> getProject(@RequestBody Project prj)
+    {
+        Project project = projectManager.getProject(prj);
+        if (project != null) {
+            return ResponseEntity.ok().body(project);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/projects")
+    public ResponseEntity<Project> createProject(@RequestBody Project project)
+    {
+        if (!projectManager.addProject(project)) {
+            String entity = "Project " + project.getTitle() + "already exists.";
+            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+        } else {
+            String url = "project" + "/" + project.getTitle();
+            URI uri = URI.create(url);
+            return new ResponseEntity(uri, HttpStatus.CREATED);
+        }
+    }
+
+    @DeleteMapping("/projects")
+    public ResponseEntity<Project> deleteProject(@RequestBody Project project)
+    {
+        projectManager.deleteProject(project);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/projects")
+    public ResponseEntity<Project> updateProject(@RequestBody Project project)
+    {
+        if (projectManager.updateProject(project)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return new ResponseEntity("Project does not exist.", HttpStatus.NOT_FOUND);
+        }
+    }
+    //endregion
+
+    //region Experience REST API Methods
+    @GetMapping("{pcn}/experiences")
+    public ResponseEntity<List<Experience>> getExperiences(@PathVariable(value = "pcn") Long pcn)
+    {
+        List<Experience> experiences = experienceManager.getExperiencesByPcn(pcn);
+
+        if (experiences != null) {
+            return ResponseEntity.ok().body(experiences);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/experiences")
+    public ResponseEntity<Experience> createExperience(@RequestBody Experience experience) {
+        if (!experienceManager.addExperience(experience)) {
+            String entity = "Experience " + experience.getType() + "already exists.";
+            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+        } else {
+            String url = "Experience" + "/" + experience.getType();
+            URI uri = URI.create(url);
+            return new ResponseEntity(uri, HttpStatus.CREATED);
+        }
+    }
+
+    @PutMapping("/experiences")
+    public ResponseEntity<Experience> updateExperience(@RequestBody Experience experience) {
+        if (experienceManager.updateExperience(experience)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return new ResponseEntity("Experience does not exist.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/experiences")
+    public ResponseEntity<Experience> deleteExperience(@RequestBody Experience experience) {
+        experienceManager.deleteExperience(experience);
+        return ResponseEntity.ok().build();
+    }
+    //endregion
+
+    //region Skill REST API Methods
+    @GetMapping("{pcn}/skills")
+    public ResponseEntity<List<Skill>> getSkillsByPcn(@PathVariable Long pcn) {
+        List<Skill> skills = skillManager.getSkillsByPcn(pcn);
+        if (skills != null) {
+            return ResponseEntity.ok().body(skills);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @PostMapping("/skills")
+    public ResponseEntity<Skill> createSkill(@RequestBody Skill skill) {
+        if (!skillManager.addSkill(skill)) {
+            String entity = "Skill " + skill.getSkill() + "already exists.";
+            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+        } else {
+            String url = "skill" + "/" + skill.getSkill();
+            URI uri = URI.create(url);
+            return new ResponseEntity(uri, HttpStatus.CREATED);
+        }
+    }
+    @DeleteMapping("/skills")
+    public ResponseEntity<Skill> deleteSkill(@RequestBody Skill skill) {
+        skillManager.deleteSkill(skill);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/skills")
+    public ResponseEntity<Skill> updateSkill(@RequestBody Skill skill) {
+        if (skillManager.updateSkill(skill)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return new ResponseEntity("Skill does not exist.", HttpStatus.NOT_FOUND);
+        }
+    }
+    //endregion
 }

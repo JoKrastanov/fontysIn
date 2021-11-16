@@ -1,9 +1,7 @@
 package com.mannan.demoapp;
 
-import com.mannan.demoapp.Repository.SqlConnClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.mannan.demoapp.Repository.SqlConnClass;
 
 
 @SpringBootApplication

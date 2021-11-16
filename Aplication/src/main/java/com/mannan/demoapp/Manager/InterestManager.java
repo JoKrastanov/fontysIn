@@ -1,31 +1,32 @@
 package com.mannan.demoapp.Manager;
 
-import com.mannan.demoapp.Manager.Interfaces.IInterestManager;
+import com.mannan.demoapp.Interfaces.IInterestManager;
 import com.mannan.demoapp.Model.Interest;
-import com.mannan.demoapp.Repository.Interfaces.IInterestDataClass;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.mannan.demoapp.Repository.Interfaces.IInterestAzure;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class InterestManager implements IInterestManager {
 
-    private final IInterestDataClass interestDataClass;
+    private IInterestAzure dataClass;
 
-    @Autowired
-    public InterestManager(IInterestDataClass interestDataClass) {
-        this.interestDataClass = interestDataClass;
+    public InterestManager(IInterestAzure dataClass) {this.dataClass = dataClass;}
+
+    @Override
+    public List<Interest> getInterestsByPcn(Long pcn) {
+        return dataClass.findAllByPcn(pcn);
     }
 
     @Override
-    public List<Interest> getAllInterests() {
-        return interestDataClass.getAllInterests();
+    public boolean addInterest(Interest interest) {
+        return dataClass.create(interest);
     }
 
     @Override
-    public Boolean addInterest(Interest interest) {
-        interestDataClass.addInterest(interest);
-        return true;
+    public boolean deleteInterest(Interest interest) {
+        return dataClass.delete(interest);
     }
+
 }

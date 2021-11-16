@@ -1,81 +1,44 @@
 package com.mannan.demoapp.Manager;
 
-import com.mannan.demoapp.Manager.Interfaces.IAccountManager;
+import com.mannan.demoapp.Interfaces.IAccountManager;
 import com.mannan.demoapp.Model.Account;
-import com.mannan.demoapp.Model.Interest;
-import com.mannan.demoapp.Repository.Interfaces.IDataClass;
-import com.mannan.demoapp.Repository.Interfaces.IInterestDataClass;
+import com.mannan.demoapp.Repository.Interfaces.IAccountAzure;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
 import java.util.List;
 
 @Component
 public class AccountManager implements IAccountManager {
 
-    private IDataClass dataClass;
-    private IInterestDataClass interestDataClass;
+    private IAccountAzure dataClass;
 
-    public AccountManager(IDataClass dataClass, IInterestDataClass interestDataClass){
+    public AccountManager(IAccountAzure dataClass){
         this.dataClass=dataClass;
-        this.interestDataClass = interestDataClass;
     }
 
 
     @Override
     public List<Account> getAccounts() {
-        return dataClass.getAccounts();
+        return dataClass.findAll();
     }
 
     @Override
-    public Account getAccount(long accountId) {
-        return dataClass.getAccount(accountId);
+    public Account getAccountByPcn(Long pcn) {
+        return dataClass.findByPcn(pcn);
     }
 
     @Override
-    public Account getAccountByPcn(long pcn) {
-        return dataClass.getAccountByPcn(pcn);
-    }
-
-    @Override
-    public boolean deleteAccount(long accountId) {
-        return dataClass.deleteAccount(accountId);
+    public boolean deleteAccount(Long pcn) {
+        return dataClass.delete(pcn);
     }
 
     @Override
     public boolean addAccount(Account account) {
-        return dataClass.addAccount(account);
+        return dataClass.create(account);
     }
 
     @Override
     public boolean updateAccount(Account account) {
-        return dataClass.updateAccount(account);
+        return dataClass.update(account);
     }
-
-    @Override
-    public boolean addInterest(int interestId, int accountId) {
-        Interest interest = interestDataClass.getInterestById(interestId);
-        if (interest != null){
-            Account account = dataClass.getAccount(accountId);
-            List<Interest> interests = account.getInterests();
-            interests.add(interest);
-            account.setInterests(interests);
-            dataClass.updateAccount(account);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean editBio(int accountId, String bio) {
-        Account account = dataClass.getAccount(accountId);
-        if (account != null){
-            account.setBio(bio);
-            dataClass.updateAccount(account);
-            return true;
-        }
-        return false;
-    }
-
-
 }

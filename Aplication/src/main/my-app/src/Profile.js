@@ -1,47 +1,54 @@
 import React, { useEffect, useState } from "react";
 import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
-import { getAccount, getAccountData, getInterests } from "./services";
+import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount } from "./services";
 
 function Profile() {
-    const [account, setAccount] = useState();
+    // const [account, setAccount] = useState();
     const [interests, setInterests] = useState([]);
 
-    useEffect(() => {
-        let mounted = true;
-        getInterests()
-            .then(items => {
-                if (mounted) {
-                    setInterests(items)
-                }
-            })
-        return () => mounted = false;
-    }, [])
+    setAccount("1234", "Joe");
+    let account = getAccount();
 
-    useEffect(() => {
-        let Account = getAccount();
+    function displayVars() {
+        console.log("Hello");
+        console.log(process.env.ALLUSERSPROFILE);
+    }
 
-        let mounted = true;
-        getAccountData(Account.pcn)
-            .then(items => {
-                if (mounted) {
-                    setAccount(items)
-                }
-            })
-        return () => mounted = false;
-    }, [])
+
+
+    // useEffect(() => {
+    //     let mounted = true;
+    //     getInterests()
+    //         .then(items => {
+    //             if (mounted) {
+    //                 setInterests(items)
+    //             }
+    //         })
+    //     return () => mounted = false;
+    // }, [])
+
+    // useEffect(() => {
+    //     let Account = getAccount();
+    //
+    //     let mounted = true;
+    //     getAccountData(Account.pcn)
+    //         .then(items => {
+    //             if (mounted) {
+    //                 setAccount(items)
+    //             }
+    //         })
+    //     return () => mounted = false;
+    // }, [])
 
     if (account != undefined){
         return (
             <>
                 <p>{account.name}</p>
                 <p>{account.pcn}</p>
-                <p>{account.bio}</p>
-                {account.interests.map(item => (
-                        <Interest key={item.id} interest={item} />
-                    ))}
 
                 <InterestDropdown interest={interests} accountId={account.id}/>
+                <button onClick={displayVars()}>Click me</button>
             </>
         )
     }

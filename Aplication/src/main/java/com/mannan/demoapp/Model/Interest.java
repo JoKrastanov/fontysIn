@@ -3,11 +3,20 @@ package com.mannan.demoapp.Model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class Interest {
-    private long id;
-    private String name;
+    private Long id;
+    private String interest;
+    private Long accountPCN;
+
+    public Interest(String interest, Long accountPCN)
+    {
+        this.interest = interest;
+        this.accountPCN = accountPCN;
+    }
 }

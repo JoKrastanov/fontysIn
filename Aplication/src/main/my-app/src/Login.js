@@ -30,8 +30,7 @@ function Login() {
     }, [])
 
     let Account = getAccount();
-    console.log(Account.pcn);
-    console.log(Account.name);
+
 
 
     return (<p> Logged in as {Account.name} {Account.pcn}</p>)
