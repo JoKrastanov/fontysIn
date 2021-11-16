@@ -3,7 +3,7 @@ import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount } f
 
 function Login() {
 
-    setAccount("2323", "Joe");
+    setAccount("1234", "Joe");
 
     //example adding project
     var data = JSON.stringify({
@@ -19,7 +19,7 @@ function Login() {
 
     useEffect(() => {
         let mounted = true;
-        getProjectsFromAccount(1) // 1 is UserId
+        getProjectsFromAccount(1234) // 1 is UserId
             .then(items => {
                 if (mounted) {
                     setProjects(items)

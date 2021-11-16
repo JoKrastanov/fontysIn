@@ -8,7 +8,7 @@ function TopBar() {
 
     useEffect(() => {
         let mounted = true;
-        getInterests()
+        getInterests(1234)
             .then(items => {
                 if (mounted) {
                     setInterests(items)

@@ -12,7 +12,7 @@ function Stories() {
 
     useEffect(() => {
         let mounted = true;
-        getProjectsFromAccount(1)
+        getProjectsFromAccount(1234)
             .then(items => {
                 if (mounted) {
                     setProjects(items);

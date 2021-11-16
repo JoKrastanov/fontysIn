@@ -3,7 +3,7 @@ import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
 import { getAccount, getAccountData, getInterests } from "./services";
 import './Profile.css';
-function InfoPopup ({account,onClick}){
+function InfoPopup ({account,onClick, interests}){
     return(
         <>
             <div className="Overlay" onClick={onClick}/>
@@ -58,7 +58,7 @@ function InfoPopup ({account,onClick}){
                                     </div>
                                 </div>
                                 <div id="Doing">
-                                        <span>{account.interests.map(item => (
+                                        <span>{interests.map(item => (
                                             <Interest key={item.id} interest={item} />
                                         ))}</span>
                                 </div>
@@ -104,7 +104,7 @@ function Profile() {
 
     useEffect(() => {
         let mounted = true;
-        getInterests()
+        getInterests(1234)
             .then(items => {
                 if (mounted) {
                     setInterests(items)
@@ -139,6 +139,8 @@ function Profile() {
                 <InfoPopup
                     account={popupState.account}
                     onClick={() => setPopupState({ open: false })}
+                    interests={interests}
+                    
                 />
             )}
             </div>

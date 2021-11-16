@@ -23,7 +23,7 @@ export const setAccount = (pcnAccount, nameAccount) => {
 
 export const getAccountData = async (pcn) => {
     try {
-        const resp = await axios.get(url + '/accounts/' + pcn);
+        const resp = await axios.get(url + '/account/' + pcn);
         return resp.data;
     } catch (err) {
         // Handle Error Here
@@ -31,9 +31,9 @@ export const getAccountData = async (pcn) => {
     }
 };
 
-export const getInterests = async () => {
+export const getInterests = async (pcn) => {
     try {
-        const resp = await axios.get(url + '/interest');
+        const resp = await axios.get(url + "/account/" + pcn + '/interests');
         return resp.data;
     } catch (err) {
         // Handle Error Here
@@ -59,7 +59,7 @@ export const addProjectToAccount = async (accountId, project) => { //expects pro
 }
 export const getProjectsFromAccount = async (accountId) => {
     try {
-        const resp = await axios.get(url + '/accounts/projects/' + accountId);
+        const resp = await axios.get(url + '/account/' + accountId + '/projects');
         return resp.data;
     } catch (err) {
         // Handle Error Here
