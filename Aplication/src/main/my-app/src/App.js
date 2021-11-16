@@ -1,14 +1,16 @@
 import React, { Component, useState, useEffect } from 'react';
-import Profile from './Profile';
 import './App.css';
-import Login from "./Login";
+import TopBar from "./TopBar";
+import Stories from "./Stories";
 
 
 function App() {
     return (
         <>
-            <Login />
-            <Profile/>
+            <div><TopBar/></div>
+            <div>
+            <Stories/>
+            </div>
         </>
     )
 }

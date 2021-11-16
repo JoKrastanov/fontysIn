@@ -12,7 +12,7 @@ function Login() {
         "description": "A nice test",
         "link": "poo.com"
     });
-    addProjectToAccount(1, data)
+    //addProjectToAccount(1, data)
 
     //example getting project
     const [projects, setProjects] = useState([]);
@@ -30,7 +30,8 @@ function Login() {
     }, [])
 
     let Account = getAccount();
-
+    console.log(Account.pcn);
+    console.log(Account.name);
 
 
     return (<p> Logged in as {Account.name} {Account.pcn}</p>)
