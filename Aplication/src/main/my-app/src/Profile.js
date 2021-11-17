@@ -10,17 +10,15 @@ function InfoPopup ({account,onClick, interests}){
             <div id="profileInfo"onClick={onClick}>
                 <div id="ProfileInfo" className="ProfileInfo">
                     <div id="InfoCard">
-                        <svg className="InfoBg">
-                            <rect id="InfoBg" rx="111" ry="111" x="0" y="0" width="1237" height="871">
-                            </rect>
-                        </svg>
+                        <div className="InfoBg" id="InfoBg">
+
+
                         <div id="Student_Studentovych">
                             <span>{account.name}</span>
                         </div>
-                        <svg className="ProfilePic">
-                            <ellipse id="ProfilePic" rx="226.5" ry="226.5" cx="226.5" cy="226.5">
-                            </ellipse>
-                        </svg>
+                            <div className="ProfilePic">
+                        <img src="temp-avatar.jpg" />
+                            </div>
                         <div id="Info">
                             <div id="Experience">
                                 <div id="I_did_a_thing_once_Living_in_m">
@@ -89,6 +87,7 @@ function InfoPopup ({account,onClick, interests}){
                         </div>
                         <div id="n_0_Male_Estonia_Estonian_Finn">
                             <span>20<br/><br/>Estonia<br/>Estonian, Finnish, English</span>
+                        </div>
                         </div>
                     </div>
                 </div>
