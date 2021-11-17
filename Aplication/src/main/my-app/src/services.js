@@ -40,14 +40,21 @@ export const getInterests = async (pcn) => {
         console.error(err);
     }
 };
-export const addProjectToAccount = async (accountId, project) => { //expects project object 
+export const addProjectToAccount = async (title, description, link, accountPCN) => { //expects project object 
+    var data = JSON.stringify({
+        "title": title,
+        "description": description,
+        "link": link,
+        "accountPCN": accountPCN
+    });
+
     var config = {
         method: 'post',
-        url:  url + '/accounts/projects/' + accountId,
+        url:  url + '/account/projects/',
         headers: {
             'Content-Type': 'application/json'
         },
-        data: project
+        data: data
     };
     axios(config)
         .then(function (response) {
