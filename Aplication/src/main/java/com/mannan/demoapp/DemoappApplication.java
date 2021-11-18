@@ -9,7 +9,5 @@ public class DemoappApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoappApplication.class, args);
-		SqlConnClass sqlConnClass = new SqlConnClass();
-		sqlConnClass.tryConnection();
 	}
 }

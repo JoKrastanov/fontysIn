@@ -2,6 +2,7 @@ package com.mannan.demoapp.Controller;
 
 import com.mannan.demoapp.Interfaces.*;
 import com.mannan.demoapp.Model.*;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/account")
+@AllArgsConstructor
 public class AccountController {
 
     private IAccountManager accountManager;
@@ -23,14 +25,7 @@ public class AccountController {
     private IProjectManager projectManager;
     private IExperienceManager experienceManager;
     private ISkillManager skillManager;
-
-    public AccountController(IAccountManager accountManager, IInterestManager interestManager, IProjectManager projectManager, IExperienceManager experienceManager, ISkillManager skillManager) {
-        this.accountManager = accountManager;
-        this.interestManager = interestManager;
-        this.projectManager = projectManager;
-        this.experienceManager = experienceManager;
-        this.skillManager = skillManager;
-    }
+    private IConnectionManager connectionManager;
 
 
     //region Account REST API Methods
@@ -78,6 +73,17 @@ public class AccountController {
             return ResponseEntity.noContent().build();
         } else {
             return new ResponseEntity("Please provide a valid id.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("{pcn}/view/{myPcn}")
+    public ResponseEntity<Account> viewAccount(@PathVariable(value = "pcn") Long pcn, @PathVariable(value = "myPcn") Long myPcn)
+    {
+        Account account = accountManager.viewAccount(pcn, myPcn);
+        if (account != null) {
+            return ResponseEntity.ok().body(account);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
     //endregion
@@ -240,6 +246,65 @@ public class AccountController {
             return ResponseEntity.noContent().build();
         } else {
             return new ResponseEntity("Skill does not exist.", HttpStatus.NOT_FOUND);
+        }
+    }
+    //endregion
+
+    //region Connection REST API Methods
+    @GetMapping("connection/{id}")
+    public ResponseEntity<Connection> getConnection(@PathVariable Long id) {
+        Connection connection = connectionManager.getConnectionById(id);
+        if (connection != null) {
+            return ResponseEntity.ok().body(connection);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("connections/pending/{pcn}")
+    public ResponseEntity<List<Connection>> viewPendingConnections(@PathVariable Long pcn) {
+        List<Connection> connections = connectionManager.getPendingConnections(pcn);
+        if (connections != null) {
+            return ResponseEntity.ok().body(connections);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("connections/accepted/{pcn}")
+    public ResponseEntity<List<Connection>> viewAcceptedConnections(@PathVariable Long pcn) {
+        List<Connection> connections = connectionManager.getAcceptedConnections(pcn);
+        if (connections != null) {
+            return ResponseEntity.ok().body(connections);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("connection")
+    public ResponseEntity<Connection> createConnection(@RequestBody Connection connection) {
+        if (!connectionManager.addConnection(connection)) {
+            String entity = "Connection already exists.";
+            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+        } else {
+            String url = "Connection" + "/";
+            URI uri = URI.create(url);
+            return new ResponseEntity(uri, HttpStatus.CREATED);
+        }
+    }
+
+    @DeleteMapping("connection")
+    public ResponseEntity<Connection> deleteConnection(@RequestBody Connection connection) {
+        connectionManager.deleteConnection(connection);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("connection")
+    public ResponseEntity<Connection> updateConnection(@RequestBody Connection connection) {
+        if (connectionManager.updateConnection(connection)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return new ResponseEntity("Please provide a valid id.", HttpStatus.NOT_FOUND);
         }
     }
     //endregion

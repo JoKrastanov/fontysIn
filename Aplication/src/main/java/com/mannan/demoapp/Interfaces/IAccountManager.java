@@ -10,4 +10,5 @@ public interface IAccountManager {
     boolean deleteAccount(Long pcn);
     boolean addAccount(Account acc);
     boolean updateAccount(Account acc);
+    Account viewAccount(Long pcn, Long myPcn);
 }

@@ -2,6 +2,7 @@ package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Interfaces.IAccountManager;
 import com.mannan.demoapp.Model.Account;
+import com.mannan.demoapp.Model.AccountRequest;
 import com.mannan.demoapp.Repository.Interfaces.IAccountAzure;
 import org.springframework.stereotype.Component;
 
@@ -40,5 +41,25 @@ public class AccountManager implements IAccountManager {
     @Override
     public boolean updateAccount(Account account) {
         return dataClass.update(account);
+    }
+
+    @Override
+    public Account viewAccount(Long pcn, Long myPcn) {
+        AccountRequest request = dataClass.viewAccount(pcn, myPcn);
+        if (request != null)
+        {
+            if (request.getVisibility() == 0) {return null;}
+            else if (request.getVisibility() == 1 && request.getAccepted() == 1)
+            {
+                return getAccountByPcn(request.getPcn1());
+            }
+            else if (request.getVisibility() == 2)
+            {
+                return getAccountByPcn(request.getPcn1());
+            }
+
+        }
+        System.out.println(request.getVisibility() + "  " + request.getAccepted());
+        return null;
     }
 }
