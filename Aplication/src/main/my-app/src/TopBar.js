@@ -33,30 +33,36 @@ function TopBar() {
     if (account != undefined){
         return (
             <div id="TopBar">
-                <svg className="TopbarBg" viewBox="0 0 1920 71">
-                </svg>
+                <div className="TopbarBg">
+
                 <div id="Logo">
                     <span>Linkedtys</span>
                 </div>
-                <div id="LoggedUser" className="LoggedUser">
-                    <div id="UserName">
-                        <span>{account.name}</span>
-                    </div>
-                    <svg className="UserPic">
-                        <ellipse id="UserPic" rx="28" ry="28" cx="28" cy="28">
-                        </ellipse>
-                    </svg>
-                </div>
+
                 <div id="SearchBar">
-                    <svg className="SearchBg">
-                        <rect id="SearchBg" rx="17" ry="17" x="0" y="0" width="704" height="41">
-                        </rect>
-                    </svg>
-                    <div id="Search">
-                        <span>Search...</span>
+                    <div className="SearchBg">
+                        <input id="Search" type="text" value="Search...">
+                        </input>
+                        <div id="SearchBg">
+                        </div>
+                    </div>
+
+                </div>
+                    <div id="LoggedUser" className="LoggedUser">
+<div id="UserWrapper">
+                        <div id="UserName">
+                            <span>{account.name}</span>
+                        </div>
+                        <div className="UserPic">
+                            <img id="UserPic" src="./logo512.png">
+                            </img>
+                        </div>
+</div>
                     </div>
                 </div>
+
             </div>
+
         )
     }
     else{
