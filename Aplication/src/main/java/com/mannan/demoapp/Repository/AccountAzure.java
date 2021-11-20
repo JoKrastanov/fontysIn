@@ -1,6 +1,7 @@
 package com.mannan.demoapp.Repository;
 
 import com.mannan.demoapp.Model.Account;
+import com.mannan.demoapp.Model.AccountRequest;
 import com.mannan.demoapp.Repository.AzureConn.DefaultCon;
 import com.mannan.demoapp.Repository.Interfaces.IAccountAzure;
 import org.springframework.stereotype.Repository;
@@ -77,22 +78,21 @@ public class AccountAzure implements IAccountAzure {
     @Override
     public boolean update(Account account) {
         try {
-                    PreparedStatement selectSql = connection.prepareStatement("UPDATE Account SET AcademicType = ?, Bio = ?, Name = ? WHERE PCN = ?");
-                    selectSql.setString(1, account.getType());
-                    selectSql.setString(2, account.getBio());
-                    selectSql.setString(3, account.getName());
-                    selectSql.setLong(4, account.getPcn());
-                    selectSql.executeUpdate();
-                    return true;
-            }
-        catch (SQLException e) {
+            PreparedStatement selectSql = connection.prepareStatement("UPDATE Account SET AcademicType = ?, Bio = ?, Name = ? WHERE PCN = ?");
+            selectSql.setString(1, account.getType());
+            selectSql.setString(2, account.getBio());
+            selectSql.setString(3, account.getName());
+            selectSql.setLong(4, account.getPcn());
+            selectSql.executeUpdate();
+            return true;
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
+
     @Override
-    public boolean create(Account account)
-    {
+    public boolean create(Account account) {
         try {
             PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Account (AcademicType, Bio, PCN, Name) VALUES (?,?,?,?)");
             selectSql.setString(1, account.getType());
@@ -101,9 +101,46 @@ public class AccountAzure implements IAccountAzure {
             selectSql.setString(4, account.getName());
             selectSql.executeUpdate();
             return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        catch (SQLException e) {e.printStackTrace();}
         return false;
+    }
+
+    @Override
+    public AccountRequest viewAccount(Long pcn, Long myPcn) {
+        try {
+            AccountRequest request = new AccountRequest();
+            request.setPcn2(myPcn);
+            PreparedStatement selectSql = connection.prepareStatement("select a.pcn, a.visibility from account as a\n" +
+                    "where a.PCN = ?");
+            selectSql.setLong(1, pcn);
+            ResultSet result = selectSql.executeQuery();
+            while (result.next()) {
+                request.setPcn1(pcn);
+                request.setVisibility(result.getInt(2));
+            }
+
+            PreparedStatement selectSql2 = connection.prepareStatement("select c.accepted from connection as c " +
+                    "where (Pcn1 = ? OR Pcn1 = ?) AND (Pcn2 = ? OR Pcn2 = ?)");
+            selectSql2.setLong(1, pcn);
+            selectSql2.setLong(2, myPcn);
+            selectSql2.setLong(3, pcn);
+            selectSql2.setLong(4, myPcn);
+            ResultSet result2 = selectSql2.executeQuery();
+            if (!result2.next()) {
+                request.setAccepted(0);
+                return  request;
+            }
+                else {
+                    request.setAccepted(result2.getInt(1));
+                }
+
+            return request;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
 

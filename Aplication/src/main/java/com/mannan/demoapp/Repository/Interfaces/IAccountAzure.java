@@ -1,6 +1,7 @@
 package com.mannan.demoapp.Repository.Interfaces;
 
 import com.mannan.demoapp.Model.Account;
+import com.mannan.demoapp.Model.AccountRequest;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ public interface IAccountAzure {
     boolean update(Account acc);
     boolean create(Account acc);
     boolean delete(Long id);
+    AccountRequest viewAccount(Long pcn, Long myPcn);
 }
