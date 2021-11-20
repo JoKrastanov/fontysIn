@@ -3,23 +3,14 @@ import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount } f
 
 function Login() {
 
-    setAccount("2323", "Joe");
-
-    //example adding project
-    var data = JSON.stringify({
-        "id": 1,
-        "title": "test",
-        "description": "A nice test",
-        "link": "poo.com"
-    });
-    addProjectToAccount(1, data)
+    setAccount("2345", "Joe");
 
     //example getting project
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         let mounted = true;
-        getProjectsFromAccount(1) // 1 is UserId
+        getProjectsFromAccount(getAccount().pcn)
             .then(items => {
                 if (mounted) {
                     setProjects(items)
@@ -30,7 +21,9 @@ function Login() {
     }, [])
 
     let Account = getAccount();
-
+    console.log(Account.pcn);
+    console.log(Account.name);
+    
 
 
     return (<p> Logged in as {Account.name} {Account.pcn}</p>)
