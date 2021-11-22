@@ -5,7 +5,7 @@ import com.mannan.demoapp.Model.Connection;
 import java.util.List;
 
 public interface IConnectionAzure {
-    Connection findById(Long id);
+    Connection findByPCNs(Long pcn1, Long pcn2);
     List<Connection> findPendingByPcn(Long pcn);
     List<Connection> findAcceptedByPcn(Long pcn);
     boolean createConnection(Connection connect);

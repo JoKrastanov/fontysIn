@@ -15,8 +15,8 @@ public class ConnectionManager implements IConnectionManager {
     public ConnectionManager(IConnectionAzure dataClass) {this.dataClass = dataClass;}
 
     @Override
-    public Connection getConnectionById(Long id) {
-        return dataClass.findById(id);
+    public Connection getConnectionByPCNs(Long pcn1, Long pcn2) {
+        return dataClass.findByPCNs(pcn1, pcn2);
     }
 
     @Override
@@ -31,7 +31,11 @@ public class ConnectionManager implements IConnectionManager {
 
     @Override
     public boolean addConnection(Connection connection) {
-        return dataClass.createConnection(connection);
+        Connection checkConnection = getConnectionByPCNs(connection.getPcn1(), connection.getPcn2());
+        if (checkConnection == null) {
+            return dataClass.createConnection(connection);
+        }
+        else {return false;}
     }
 
     @Override

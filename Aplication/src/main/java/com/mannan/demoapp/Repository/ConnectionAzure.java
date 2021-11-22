@@ -20,11 +20,14 @@ public class ConnectionAzure implements IConnectionAzure {
     Statement statement = connection.createStatement();
 
     @Override
-    public Connection findById(Long id) {
+    public Connection findByPCNs(Long pcn1, Long pcn2) {
         try {
             PreparedStatement selectSql = connection.prepareStatement(
-                    "select * from Connection where id = ?");
-            selectSql.setLong(1, id);
+                    "select * from Connection where (pcn1 = ? AND pcn2 = ?) OR (pcn1 = ? AND pcn2 = ?) ");
+            selectSql.setLong(1, pcn1);
+            selectSql.setLong(2, pcn2);
+            selectSql.setLong(3, pcn2);
+            selectSql.setLong(4, pcn1);
             ResultSet result = selectSql.executeQuery();
             while(result.next())
             {

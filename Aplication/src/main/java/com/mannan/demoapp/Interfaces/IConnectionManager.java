@@ -5,7 +5,7 @@ import com.mannan.demoapp.Model.Connection;
 import java.util.List;
 
 public interface IConnectionManager {
-    Connection getConnectionById(Long id);
+    Connection getConnectionByPCNs(Long pcn1, Long pcn2);
     List<Connection> getPendingConnections(Long pcn);
     List<Connection> getAcceptedConnections(Long pcn);
     boolean addConnection(Connection connection);

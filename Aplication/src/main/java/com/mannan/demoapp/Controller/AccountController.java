@@ -251,9 +251,9 @@ public class AccountController {
     //endregion
 
     //region Connection REST API Methods
-    @GetMapping("connection/{id}")
-    public ResponseEntity<Connection> getConnection(@PathVariable Long id) {
-        Connection connection = connectionManager.getConnectionById(id);
+    @GetMapping("connection/{pcn1}/{pcn2}")
+    public ResponseEntity<Connection> getConnection(@PathVariable Long pcn1, @PathVariable Long pcn2) {
+        Connection connection = connectionManager.getConnectionByPCNs(pcn1, pcn2);
         if (connection != null) {
             return ResponseEntity.ok().body(connection);
         } else {
