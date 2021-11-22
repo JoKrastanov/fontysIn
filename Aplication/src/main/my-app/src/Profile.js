@@ -132,12 +132,13 @@ function Profile() {
     }, [])
 
     if (account != undefined){
+        //rx="117.5" ry="117.5" cx="117.5" cy="117.5"
         return (
             <div id="ProfileInfo" className="ProfileInfo">
-                <svg className="ProfilePicture">
-                    <ellipse id="ProfilePicture" rx="117.5" ry="117.5" cx="117.5" cy="117.5">
-                    </ellipse>
-                </svg>
+                <div className="ProfilePicture">
+                    <div id="ProfilePicture" >
+                    </div>
+                </div>
                 {<div id="Student_Studentovych__">
                     <span id="NameSpan" href = "#" onClick={showInfo(account)}>{account.name} ⓘ </span>
                 </div>}{popupState.open === true && (

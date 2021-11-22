@@ -13,10 +13,6 @@
 .ProfilePicture {
     position: absolute;
     overflow: visible;
-    width: 235px;
-    height: 235px;
-    left: 0px;
-    top: 0px;
 }
 #Student_Studentovych__ {
 
@@ -314,7 +310,5 @@
     color: rgba(177,177,177,1);
 }
 #NameSpan {
-    top: 120px;
     position: relative;
-    left: 180px;
 }
