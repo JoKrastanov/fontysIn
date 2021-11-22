@@ -1,0 +1,28 @@
+#AddWrapper{
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 10px;
+
+}
+#DescriptionBox{
+    background-color: rgba(204,201,210,1);
+    font-size: 30px;
+    height: 100px;
+}
+#LinkBox{
+    background-color: rgba(204,201,210,1);
+    font-size: 30px;
+}
+#TitleBox{
+    background-color: rgba(204,201,210,1);
+    font-size: 30px;
+}
+#AddButton{
+    background-color: rgba(204,201,210,1);
+    font-size: 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(112,112,112,1);
+}

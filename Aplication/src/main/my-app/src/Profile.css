@@ -1,5 +1,9 @@
 #ProfileInfo {
+    align-items: flex-end;
+    display: flex;
     overflow: visible;
+    left: 20%;
+    position: relative;
 }
 #ProfilePicture {
     fill: rgba(255,255,255,1);
@@ -9,10 +13,18 @@
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
+    z-index: 1;
 }
 .ProfilePicture {
-    position: absolute;
+    top: 50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #86639f;
+    border: 1px solid rgba(112,112,112,1);
+    position: relative;
     overflow: visible;
+    z-index: 1;
 }
 #Student_Studentovych__ {
 
@@ -51,7 +63,7 @@
 }
 #InfoCard {
     z-index: 10;
-    position: absolute;
+    position: fixed;
     width: 1436px;
     height: 1128px;
     left: 49px;

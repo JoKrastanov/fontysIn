@@ -14,13 +14,13 @@
 }
 #Stories_g {
 
-    left: 10%;
+    display: flex;
+    flex-direction: column;
     overflow: visible;
     position: relative;
 }
 #StoriesBg {
-    fill: rgba(216,212,222,1);
-    stroke: rgba(112,112,112,1);
+
     stroke-width: 1px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
@@ -28,12 +28,17 @@
     shape-rendering: auto;
 }
 .StoriesBg {
+    background-color: rgba(216,212,222,1);
+    border:1px solid rgba(112,112,112,1);
     position: relative;
     overflow: visible;
     left: 0px;
     top: 5.5%;
+    border-radius: 20px;
 }
 #Story2 {
+    padding-block: 5px;
+    padding-inline: 5%;
     position: relative;
 
 }
@@ -62,7 +67,6 @@ border-radius: 5px;
 #Story_to_end_all_stories {
     position: relative;
     overflow: visible;
-    white-space: nowrap;
     text-align: left;
     font-family: Segoe UI;
     font-style: normal;
@@ -147,11 +151,14 @@ border-radius: 5px;
     font-size: 20px;
     color: rgba(112,112,112,1);
 }
+#AddProject{
+    padding-inline: 5%;
+}
 #Stories_s {
-
+    padding-top: 50px;
     position: relative;
     overflow: visible;
-    width: 108px;
+    /* width: 108px; */
     white-space: nowrap;
     text-align: left;
     font-family: Segoe UI;
@@ -159,8 +166,9 @@ border-radius: 5px;
     font-weight: normal;
     font-size: 36px;
     color: rgba(112,112,112,1);
+    text-align: center;
 }
-#Profile {
+#Profile{
     width: fit-content;
     height: fit-content;
     position: relative;

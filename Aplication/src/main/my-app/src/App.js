@@ -14,8 +14,8 @@ function App() {
             <div><TopBar/></div>
             <div>
                 <AccountPage/>
-            <Stories/>
             </div>
+
         </>
     )
 }
