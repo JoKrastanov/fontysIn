@@ -40,7 +40,7 @@ export const getInterests = async (pcn) => {
         console.error(err);
     }
 };
-export const addProjectToAccount = async (title, description, link, accountPCN) => { //expects project object 
+export const addProjectToAccount = async (title, description, link, accountPCN) => {
     var data = JSON.stringify({
         "title": title,
         "description": description,
@@ -50,7 +50,7 @@ export const addProjectToAccount = async (title, description, link, accountPCN) 
 
     var config = {
         method: 'post',
-        url:  url + '/account/projects/',
+        url: url + '/account/projects/',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -58,7 +58,7 @@ export const addProjectToAccount = async (title, description, link, accountPCN) 
     };
     axios(config)
         .then(function (response) {
-            return(JSON.stringify(response.data));
+            return (JSON.stringify(response.data));
         })
         .catch(function (error) {
             console.log(error);
@@ -73,3 +73,72 @@ export const getProjectsFromAccount = async (accountId) => {
         console.error(err);
     }
 };
+
+export const getALlAccounts = async () => {
+    try {
+        const resp = await axios.get(url + '/account');
+        return resp.data;
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+}
+
+export const isAccountVisable = async (pcn, myPcn) => {
+    try {
+        const resp = await axios.get(url + '/account/' + pcn + '/view/' + myPcn);
+        return true;
+    } catch (err) {
+        // Handle Error Here
+        return false;
+    }
+}
+
+export const makeConnectionRequest = async (myPcn, requestPcn) => {
+    var data = JSON.stringify({
+        "pcn1": myPcn,
+        "pcn2": requestPcn
+    });
+
+    var config = {
+        method: 'post',
+        url: url + '/account/connection',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+    axios(config)
+        .then(function (response) {
+            return (JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+export const getAllPendingRequests = async (pcn) => {
+    try {
+        const resp = await axios.get(url + '/account/connections/pending/' + pcn);
+        return resp.data;
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+}
+
+export const acceptRequest = async (request) => {
+
+    request.accepted = 1;
+
+    var config = {
+        method: 'put',
+        url:  url + '/account/connection',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: request
+    };
+
+    await axios(config)
+}
