@@ -23,7 +23,7 @@ export const setAccount = (pcnAccount, nameAccount) => {
 
 export const getAccountData = async (pcn) => {
     try {
-        const resp = await axios.get(url + '/accounts/' + pcn);
+        const resp = await axios.get(url + '/account/' + pcn);
         return resp.data;
     } catch (err) {
         // Handle Error Here
@@ -31,23 +31,30 @@ export const getAccountData = async (pcn) => {
     }
 };
 
-export const getInterests = async () => {
+export const getInterests = async (pcn) => {
     try {
-        const resp = await axios.get(url + '/interest');
+        const resp = await axios.get(url + "/account/" + pcn + '/interests');
         return resp.data;
     } catch (err) {
         // Handle Error Here
         console.error(err);
     }
 };
-export const addProjectToAccount = async (accountId, project) => { //expects project object 
+export const addProjectToAccount = async (title, description, link, accountPCN) => { //expects project object 
+    var data = JSON.stringify({
+        "title": title,
+        "description": description,
+        "link": link,
+        "accountPCN": accountPCN
+    });
+
     var config = {
         method: 'post',
-        url:  url + '/accounts/projects/' + accountId,
+        url:  url + '/account/projects/',
         headers: {
             'Content-Type': 'application/json'
         },
-        data: project
+        data: data
     };
     axios(config)
         .then(function (response) {
@@ -59,7 +66,7 @@ export const addProjectToAccount = async (accountId, project) => { //expects pro
 }
 export const getProjectsFromAccount = async (accountId) => {
     try {
-        const resp = await axios.get(url + '/accounts/projects/' + accountId);
+        const resp = await axios.get(url + '/account/' + accountId + '/projects');
         return resp.data;
     } catch (err) {
         // Handle Error Here

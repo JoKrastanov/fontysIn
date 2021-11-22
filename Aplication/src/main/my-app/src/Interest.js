@@ -4,7 +4,7 @@ function Interest(prop) {
     console.log(prop);
     return (
         <>
-            <p>{prop.interest.name}</p>
+            <>{prop.interest.interest} </>
         </>
     )
 }

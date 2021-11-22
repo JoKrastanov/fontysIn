@@ -1,0 +1,320 @@
+#ProfileInfo {
+    overflow: visible;
+}
+#ProfilePicture {
+    fill: rgba(255,255,255,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.ProfilePicture {
+    position: absolute;
+    overflow: visible;
+    width: 235px;
+    height: 235px;
+    left: 0px;
+    top: 0px;
+}
+#Student_Studentovych__ {
+
+}
+.InfoPopUp {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    padding: 32px;
+    border-radius: 12px;
+    transform: translate(-50%, -50%);
+}
+
+.Overlay {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+}
+.imge{
+    width: inherit;
+}
+#MidInfo{
+    display: grid;
+    align-items: center;
+    /* grid-template-areas: "a b b b c"; */
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+#InfoCard {
+    z-index: 10;
+    position: absolute;
+    width: 1436px;
+    height: 1128px;
+    left: 49px;
+    top: 0px;
+    overflow: visible;
+}
+#InfoBg {
+
+    background-color: rgba(216,212,222,1);
+    fill: rgba(216,212,222,1);
+    /* stroke: rgba(112,112,112,1); */
+    stroke-width: 159px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+    border: thin;
+    border-color: rgba(112,112,112,1);
+    border-width: 114px;
+    border-radius: 107px;
+}
+.InfoBg {
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    position: absolute;
+    overflow: visible;
+    width: 1237px;
+    height: max-content;
+    left: 0px;
+    top: 236px;
+    padding: 2.5%;
+}
+#Student_Studentovych {
+    text-align: center;
+    grid-column: 2/5;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 54px;
+    color: rgba(112,112,112,1);
+}
+#ProfilePic {
+
+    fill: rgba(255,255,255,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.ProfilePicHolder {
+
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+.ProfilePic {
+    background-color: cadetblue;
+    border-radius: 50%;
+    position: relative;
+    overflow: visible;
+    width: 450px;
+    height: 450px;
+}
+#Info {
+    position: relative;
+}
+#Experience {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+#I_did_a_thing_once_Living_in_m {
+    white-space: pre-wrap;
+    grid-column: 2/6;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    color: rgba(112,112,112,1);
+}
+#ExperienceBtn {
+}
+#ExperienceBtnBg {
+    fill: rgba(204,201,210,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.ExperienceBtnBg {
+
+}
+#Experience_s {
+    position: relative;
+    overflow: visible;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 30px;
+    text-align: center;
+}
+#Bio {
+    position: relative;
+}
+#BioBg {
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 10px;
+}
+.BioBg {
+
+}
+#BioText {
+    white-space: pre-wrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+    color: rgba(112,112,112,1);
+}
+#Interests {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+}
+#InterestsBtn {
+
+}
+#InterestsBtnBg {
+    fill: rgba(204,201,210,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.InterestsBtnBg {
+
+}
+#Interests_z {
+    position: relative;
+    overflow: visible;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 30px;
+    text-align: center;
+}
+#Doing {
+    white-space: pre-wrap;
+    grid-column: 2/6;
+    position: relative;
+    overflow: visible;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    color: rgba(112,112,112,1);
+}
+#Skills {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+}
+#Making_toast_without_burning_t {
+    white-space: pre-wrap;
+    grid-column: 2/6;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+    color: rgba(112,112,112,1);
+}
+#SkillsBtn {
+
+}
+#SkillsBtnBg {
+    fill: rgba(204,201,210,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.SkillsBtnBg {
+
+}
+#Skills_ {
+    position: relative;
+    overflow: visible;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 30px;
+    text-align: center;
+}
+#EditBtn {
+    grid-column: 5;
+    display: flex;
+    width: -webkit-fill-available;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 5%;
+}
+#EditBg {
+    width: 100%;
+    height: 25%;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 10px;
+    align-self: end;
+    font-size: 20px;
+}
+.EditBg {
+}
+#Edit {
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 27px;
+    color: rgba(112,112,112,1);
+}
+#n_0_Male_Estonia_Estonian_Finn {
+    grid-column: 1;
+    padding-left: 5%;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: rgba(177,177,177,1);
+}
+#NameSpan {
+    top: 120px;
+    position: relative;
+    left: 180px;
+}
