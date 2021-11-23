@@ -59,6 +59,7 @@ function TopBar() {
                     <div id="LoggedUser" className="LoggedUser">
                         <div className="small-panel">
                             <button className="pending-requests-btn" onClick={showRequests}>Req</button>
+                            <PendingRequests showReq={showReq}/>
                         </div>
                         <div id="UserWrapper">
                             <div id="UserName">
@@ -72,7 +73,7 @@ function TopBar() {
                     </div>
                 </div>
 
-                <PendingRequests showReq={showReq}/>
+
             </div>
 
         )

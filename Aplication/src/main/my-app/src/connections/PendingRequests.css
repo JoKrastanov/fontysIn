@@ -1,20 +1,22 @@
 .request-list{
-    border: solid black 2px;
-    border-radius: 10px;
+    width: 20%;
+    border: solid 1px #707070;
     position: absolute;
-    right: 15px;
-    top: 80px;
+    top: 90px;
+    border-radius: 10px;
     overflow: hidden;
     padding: 0;
     background-color: rgba(216,212,222,1);
 }
+#PendingRequests{
+    padding: 10px;
+}
 .request-list h1{
-    border-bottom: solid black 1px;
     padding: 5px;
 }
 .request-list-item{
     background-color: rgba(200, 196, 207, 1);
-    border: solid 1px grey;
+
     margin: 5px;
     padding: 5px;
     border-radius: 5px;
@@ -22,24 +24,35 @@
 .user-pic{
     float: left;
 }
+.request-list-item-name{
+    font-size: 30px;
+}
 .name-box{
-    float:left;
-    padding-top: 5px;
+    display: flex;
+    /* float: left; */
+    /* padding-top: 5px; */
     margin-left: 10px;
+    flex-direction: column;
 }
 .request-list-item-bio{
     display: block;
 }
 .user-main-info{
+    display: flex;
     overflow: hidden;
+    align-content: center;
+    align-items: center;
 }
 .request-list-item-bio{
-    border: solid grey 1px;
-    background-color: lightgrey;
+    border-radius: 5px;
+    border: solid #707070 1px;
+    background-color: #d4cbcb;
     padding: 3px;
     font-size: 14px;
 }
 .action-menu{
+    display: flex;
+    align-items: end;
     overflow: hidden;
 }
 .action-menu div{
@@ -48,14 +61,17 @@
     padding: 2px;
 }
 .action-menu button{
+    color: #4d4d4d;
+    background-color:rgba(200, 196, 207, 1);
     width:100%;
     border-radius: 2px;
     font-size: 15px;
-    border: solid lightgrey 1px;
+    border-bottom: solid #707070 1px;
+    height: available;
 }
 
 .action-menu button:hover{
-    background-color: lightgrey;
-    color: blue;
+    background-color: rgba(200, 196, 207, 1);
+    color: #707070;
 }
 

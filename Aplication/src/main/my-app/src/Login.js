@@ -3,7 +3,7 @@ import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount, ge
 
 function Login() {
 
-    setAccount("2345", "Joe");
+    setAccount("1234" , "Joe");
     let Account = getAccount();
 
 

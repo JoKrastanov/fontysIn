@@ -6,6 +6,7 @@ import AddProject from './AddProject';
 import AllPeople from './connections/AllPeople';
 import PendingRequests from './connections/PendingRequests';
 import AccountPage from "./AccountPage";
+import Login from "./Login";
 
 function App() {
 

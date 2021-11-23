@@ -44,7 +44,7 @@ function PendingRequests({showReq}) {
     else {
         return (
             <div className="request-list">
-                <h1>Pending requests</h1>
+                <div id="PendingRequests">Pending requests</div>
                 {PendingRequests.map(item => (
                     <>
                         {item.pcn1 != getAccount().pcn &&
