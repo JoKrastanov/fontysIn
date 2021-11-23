@@ -4,12 +4,10 @@ import OnePerson from './OnePerson';
 import Popup from '../components/Popup';
 import './AllPeople.css';
 
-function AllPeople() {
+function AllPeople(prop) {
     const [accounts, setAccounts] = useState();
     const [buttonPopup, setButtonPopup] = useState(false);
     const [requestPcn, setRequestPcn] = useState();
-
-    var pcnFriendRequestPopup;
 
     useEffect(() => {
         let mounted = true;
@@ -24,7 +22,7 @@ function AllPeople() {
 
     const redirectIfAccountIsVisible = async (pcn) => {
         if (await isAccountVisable(pcn, getAccount().pcn)) {
-            alert("Redirect to user page");
+            prop.setPcnStates(pcn);
         }
         else {
             console.log(pcn);

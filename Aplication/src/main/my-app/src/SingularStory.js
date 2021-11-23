@@ -5,7 +5,6 @@ export default function SingularStory (prop){
         if(prop.story != undefined){
             return (
                 <div id="Story2">
-                    {console.log(prop)}
                     <div className="Rectangle_5">
                         <div id="Rectangle_5" >
                     <div id="n_0_Sep">
