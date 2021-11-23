@@ -45,8 +45,9 @@
 }
 .request-list-item-bio{
     border-radius: 5px;
-    border: solid #707070 1px;
-    background-color: #d4cbcb;
+
+    background-color: rgba(216,212,222,1);
+    padding: 3px;
     padding: 3px;
     font-size: 14px;
 }

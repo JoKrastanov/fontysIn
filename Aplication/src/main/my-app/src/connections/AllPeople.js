@@ -42,8 +42,8 @@ function AllPeople(prop) {
                     </>
                 ))}
                 <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                    <h1>You don't have a connection with this person. Do you want to send a connection request?</h1>
-                    <button onClick={() => {
+                    <div>You don't have a connection with this person. Do you want to send a connection request?</div>
+                    <button id="ConnectionButton" onClick={() => {
                         console.log(getAccount().pcn);
                         makeConnectionRequest(getAccount().pcn, requestPcn);
                         setButtonPopup(false);
