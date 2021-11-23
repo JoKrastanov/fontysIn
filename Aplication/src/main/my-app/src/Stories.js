@@ -36,9 +36,11 @@ function Stories(prop) {
                             <div id="Stories_s">
                                 <span>Projects</span>
                             </div>
-                            <div id="AddProject">
-                                <AddProject />
-                            </div>
+                            {prop.myAccount === true &&
+                                <div id="AddProject">
+                                    <AddProject />
+                                </div>
+                            }
                             {projects.map(item => (
                                 <SingularStory key={item.id} story={item} />
                             ))}

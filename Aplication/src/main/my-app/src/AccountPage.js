@@ -10,18 +10,20 @@ export default function AccountPage(prop) {
     const [hasRendered2, setHasRendered2] = useState(false);
     const [hasRendered3, setHasRendered3] = useState(false);
     const rendered = { hasRendered, setHasRendered, hasRendered2, setHasRendered2, hasRendered3, setHasRendered3 }
+    const [myAccount, setMyAccount] = useState(true);
 
     function setPcnStates(pcn) {
         setPcn(pcn);
         setHasRendered (false);
         setHasRendered2 (false);
         setHasRendered3 (false);
+        setMyAccount(false)
     }
 
     return (
         <div id="AccountPageWrapper">
             <div id="StoriesWrapper">
-                <Stories rendered={rendered} pcn={pcn} myAccount={true} />
+                <Stories rendered={rendered} pcn={pcn} myAccount={myAccount} />
             </div>
             <div id="AccountWrapper">
                 <AllPeople setPcnStates={setPcnStates} hasRendered={"false"} />

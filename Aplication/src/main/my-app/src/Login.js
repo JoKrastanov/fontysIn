@@ -4,10 +4,8 @@ import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount, ge
 function Login() {
 
     setAccount("1234" , "Joe");
-    let Account = getAccount();
 
-
-    return (<p> Logged in as {Account.name} {Account.pcn}</p>)
+    return "";
 }
 
 export default Login;
