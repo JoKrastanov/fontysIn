@@ -19,7 +19,12 @@ function PendingRequests({showReq}) {
 
     const acceptRequestAsync = async (request) => {
         await acceptRequest(request);
+        getAllPendingRequests(getAccount().pcn)
+            .then(items => {setPendingRequests(items)})
     }
+
+
+
 
     if(showReq)
     {

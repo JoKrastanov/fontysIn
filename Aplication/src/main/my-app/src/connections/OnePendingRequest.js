@@ -15,6 +15,11 @@ function OnePendingRequest(prop) {
         return () => mounted = false;
     }, [])
 
+    const acceptRequest = () => {
+        prop.acceptRequest(prop.request);
+
+    }
+
     if (person !== undefined){
         return (
             <div className="request-list-item">
@@ -35,7 +40,7 @@ function OnePendingRequest(prop) {
 
                 <div className="action-menu">
                     <div className="btn-accept">
-                        <button className="request-list-item-accept" onClick={() => prop.acceptRequest(prop.request)}>accept request</button>
+                        <button className="request-list-item-accept" onClick={acceptRequest}>accept request</button>
                     </div>
                     <div className="btn-decline">
                         <button className="request-list-item-decline" onClick={() => prop.acceptRequest(prop.request)}>decline request</button>
