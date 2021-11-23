@@ -3,7 +3,7 @@ import { getAccount, getALlAccounts, isAccountVisable, makeConnectionRequest } f
 import OnePerson from './OnePerson';
 import Popup from '../components/Popup';
 
-function AllPeople() {
+function AllPeople(prop) {
     const [accounts, setAccounts] = useState();
     const [buttonPopup, setButtonPopup] = useState(false);
     const [requestPcn, setRequestPcn] = useState();
@@ -23,7 +23,7 @@ function AllPeople() {
 
     const redirectIfAccountIsVisible = async (pcn) => {
         if (await isAccountVisable(pcn, getAccount().pcn)) {
-            alert("Redirect to user page");
+            prop.setPcn(pcn)
         }
         else {
             console.log(pcn);

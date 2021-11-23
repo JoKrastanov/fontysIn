@@ -101,7 +101,7 @@ function InfoPopup ({account,onClick, interests}){
         </>
     );
 }
-function Profile() {
+function Profile(prop) {
     const [account, setAccount] = useState();
     const [interests, setInterests] = useState([]);
     const [popupState, setPopupState] = React.useState({ open: false });
@@ -109,7 +109,7 @@ function Profile() {
 
     useEffect(() => {
         let mounted = true;
-        getInterests(getAccount().pcn)
+        getInterests(prop.pcn)
             .then(items => {
                 if (mounted) {
                     setInterests(items)
@@ -119,10 +119,9 @@ function Profile() {
     }, [])
 
     useEffect(() => {
-        let Account = getAccount();
 
         let mounted = true;
-        getAccountData(Account.pcn)
+        getAccountData(prop.pcn)
             .then(items => {
                 if (mounted) {
                     setAccount(items)
