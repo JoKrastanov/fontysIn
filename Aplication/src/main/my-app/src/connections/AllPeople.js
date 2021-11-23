@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getAccount, getALlAccounts, isAccountVisable, makeConnectionRequest } from '../services';
 import OnePerson from './OnePerson';
 import Popup from '../components/Popup';
+import './AllPeople.css';
 
 function AllPeople() {
     const [accounts, setAccounts] = useState();
@@ -34,7 +35,7 @@ function AllPeople() {
 
     if (accounts != undefined) {
         return (
-            <div>
+            <div id='AllPeopleWrapper'>
                 {accounts.map(item => (
                     <>
                         {item.pcn != getAccount().pcn &&

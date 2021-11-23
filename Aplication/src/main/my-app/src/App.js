@@ -5,6 +5,7 @@ import Stories from "./Stories";
 import AddProject from './AddProject';
 import AllPeople from './connections/AllPeople';
 import PendingRequests from './connections/PendingRequests';
+import AccountPage from "./AccountPage";
 
 function App() {
 
@@ -12,10 +13,9 @@ function App() {
         <>
             <div><TopBar/></div>
             <div>
-            <AddProject/>
-            <Stories/>
-            <AllPeople />
+                <AccountPage/>
             </div>
+
         </>
     )
 }

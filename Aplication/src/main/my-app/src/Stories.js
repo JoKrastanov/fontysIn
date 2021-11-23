@@ -5,6 +5,7 @@ import {getAccount, getAccountData, getInterests, getProjectsFromAccount} from "
 import Profile from "./Profile";
 import './Stories.css'
 import SingularStory from "./SingularStory";
+import AddProject from "./AddProject";
 
 
 function Stories() {
@@ -26,22 +27,24 @@ function Stories() {
             <div id="Stories">
                 {console.log(projects)}
                 <div id="Stories_g">
-                    <svg className="StoriesBg">
-                        <rect id="StoriesBg" rx="0" ry="0" x="0" y="0" width="1131" height="1299">
-                        </rect>
-                    </svg>
-
-                    <div id="Stories_s">
-                        <span>Stories</span>
-                    </div>
                     <div id="Profile" className="Profile">
                         <div id="Student_Studentovych__">
                             <Profile/>
                         </div>
                     </div>
+                    <div className="StoriesBg">
+                        <rect id="StoriesBg" >
+                    <div id="Stories_s">
+                        <span>Projects</span>
+                    </div>
+                    <div id="AddProject">
+                        <AddProject/>
+                    </div>
                     {projects.map(item => (
                         <SingularStory key={item.id} story={item}/>
                     ))}
+                        </rect>
+                </div>
                 </div>
             </div>
         )

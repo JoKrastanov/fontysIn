@@ -1,0 +1,31 @@
+#SinglePersonWrapper{
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    padding-block: 2%;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 30px;
+}
+#AllPeopleWrapper{
+    border-right: 1px solid rgba(112,112,112,1);
+    border-block: 1px solid rgba(112,112,112,1);
+    background-color:rgba(216,212,222,1);
+    width: -webkit-fill-available;width: -moz-available;
+    height: fit-content;
+    padding-inline: 5%;
+    padding-block: 10%;
+    border-radius: 20px;
+
+}
+#Name{}
+#ViewBtn{
+    color: #4d4d4d;
+    border: 1px solid rgba(112,112,112,1);
+    background-color:rgba(216,212,222,1);
+    background-color: rgba(204,201,210,1);
+    border-radius: 10px;
+    padding: 5px;
+}
+body{
+    color: #707070;
+}

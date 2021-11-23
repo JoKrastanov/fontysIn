@@ -13,14 +13,14 @@
     --web-enable-deep-linking: true;
 }
 #Stories_g {
-    top: 10%;
-    left: 10%;
+
+    display: flex;
+    flex-direction: column;
     overflow: visible;
-    position: absolute;
+    position: relative;
 }
 #StoriesBg {
-    fill: rgba(216,212,222,1);
-    stroke: rgba(112,112,112,1);
+
     stroke-width: 1px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
@@ -28,40 +28,32 @@
     shape-rendering: auto;
 }
 .StoriesBg {
-    position: absolute;
+    background-color: rgba(216,212,222,1);
+    border:1px solid rgba(112,112,112,1);
+    position: relative;
     overflow: visible;
-    width: 1131px;
-    height: 1299px;
     left: 0px;
-    top: 174px;
+    top: 5.5%;
+    border-radius: 20px;
 }
 #Story2 {
+    padding-block: 5px;
+    padding-inline: 5%;
     position: relative;
-    height: 304px;
-    left: 38px;
-    top: 190px;
+
 }
 #Rectangle_5 {
-    fill: rgba(204,201,210,1);
-    stroke: rgba(112,112,112,1);
-    stroke-width: 1px;
-    stroke-linejoin: miter;
-    stroke-linecap: butt;
-    stroke-miterlimit: 4;
-    shape-rendering: auto;
+    background-color: rgba(204,201,210,1);
+    border:1px solid rgba(112,112,112,1);
+border-radius: 5px;
 }
 .Rectangle_5 {
-    position: absolute;
+
+    position: relative;
     overflow: visible;
-    width: 1042px;
-    height: 270px;
-    left: 0px;
-    top: 22px;
 }
 #n_0_Sep {
-    left: 0px;
-    top: 0px;
-    position: absolute;
+    position: relative;
     overflow: visible;
     width: 52px;
     white-space: nowrap;
@@ -73,12 +65,8 @@
     color: rgba(112,112,112,1);
 }
 #Story_to_end_all_stories {
-    left: 26px;
-    top: 32px;
-    position: absolute;
+    position: relative;
     overflow: visible;
-    width: 296px;
-    white-space: nowrap;
     text-align: left;
     font-family: Segoe UI;
     font-style: normal;
@@ -87,12 +75,8 @@
     color: rgba(112,112,112,1);
 }
 #Phasellus_id_risus_facilisis_f {
-    left: 26px;
-    top: 82px;
-    position: absolute;
+    position: relative;
     overflow: visible;
-    width: 997px;
-    height: 199px;
     text-align: left;
     font-family: Segoe UI;
     font-style: normal;
@@ -167,12 +151,14 @@
     font-size: 20px;
     color: rgba(112,112,112,1);
 }
+#AddProject{
+    padding-inline: 5%;
+}
 #Stories_s {
-    left: 531px;
-    top: 187px;
-    position: absolute;
+    padding-top: 50px;
+    position: relative;
     overflow: visible;
-    width: 108px;
+    /* width: 108px; */
     white-space: nowrap;
     text-align: left;
     font-family: Segoe UI;
@@ -180,8 +166,11 @@
     font-weight: normal;
     font-size: 36px;
     color: rgba(112,112,112,1);
+    text-align: center;
 }
-#Profile {
+#Profile{
+    width: fit-content;
+    height: fit-content;
     position: relative;
     overflow: visible;
 }
@@ -212,5 +201,4 @@
     font-size: 36px;
     color: #707070;
     position: relative;
-    left: 100px;
 }
