@@ -10,7 +10,7 @@
     border-right: 1px solid rgba(112,112,112,1);
     border-block: 1px solid rgba(112,112,112,1);
     background-color:rgba(216,212,222,1);
-    width: -webkit-fill-available;
+    width: -webkit-fill-available;width: -moz-available;
     height: fit-content;
     padding-inline: 5%;
     padding-block: 10%;

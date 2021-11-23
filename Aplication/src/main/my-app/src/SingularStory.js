@@ -17,6 +17,9 @@ export default function SingularStory (prop){
                     <div id="Phasellus_id_risus_facilisis_f">
                         <span>{prop.story.description}</span>
                     </div>
+                            <div id="Phasellus_id_risus_facilisis_f">
+                                <span>{prop.story.link}</span>
+                            </div>
 
                         </div>
                     </div>

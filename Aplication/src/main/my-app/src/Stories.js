@@ -35,7 +35,7 @@ function Stories() {
                     <div className="StoriesBg">
                         <rect id="StoriesBg" >
                     <div id="Stories_s">
-                        <span>Stories</span>
+                        <span>Projects</span>
                     </div>
                     <div id="AddProject">
                         <AddProject/>

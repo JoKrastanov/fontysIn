@@ -78,7 +78,7 @@
     grid-column: 3/8;
 }
 #SearchBg {
-    width: -webkit-fill-available;
+    width: -webkit-fill-available;width: -moz-available;
     position: relative;
     top: 25%;
     fill: rgba(255,255,255,1);
@@ -96,7 +96,7 @@
 }
 #Search {
     border-radius: 10px;
-    width: -webkit-fill-available;
+    width: -webkit-fill-available;width: -moz-available;
     white-space: nowrap;
     text-align: center;
     font-family: Segoe UI;
