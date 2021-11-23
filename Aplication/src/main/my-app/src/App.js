@@ -7,8 +7,8 @@ import AllPeople from './connections/AllPeople';
 import PendingRequests from './connections/PendingRequests';
 import AccountPage from "./AccountPage";
 
-
 function App() {
+
     return (
         <>
             <div><TopBar/></div>
