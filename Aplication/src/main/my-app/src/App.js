@@ -6,14 +6,13 @@ import AddProject from './AddProject';
 import AllPeople from './connections/AllPeople';
 import PendingRequests from './connections/PendingRequests';
 
-
 function App() {
+
     return (
         <>
             <div><TopBar/></div>
             <div>
             <AddProject/>
-            <PendingRequests />
             <Stories/>
             <AllPeople />
             </div>

@@ -47,14 +47,27 @@
 #LoggedUser {
     grid-column: 8/10;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    align-items: stretch;
+}
 
+.small-panel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.pending-requests-btn{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 #UserWrapper{
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: auto;
+    order: 2;
 }
 #UserName {
     white-space: nowrap;

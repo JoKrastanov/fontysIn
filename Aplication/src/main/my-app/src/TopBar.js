@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getAccount, getAccountData, getInterests } from "./services";
 import './TopBar.css'
+import PendingRequests from "./connections/PendingRequests";
 
 function TopBar() {
     const [account, setAccount] = useState();
     const [interests, setInterests] = useState([]);
+    const [showReq, setShowReq] = useState(true);
 
     useEffect(() => {
         let mounted = true;
@@ -30,6 +32,12 @@ function TopBar() {
         return () => mounted = false;
     }, [])
 
+
+    const showRequests = () =>
+    {
+        setShowReq(!showReq);
+    }
+
     if (account != undefined){
         return (
             <div id="TopBar">
@@ -49,18 +57,22 @@ function TopBar() {
 
                 </div>
                     <div id="LoggedUser" className="LoggedUser">
-<div id="UserWrapper">
-                        <div id="UserName">
-                            <span>{account.name}</span>
+                        <div className="small-panel">
+                            <button className="pending-requests-btn" onClick={showRequests}>Req</button>
                         </div>
-                        <div className="UserPic">
+                        <div id="UserWrapper">
+                            <div id="UserName">
+                                <span>{account.name}</span>
+                            </div>
+                            <div className="UserPic">
                             <img id="UserPic" src="./logo512.png">
                             </img>
                         </div>
-</div>
+                        </div>
                     </div>
                 </div>
 
+                <PendingRequests showReq={showReq}/>
             </div>
 
         )

@@ -1,0 +1,61 @@
+.request-list{
+    border: solid black 2px;
+    border-radius: 10px;
+    position: absolute;
+    right: 15px;
+    top: 80px;
+    overflow: hidden;
+    padding: 0;
+    background-color: rgba(216,212,222,1);
+}
+.request-list h1{
+    border-bottom: solid black 1px;
+    padding: 5px;
+}
+.request-list-item{
+    background-color: rgba(200, 196, 207, 1);
+    border: solid 1px grey;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.user-pic{
+    float: left;
+}
+.name-box{
+    float:left;
+    padding-top: 5px;
+    margin-left: 10px;
+}
+.request-list-item-bio{
+    display: block;
+}
+.user-main-info{
+    overflow: hidden;
+}
+.request-list-item-bio{
+    border: solid grey 1px;
+    background-color: lightgrey;
+    padding: 3px;
+    font-size: 14px;
+}
+.action-menu{
+    overflow: hidden;
+}
+.action-menu div{
+    width:50%;
+    float: left;
+    padding: 2px;
+}
+.action-menu button{
+    width:100%;
+    border-radius: 2px;
+    font-size: 15px;
+    border: solid lightgrey 1px;
+}
+
+.action-menu button:hover{
+    background-color: lightgrey;
+    color: blue;
+}
+
