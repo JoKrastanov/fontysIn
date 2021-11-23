@@ -11,4 +11,5 @@ public interface IAccountManager {
     boolean addAccount(Account acc);
     boolean updateAccount(Account acc);
     Account viewAccount(Long pcn, Long myPcn);
+    List<Account> searchAccount(String name);
 }

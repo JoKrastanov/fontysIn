@@ -86,6 +86,16 @@ public class AccountController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<Account>> searchAccount(@PathVariable String name) {
+        List<Account> accounts = accountManager.searchAccount(name);
+        if (accounts != null) {
+            return ResponseEntity.ok().body(accounts);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     //endregion
 
     //region Interest REST API Methods

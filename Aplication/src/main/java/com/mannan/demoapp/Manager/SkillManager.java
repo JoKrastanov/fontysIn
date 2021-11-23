@@ -1,10 +1,12 @@
 package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Interfaces.ISkillManager;
+import com.mannan.demoapp.Model.Experience;
 import com.mannan.demoapp.Model.Skill;
 import com.mannan.demoapp.Repository.Interfaces.ISkillAzure;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -15,7 +17,9 @@ public class SkillManager implements ISkillManager {
 
     @Override
     public List<Skill> getSkillsByPcn(Long pcn) {
-        return dataClass.findAllByPcn(pcn);
+        List<Skill> skills = dataClass.findAllByPcn(pcn);
+        Collections.reverse(skills);
+        return skills;
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Interfaces.IProjectManager;
+import com.mannan.demoapp.Model.Experience;
 import com.mannan.demoapp.Model.Project;
 import com.mannan.demoapp.Repository.Interfaces.IProjectAzure;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -16,7 +18,9 @@ public class ProjectManager implements IProjectManager {
 
     @Override
     public List<Project> getProjectsByPcn(Long pcn) {
-        return dataClass.findAllByPcn(pcn);
+        List<Project> projects = dataClass.findAllByPcn(pcn);
+        Collections.reverse(projects);
+        return projects;
     }
 
     @Override

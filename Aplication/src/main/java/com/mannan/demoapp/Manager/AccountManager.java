@@ -62,4 +62,12 @@ public class AccountManager implements IAccountManager {
         System.out.println(request.getVisibility() + "  " + request.getAccepted());
         return null;
     }
-}
+
+    @Override
+    public List<Account> searchAccount(String name) {
+        List<Account> accounts = getAccounts();
+        accounts.removeIf(account -> !account.getName().contains(name));
+        return accounts;
+        }
+    }
+
