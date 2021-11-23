@@ -10,7 +10,7 @@ function AddProject() {
     return (
         <div id='AddWrapper'>
             <input id='TitleBox' onChange={e => title = e.target.value} placeholder="title"></input>
-            <input id='DescriptionBox' onChange={e => description = e.target.value} placeholder="description"></input>
+            <textarea id='DescriptionBox' onChange={e => description = e.target.value} placeholder="description"></textarea>
             <input id='LinkBox' onChange={e => link = e.target.value} placeholder="link"></input>
             <button id='AddButton' onClick={e => addProjectToAccount(title, description, link, getAccount().pcn) }>Submit</button>
         </div>
