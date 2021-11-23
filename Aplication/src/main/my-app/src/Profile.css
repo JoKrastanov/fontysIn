@@ -61,17 +61,29 @@
     /* grid-template-areas: "a b b b c"; */
     grid-template-columns: repeat(5, minmax(0, 1fr));
 }
+/*hide for chrome edge*/
+#InfoCard::-webkit-scrollbar {
+    display: none;
+}
 #InfoCard {
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
     z-index: 10;
     position: fixed;
-    width: 1436px;
-    height: 1128px;
-    left: 49px;
+    width: -webkit-fill-available;width: -moz-available;
+    height: 100%;
+    overflow-y: scroll;
+    left: 0%;
     top: 0px;
-    overflow: visible;
+
 }
 #InfoBg {
-
+    margin-inline: 20%;
+    margin-block: 5%;
     background-color: rgba(216,212,222,1);
     fill: rgba(216,212,222,1);
     /* stroke: rgba(112,112,112,1); */
@@ -91,10 +103,10 @@
     flex-direction: column;
     position: absolute;
     overflow: visible;
-    width: 1237px;
+    width: 1230px;
     height: max-content;
     left: 0px;
-    top: 236px;
+
     padding: 2.5%;
 }
 #Student_Studentovych {

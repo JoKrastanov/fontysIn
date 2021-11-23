@@ -9,7 +9,7 @@ function InfoPopup ({account,onClick, interests}){
             <div className="Overlay" onClick={onClick}/>
             <div id="profileInfo"onClick={onClick}>
                 <div id="ProfileInfo" className="ProfileInfo">
-                    <div id="InfoCard">s
+                    <div id="InfoCard">
                         <div className="InfoBg" id="InfoBg">
                           <div className="ProfilePicHolder">  <div className="ProfilePic">
                         <img className="imge" src="./logo512.png" />
@@ -27,6 +27,7 @@ function InfoPopup ({account,onClick, interests}){
 
                                 </div>
                             </div>
+
                         <div id="Info">
                             <div id="Bio">
                                 <div className="BioBg">
@@ -95,6 +96,7 @@ function InfoPopup ({account,onClick, interests}){
 
 
                         </div>
+
                     </div>
                 </div>
             </div>
