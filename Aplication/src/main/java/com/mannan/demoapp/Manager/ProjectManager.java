@@ -16,7 +16,9 @@ public class ProjectManager implements IProjectManager {
 
     @Override
     public List<Project> getProjectsByPcn(Long pcn) {
-        return dataClass.findAllByPcn(pcn);
+        List<Project> projects = dataClass.findAllByPcn(pcn);
+        Collections.reverse(projects);
+        return projects;
     }
 
     @Override
