@@ -5,6 +5,7 @@ import com.mannan.demoapp.Model.Skill;
 import com.mannan.demoapp.Repository.Interfaces.ISkillAzure;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
