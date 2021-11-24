@@ -16,7 +16,10 @@ public class InterestManager implements IInterestManager {
 
     @Override
     public List<Interest> getInterestsByPcn(Long pcn) {
-        return dataClass.findAllByPcn(pcn);
+        List<Interest> interests = dataClass.findAllByPcn(pcn);
+        Collections.reverse(interests);
+        return interests;
+
     }
 
     @Override
