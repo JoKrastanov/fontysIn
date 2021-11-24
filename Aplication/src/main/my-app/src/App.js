@@ -1,20 +1,31 @@
 import React, { Component, useState, useEffect } from 'react';
 import './App.css';
 import TopBar from "./TopBar";
-import Stories from "./Stories";
-import AddProject from './AddProject';
-import AllPeople from './connections/AllPeople';
-import PendingRequests from './connections/PendingRequests';
 import AccountPage from "./AccountPage";
-import Login from "./Login";
+import { getAccount } from "./services";
 
 function App() {
+    const [pcn, setPcn] = useState(getAccount().pcn);
+    const [hasRendered, setHasRendered] = useState(false);
+    const [hasRendered2, setHasRendered2] = useState(false);
+    const [hasRendered3, setHasRendered3] = useState(false);
+    const rendered = { hasRendered, setHasRendered, hasRendered2, setHasRendered2, hasRendered3, setHasRendered3 }
+    const [myAccount, setMyAccount] = useState(true);
+
+    function setPcnStates(pcn) {
+        setPcn(pcn);
+        setHasRendered (false);
+        setHasRendered2 (false);
+        setHasRendered3 (false);
+        setMyAccount(false)
+    }
+
 
     return (
         <>
-            <div><TopBar/></div>
+            <div><TopBar setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount}/></div>
             <div>
-                <AccountPage/>
+                <AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates} myAccount={myAccount}/>
             </div>
 
         </>
