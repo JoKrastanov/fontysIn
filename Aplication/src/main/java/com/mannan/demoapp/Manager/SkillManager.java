@@ -15,7 +15,10 @@ public class SkillManager implements ISkillManager {
 
     @Override
     public List<Skill> getSkillsByPcn(Long pcn) {
-        return dataClass.findAllByPcn(pcn);
+         List<Skill> skills = dataClass.findAllByPcn(pcn);
+        Collections.reverse(skills);
+        return skills;
+
     }
 
     @Override
