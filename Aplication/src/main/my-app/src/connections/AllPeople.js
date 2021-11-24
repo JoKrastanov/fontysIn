@@ -34,6 +34,7 @@ function AllPeople(prop) {
     if (accounts != undefined) {
         return (
             <div id='AllPeopleWrapper'>
+                <div id="PepopeTxt">People</div>
                 {accounts.map(item => (
                     <>
                         {item.pcn != getAccount().pcn &&
@@ -47,7 +48,7 @@ function AllPeople(prop) {
                         console.log(getAccount().pcn);
                         makeConnectionRequest(getAccount().pcn, requestPcn);
                         setButtonPopup(false);
-                    }}>Set Connection request</button>
+                    }}>Send Connection request</button>
                 </Popup>
             </div>
 

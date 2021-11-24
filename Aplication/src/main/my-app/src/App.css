@@ -3,6 +3,7 @@
 }
 body{
   overflow-wrap: break-word;
+  background-color: rgb(246 245 249);
 }
 input{
   color: #4d4d4d;

@@ -6,7 +6,7 @@
     border-radius: 10px;
     overflow: hidden;
     padding: 0;
-    background-color: rgba(216,212,222,1);
+    background-color: rgb(223 219 228);
 }
 #PendingRequests{
     padding: 10px;
@@ -15,7 +15,7 @@
     padding: 5px;
 }
 .request-list-item{
-    background-color: rgba(200, 196, 207, 1);
+    background-color: rgb(226 223 231);
 
     margin: 5px;
     padding: 5px;
@@ -35,6 +35,7 @@
     flex-direction: column;
 }
 .request-list-item-bio{
+    background-color: rgb(226 223 231);
     display: block;
 }
 .user-main-info{
@@ -46,7 +47,7 @@
 .request-list-item-bio{
     border-radius: 5px;
 
-    background-color: rgba(216,212,222,1);
+    background-color: rgb(226 223 231);
     padding: 3px;
     padding: 3px;
     font-size: 14px;
@@ -63,7 +64,7 @@
 }
 .action-menu button{
     color: #4d4d4d;
-    background-color:rgba(200, 196, 207, 1);
+    background-color:rgb(226 223 231);
     width:100%;
     border-radius: 2px;
     font-size: 15px;

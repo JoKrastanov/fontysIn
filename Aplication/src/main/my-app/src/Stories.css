@@ -13,7 +13,7 @@
     --web-enable-deep-linking: true;
 }
 #Stories_g {
-
+background-color:rgb(246 245 249);
     display: flex;
     flex-direction: column;
     overflow: visible;
@@ -28,7 +28,7 @@
     shape-rendering: auto;
 }
 .StoriesBg {
-    background-color: rgba(216,212,222,1);
+    background-color: rgb(223 219 228);
     border:1px solid rgba(112,112,112,1);
     position: relative;
     overflow: visible;
@@ -43,12 +43,12 @@
 
 }
 #Rectangle_5 {
-    background-color: rgba(204,201,210,1);
+    background-color: rgb(226 223 231);
     border:1px solid rgba(112,112,112,1);
 border-radius: 5px;
 }
 .Rectangle_5 {
-
+background-color: rgb(226 223 231);
     position: relative;
     overflow: visible;
 }
@@ -155,6 +155,7 @@ border-radius: 5px;
     padding-inline: 5%;
 }
 #Stories_s {
+    
     padding-top: 50px;
     position: relative;
     overflow: visible;
