@@ -16,7 +16,10 @@ public class ExperienceManager implements IExperienceManager {
 
     @Override
     public List<Experience> getExperiencesByPcn(Long pcn) {
-        return dataClass.findAllByPcn(pcn);
+        List<Experience> experiences = dataClass.findAllByPcn(pcn);
+        Collections.reverse(experiences);
+        return experiences;
+
     }
 
     @Override
