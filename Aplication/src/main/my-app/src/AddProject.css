@@ -8,6 +8,7 @@
 
 }
 #DescriptionBox{
+    resize: none;
     background-color:rgb(226 223 231);
     font-size: 30px;
     height: 100px;

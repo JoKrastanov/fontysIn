@@ -26,7 +26,7 @@
     overflow: visible;
     z-index: 1;
 }
-#Student_Studentovych__ {
+#InfoPopup {
 
 }
 .InfoPopUp {
@@ -109,7 +109,7 @@
 
     padding: 2.5%;
 }
-#Student_Studentovych {
+#CardName {
     text-align: center;
     grid-column: 2/5;
     font-family: Segoe UI;
@@ -149,7 +149,7 @@
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
 }
-#I_did_a_thing_once_Living_in_m {
+#ExperienceList {
     white-space: pre-wrap;
     grid-column: 2/6;
     text-align: left;
@@ -239,7 +239,7 @@
     border-radius: 30px;
     text-align: center;
 }
-#Doing {
+#IntertestsList {
     white-space: pre-wrap;
     grid-column: 2/6;
     position: relative;
@@ -256,7 +256,7 @@
     grid-template-columns: repeat(5, minmax(0, 1fr));
 
 }
-#Making_toast_without_burning_t {
+#SkillsList {
     white-space: pre-wrap;
     grid-column: 2/6;
     text-align: left;
@@ -323,7 +323,7 @@
     font-size: 27px;
     color: rgba(112,112,112,1);
 }
-#n_0_Male_Estonia_Estonian_Finn {
+#DetailsWrapper {
     grid-column: 1;
     padding-left: 5%;
     text-align: left;

@@ -27,7 +27,7 @@ function Stories(prop) {
             <div id="Stories">
                 <div id="Stories_g">
                     <div id="Profile" className="Profile">
-                        <div id="Student_Studentovych__">
+                        <div id="StudentInfo">
                             <Profile rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
                         </div>
                     </div>
@@ -36,14 +36,17 @@ function Stories(prop) {
                             <div id="Stories_s">
                                 <span>Projects</span>
                             </div>
+
                             {prop.myAccount === true &&
                                 <div id="AddProject">
                                     <AddProject />
                                 </div>
                             }
+                            <div id="SingleStoriesWrapper">
                             {projects.map(item => (
                                 <SingularStory key={item.id} story={item} />
                             ))}
+                                </div>
                         </rect>
                     </div>
                 </div>

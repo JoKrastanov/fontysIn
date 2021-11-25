@@ -4,19 +4,19 @@ import {getProjectsFromAccount, getAccountData,getAccount} from "./services";
 export default function SingularStory (prop){
         if(prop.story != undefined){
             return (
-                <div id="Story2">
-                    <div className="Rectangle_5">
-                        <div id="Rectangle_5" >
-                    <div id="n_0_Sep">
+                <div id="SingleStory">
+                    <div className="SingleStoryWrapper">
+                        <div id="SingleStoryWrapper" >
+                    <div id="DateWrap">
                         <span>10Sep</span>
                     </div>
-                    <div id="Story_to_end_all_stories">
+                    <div id="TitleWrap">
                         <span>{prop.story.title}</span>
                     </div>
-                    <div id="Phasellus_id_risus_facilisis_f">
+                    <div id="StoryDescriptionWrap">
                         <span>{prop.story.description}</span>
                     </div>
-                            <div id="Phasellus_id_risus_facilisis_f">
+                            <div id="StoryLinkWrap">
                                 <span>{prop.story.link}</span>
                             </div>
 

@@ -16,10 +16,10 @@ function InfoPopup({ account, onClick, interests }) {
                             </div>
                             </div>
                             <div id="MidInfo">
-                                <div id="n_0_Male_Estonia_Estonian_Finn">
+                                <div id="DetailsWrapper">
                                     <span>20<br /><br />Estonia<br />Estonian, Finnish, English</span>
                                 </div>
-                                <div id="Student_Studentovych">
+                                <div id="CardName">
                                     <span>{account.name}</span>
                                 </div>
                                 <div id="EditBtn">
@@ -51,7 +51,7 @@ function InfoPopup({ account, onClick, interests }) {
                                             </div>
 
                                         </div>
-                                        <div id="Doing">
+                                        <div id="IntertestsList">
                                             <span>{interests.map(item => (
                                                 <Interest key={item.id} interest={item} />
                                             ))}</span>
@@ -69,7 +69,7 @@ function InfoPopup({ account, onClick, interests }) {
                                             </div>
 
                                         </div>
-                                        <div id="I_did_a_thing_once_Living_in_m">
+                                        <div id="ExperienceList">
                                             <span>I did a thing once, Living in my parents house</span>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@ function InfoPopup({ account, onClick, interests }) {
                                             </div>
 
                                         </div>
-                                        <div id="Making_toast_without_burning_t">
+                                        <div id="SkillsList">
                                             <div>Making toast without burning the house down, Copying and pasting from stackoverflow, Able to make oxygen into carbon dioxide</div>
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@ function Profile(prop) {
                     <div id="ProfilePicture" >
                     </div>
                 </div>
-                {<div id="Student_Studentovych__">
+                {<div id="InfoPopup">
                     <span id="NameSpan" href="#" onClick={showInfo(account)}>{account.name} ⓘ </span>
                 </div>}{popupState.open === true && (
                     <InfoPopup
