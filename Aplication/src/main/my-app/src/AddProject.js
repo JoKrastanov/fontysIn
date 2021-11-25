@@ -1,8 +1,8 @@
 import React from 'react'
 import './AddProject.css'
-import {addProjectToAccount, getAccount} from './services'
+import {getAccount} from './services'
 
-function AddProject() {
+function AddProject(prop) {
     var title;
     var description;
     var link;
@@ -12,7 +12,7 @@ function AddProject() {
             <input id='TitleBox' onChange={e => title = e.target.value} placeholder="title"></input>
             <textarea id='DescriptionBox' onChange={e => description = e.target.value} placeholder="description"></textarea>
             <input id='LinkBox' onChange={e => link = e.target.value} placeholder="link"></input>
-            <button id='AddButton' onClick={e => addProjectToAccount(title, description, link, getAccount().pcn) }>Submit</button>
+            <button id='AddButton' onClick={e => prop.addProjectasync(title, description, link, getAccount().pcn) }>Submit</button>
         </div>
     )
 }

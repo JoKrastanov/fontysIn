@@ -3,7 +3,7 @@ import { getAccount, getAccountData, getInterests } from "./services";
 import './TopBar.css'
 import PendingRequests from "./connections/PendingRequests";
 
-function TopBar() {
+function TopBar(prop) {
     const [account, setAccount] = useState();
     const [interests, setInterests] = useState([]);
     const [showReq, setShowReq] = useState(true);
@@ -61,7 +61,10 @@ function TopBar() {
                             <button className="pending-requests-btn" onClick={showRequests}>Req</button>
                             <PendingRequests showReq={showReq}/>
                         </div>
-                        <div id="UserWrapper">
+                        <div id="UserWrapper" onClick={() => {
+                            prop.setPcnStates(getAccount().pcn);
+                            prop.setMyAccount(true);
+                        }}>
                             <div id="UserName">
                                 <span>{account.name}</span>
                             </div>

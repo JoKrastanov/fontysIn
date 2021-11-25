@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
-import { getAccount, getAccountData, getInterests, getProjectsFromAccount } from "./services";
+import { getAccount, getAccountData, getInterests, getProjectsFromAccount, addProjectToAccount } from "./services";
 import Profile from "./Profile";
 import './Stories.css'
 import SingularStory from "./SingularStory";
@@ -10,6 +10,12 @@ import AddProject from "./AddProject";
 
 function Stories(prop) {
     const [projects, setProjects] = useState([]);
+
+    const addProjectasync = async (title, description, link, pcn) => {
+        await addProjectToAccount(title, description, link, pcn);
+        window.location.reload(false);
+    }
+
     useEffect(() => {
         if (!prop.rendered.hasRendered) {
             prop.rendered.setHasRendered(true);
@@ -39,7 +45,7 @@ function Stories(prop) {
 
                             {prop.myAccount === true &&
                                 <div id="AddProject">
-                                    <AddProject />
+                                    <AddProject addProjectasync={addProjectasync}/>
                                 </div>
                             }
                             <div id="SingleStoriesWrapper">
