@@ -1,16 +1,14 @@
 package com.mannan.demoapp.Controller;
 
 import com.mannan.demoapp.Interfaces.*;
-import com.mannan.demoapp.Model.*;
+import com.mannan.demoapp.Model.AccountPackage.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.lang.model.type.IntersectionType;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

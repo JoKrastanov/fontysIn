@@ -1,7 +1,7 @@
 package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Interfaces.IExperienceManager;
-import com.mannan.demoapp.Model.Experience;
+import com.mannan.demoapp.Model.AccountPackage.Experience;
 import com.mannan.demoapp.Repository.Interfaces.IExperienceAzure;
 import org.springframework.stereotype.Service;
 

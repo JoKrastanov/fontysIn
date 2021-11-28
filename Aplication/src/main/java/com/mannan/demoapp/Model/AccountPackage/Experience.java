@@ -1,4 +1,4 @@
-package com.mannan.demoapp.Model;
+package com.mannan.demoapp.Model.AccountPackage;
 
 import lombok.*;
 

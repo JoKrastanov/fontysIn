@@ -1,8 +1,7 @@
 package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Interfaces.ISkillManager;
-import com.mannan.demoapp.Model.Experience;
-import com.mannan.demoapp.Model.Skill;
+import com.mannan.demoapp.Model.AccountPackage.Skill;
 import com.mannan.demoapp.Repository.Interfaces.ISkillAzure;
 import org.springframework.stereotype.Service;
 

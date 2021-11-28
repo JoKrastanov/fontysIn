@@ -1,6 +1,6 @@
 package com.mannan.demoapp.Repository;
 
-import com.mannan.demoapp.Model.Interest;
+import com.mannan.demoapp.Model.AccountPackage.Interest;
 import com.mannan.demoapp.Repository.AzureConn.DefaultCon;
 import com.mannan.demoapp.Repository.Interfaces.IInterestAzure;
 import org.springframework.stereotype.Repository;

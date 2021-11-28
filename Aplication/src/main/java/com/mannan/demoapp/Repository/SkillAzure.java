@@ -1,6 +1,6 @@
 package com.mannan.demoapp.Repository;
 
-import com.mannan.demoapp.Model.Skill;
+import com.mannan.demoapp.Model.AccountPackage.Skill;
 import com.mannan.demoapp.Repository.AzureConn.DefaultCon;
 import com.mannan.demoapp.Repository.Interfaces.ISkillAzure;
 import org.springframework.stereotype.Repository;

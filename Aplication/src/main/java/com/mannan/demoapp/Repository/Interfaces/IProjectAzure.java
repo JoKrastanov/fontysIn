@@ -1,6 +1,6 @@
 package com.mannan.demoapp.Repository.Interfaces;
 
-import com.mannan.demoapp.Model.Project;
+import com.mannan.demoapp.Model.AccountPackage.Project;
 
 import java.util.List;
 

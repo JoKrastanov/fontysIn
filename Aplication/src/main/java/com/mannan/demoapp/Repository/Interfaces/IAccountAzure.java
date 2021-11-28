@@ -1,7 +1,7 @@
 package com.mannan.demoapp.Repository.Interfaces;
 
-import com.mannan.demoapp.Model.Account;
-import com.mannan.demoapp.Model.AccountRequest;
+import com.mannan.demoapp.Model.AccountPackage.Account;
+import com.mannan.demoapp.Model.AccountPackage.AccountRequest;
 
 import java.util.List;
 

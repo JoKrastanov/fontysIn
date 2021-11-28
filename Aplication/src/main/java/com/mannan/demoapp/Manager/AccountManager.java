@@ -1,8 +1,8 @@
 package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Interfaces.IAccountManager;
-import com.mannan.demoapp.Model.Account;
-import com.mannan.demoapp.Model.AccountRequest;
+import com.mannan.demoapp.Model.AccountPackage.Account;
+import com.mannan.demoapp.Model.AccountPackage.AccountRequest;
 import com.mannan.demoapp.Repository.Interfaces.IAccountAzure;
 import org.springframework.stereotype.Component;
 

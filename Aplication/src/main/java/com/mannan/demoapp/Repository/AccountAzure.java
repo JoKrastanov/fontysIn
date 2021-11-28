@@ -1,7 +1,7 @@
 package com.mannan.demoapp.Repository;
 
-import com.mannan.demoapp.Model.Account;
-import com.mannan.demoapp.Model.AccountRequest;
+import com.mannan.demoapp.Model.AccountPackage.Account;
+import com.mannan.demoapp.Model.AccountPackage.AccountRequest;
 import com.mannan.demoapp.Repository.AzureConn.DefaultCon;
 import com.mannan.demoapp.Repository.Interfaces.IAccountAzure;
 import org.springframework.stereotype.Repository;

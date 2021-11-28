@@ -1,8 +1,7 @@
 package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Interfaces.IInterestManager;
-import com.mannan.demoapp.Model.Experience;
-import com.mannan.demoapp.Model.Interest;
+import com.mannan.demoapp.Model.AccountPackage.Interest;
 import com.mannan.demoapp.Repository.Interfaces.IInterestAzure;
 import org.springframework.stereotype.Service;
 

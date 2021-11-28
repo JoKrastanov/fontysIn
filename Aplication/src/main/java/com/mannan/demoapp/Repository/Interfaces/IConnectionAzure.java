@@ -1,6 +1,6 @@
 package com.mannan.demoapp.Repository.Interfaces;
 
-import com.mannan.demoapp.Model.Connection;
+import com.mannan.demoapp.Model.AccountPackage.Connection;
 
 import java.util.List;
 

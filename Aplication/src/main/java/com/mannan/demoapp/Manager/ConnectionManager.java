@@ -1,7 +1,7 @@
 package com.mannan.demoapp.Manager;
 
 import com.mannan.demoapp.Interfaces.IConnectionManager;
-import com.mannan.demoapp.Model.Connection;
+import com.mannan.demoapp.Model.AccountPackage.Connection;
 import com.mannan.demoapp.Repository.Interfaces.IConnectionAzure;
 import org.springframework.stereotype.Service;
 
