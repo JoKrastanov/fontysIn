@@ -27,7 +27,7 @@ public class ChatController {
     //endregion
 
     //region Message REST API Methods
-    @PostMapping("message")
+    @PostMapping("/message")
     public ResponseEntity<Chat> sendMessage(@RequestBody Message message) {
         if (chatManager.sendMessage(message)) {
             return ResponseEntity.ok().build();
