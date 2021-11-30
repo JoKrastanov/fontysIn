@@ -15,11 +15,11 @@
 #TopBar {
 
     overflow: visible;
-    background-color: #86639f;
+    background-color: #636;
 }
 #TopbarBg {
 
-    fill: rgba(134,99,159,1);
+    fill: #636;
     stroke: rgba(112,112,112,1);
     stroke-width: 1px;
     stroke-linejoin: miter;
