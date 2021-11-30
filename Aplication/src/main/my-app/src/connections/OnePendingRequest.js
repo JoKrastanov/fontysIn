@@ -15,14 +15,38 @@ function OnePendingRequest(prop) {
         return () => mounted = false;
     }, [])
 
+    const acceptRequest = () => {
+        prop.acceptRequest(prop.request);
+
+    }
+
     if (person !== undefined){
         return (
-            <div>
-                <h3>Connection Request</h3>
-                <p>Name: {person.name}</p>
-                <p>Bio: {person.bio}</p>
-                <p>Role: {person.type}</p>
-                <button onClick={() => prop.acceptRequest(prop.request)}>accept request</button>
+            <div className="request-list-item">
+
+                <div className="user-main-info">
+                    <div className="user-pic">
+                        <img id="UserPic" src="../logo512.png">
+                        </img>
+                    </div>
+                    <div className="name-box">
+                        <div className="request-list-item-name"><div>{person.name}</div></div>
+                        <div className="request-list-item-type">{person.type}</div>
+                    </div>
+                </div>
+                <div className="request-list-item-bio">
+                    <div>Description: {person.bio}</div>
+                </div>
+
+                <div className="action-menu">
+                    <div className="btn-accept">
+                        <button className="request-list-item-accept" onClick={acceptRequest}>Accept</button>
+                    </div>
+                    <div className="btn-decline">
+                        <button className="request-list-item-decline" onClick={() => prop.acceptRequest(prop.request)}>Decline</button>
+                    </div>
+                </div>
+
             </div>
         )
     }

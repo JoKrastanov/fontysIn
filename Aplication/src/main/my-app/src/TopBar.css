@@ -47,14 +47,27 @@
 #LoggedUser {
     grid-column: 8/10;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    align-items: stretch;
+}
 
+.small-panel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.pending-requests-btn{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 #UserWrapper{
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: auto;
+    order: 2;
 }
 #UserName {
     white-space: nowrap;
@@ -78,7 +91,7 @@
     grid-column: 3/8;
 }
 #SearchBg {
-    width: -webkit-fill-available;
+    width: -webkit-fill-available;width: -moz-available;
     position: relative;
     top: 25%;
     fill: rgba(255,255,255,1);
@@ -96,7 +109,7 @@
 }
 #Search {
     border-radius: 10px;
-    width: -webkit-fill-available;
+    width: -webkit-fill-available;width: -moz-available;
     white-space: nowrap;
     text-align: center;
     font-family: Segoe UI;

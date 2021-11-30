@@ -15,7 +15,7 @@ function App () {
     },[])
     return (
         <div className="App">
-            <h1 className="App-title">{message}</h1>
+            <div className="App-title">{message}</div>
         </div>
     )
 }

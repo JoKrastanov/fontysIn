@@ -1,17 +1,18 @@
 import React from 'react'
-import {addProjectToAccount, getAccount} from './services'
+import './AddProject.css'
+import {getAccount} from './services'
 
-function AddProject() {
+function AddProject(prop) {
     var title;
     var description;
     var link;
-
+//the inputs need to be changed to textareas and that might break the submit
     return (
-        <div>
-            <input onChange={e => title = e.target.value} placeholder="title"></input>
-            <input onChange={e => description = e.target.value} placeholder="description"></input>
-            <input onChange={e => link = e.target.value} placeholder="link"></input>
-            <button onClick={e => addProjectToAccount(title, description, link, getAccount().pcn) }>Submit</button>
+        <div id='AddWrapper'>
+            <input id='TitleBox' onChange={e => title = e.target.value} placeholder="title"></input>
+            <textarea id='DescriptionBox' onChange={e => description = e.target.value} placeholder="description"></textarea>
+            <input id='LinkBox' onChange={e => link = e.target.value} placeholder="link"></input>
+            <button id='AddButton' onClick={e => prop.addProjectasync(title, description, link, getAccount().pcn) }>Submit</button>
         </div>
     )
 }

@@ -56,7 +56,7 @@ export const addProjectToAccount = async (title, description, link, accountPCN) 
         },
         data: data
     };
-    axios(config)
+    await axios(config)
         .then(function (response) {
             return (JSON.stringify(response.data));
         })

@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { getAccount, getALlAccounts, isAccountVisable, makeConnectionRequest } from '../services';
 import OnePerson from './OnePerson';
 import Popup from '../components/Popup';
+import './AllPeople.css';
 
-function AllPeople() {
+function AllPeople(prop) {
     const [accounts, setAccounts] = useState();
     const [buttonPopup, setButtonPopup] = useState(false);
     const [requestPcn, setRequestPcn] = useState();
-
-    var pcnFriendRequestPopup;
 
     useEffect(() => {
         let mounted = true;
@@ -23,7 +22,7 @@ function AllPeople() {
 
     const redirectIfAccountIsVisible = async (pcn) => {
         if (await isAccountVisable(pcn, getAccount().pcn)) {
-            alert("Redirect to user page");
+            prop.setPcnStates(pcn);
         }
         else {
             console.log(pcn);
@@ -34,7 +33,8 @@ function AllPeople() {
 
     if (accounts != undefined) {
         return (
-            <div>
+            <div id='AllPeopleWrapper'>
+                <div id="PepopeTxt">People</div>
                 {accounts.map(item => (
                     <>
                         {item.pcn != getAccount().pcn &&
@@ -43,12 +43,12 @@ function AllPeople() {
                     </>
                 ))}
                 <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                    <h1>You don't have a connection with this person. Do you want to send a connection request?</h1>
-                    <button onClick={() => {
+                    <div>You don't have a connection with this person. Do you want to send a connection request?</div>
+                    <button id="ConnectionButton" onClick={() => {
                         console.log(getAccount().pcn);
                         makeConnectionRequest(getAccount().pcn, requestPcn);
                         setButtonPopup(false);
-                    }}>Set Connection request</button>
+                    }}>Send Connection request</button>
                 </Popup>
             </div>
 

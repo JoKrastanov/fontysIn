@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { acceptRequest, getAccount, getAllPendingRequests } from '../services';
 import OnePendingRequest from './OnePendingRequest';
+import "./PendingRequests.css";
 
-function PendingRequests() {
+function PendingRequests({showReq}) {
     const [PendingRequests, setPendingRequests] = useState(false);
 
     useEffect(() => {
@@ -18,8 +19,17 @@ function PendingRequests() {
 
     const acceptRequestAsync = async (request) => {
         await acceptRequest(request);
+        getAllPendingRequests(getAccount().pcn)
+            .then(items => {setPendingRequests(items)})
     }
 
+
+
+
+    if(showReq)
+    {
+        return null;
+    }
 
     if (PendingRequests === false) {
         return "";
@@ -33,7 +43,8 @@ function PendingRequests() {
     }
     else {
         return (
-            <div>
+            <div className="request-list">
+                <div id="PendingRequests">Pending requests</div>
                 {PendingRequests.map(item => (
                     <>
                         {item.pcn1 != getAccount().pcn &&
