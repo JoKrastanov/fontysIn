@@ -1,16 +1,35 @@
 import React, { useEffect, useState } from "react";
 import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
-import { getAccount, getAccountData, getInterests } from "./services";
+import {getAccount, getAccountData, getAllPendingRequests, getInterests} from "./services";
 import './Profile.css';
+import VisibilitySwitch from "./components/VisibilitySwitch.js";
 function InfoPopup({ account, onClick, interests }) {
+    const [showSubmit, setShowSubmit] = useState(false);
+    let submitButton;
+
+    useEffect(() => {
+        if(showSubmit == true)
+        {
+            submitButton = (<button>submit</button>);
+        }
+        else submitButton = <></>;
+        console.log(showSubmit);
+    })
+
+
     return (
         <>
-            <div className="Overlay" onClick={onClick} />
-            <div id="profileInfo" onClick={onClick}>
+            <div className="Overlay" />
+            <div id="profileInfo" >
                 <div id="ProfileInfo" className="ProfileInfo">
                     <div id="InfoCard">
                         <div className="InfoBg" id="InfoBg">
+                            <div className="switch_visibility">
+                                <p>Visibility level:</p>
+                                <VisibilitySwitch values={['private', 'friends-only', 'public']} selected="private" setSubmit={setShowSubmit} />
+                                {showSubmit ? <button>Change</button> : null}
+                            </div>
                             <div className="ProfilePicHolder">  <div className="ProfilePic">
                                 <img className="imge" src="./logo512.png" />
                             </div>
