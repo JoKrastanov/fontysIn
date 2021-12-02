@@ -338,6 +338,10 @@
     position: relative;
 }
 
+.disp-none{
+    display: none;
+}
+
 .switch_visibility{
     font-size: 20px;
     margin-left: 10px;

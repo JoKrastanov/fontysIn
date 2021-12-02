@@ -1,21 +1,60 @@
 import React, { useEffect, useState } from "react";
 import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
-import {getAccount, getAccountData, getAllPendingRequests, getInterests} from "./services";
+import {getAccount, getAccountData, getAllPendingRequests, getInterests, updateAccount} from "./services";
 import './Profile.css';
 import VisibilitySwitch from "./components/VisibilitySwitch.js";
-function InfoPopup({ account, onClick, interests }) {
+function InfoPopup({ account, onClick, interests, myAcc }) {
     const [showSubmit, setShowSubmit] = useState(false);
-    let submitButton;
+    const [selected, setSelected] = useState(null);
 
-    useEffect(() => {
-        if(showSubmit == true)
-        {
-            submitButton = (<button>submit</button>);
+    const getVisibility = () =>{
+        switch(account.visibility) {
+            case 0:
+                return 'private';
+            case 1:
+                return 'friends-only';
+            case 2:
+                return 'public';
+            default:
+                return '';
         }
-        else submitButton = <></>;
-        console.log(showSubmit);
-    })
+    }
+
+    const showVisibilityStyle = () =>
+    {
+        if(!myAcc)
+        {
+            console.log("not visible");
+            return "switch_visibility disp-none";
+        }
+        else
+        {
+            console.log("visible");
+            return "switch_visibility";
+        }
+    }
+
+    const getVisibilityNum = (prop) =>{
+        switch(prop) {
+            case 'private':
+                return 0;
+            case 'friends-only':
+                return 1;
+            case 'public':
+                return 2;
+            default:
+                return '';
+        }
+    }
+
+
+
+    const handleVisibilityChange = () =>
+    {
+        updateAccount(account, getVisibilityNum(selected));
+        window.location.reload();
+    }
 
 
     return (
@@ -25,10 +64,10 @@ function InfoPopup({ account, onClick, interests }) {
                 <div id="ProfileInfo" className="ProfileInfo">
                     <div id="InfoCard">
                         <div className="InfoBg" id="InfoBg">
-                            <div className="switch_visibility">
+                            <div className={showVisibilityStyle()}>
                                 <p>Visibility level:</p>
-                                <VisibilitySwitch values={['private', 'friends-only', 'public']} selected="private" setSubmit={setShowSubmit} />
-                                {showSubmit ? <button>Change</button> : null}
+                                <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected}/>
+                                {showSubmit ? <button onClick={handleVisibilityChange}>Change</button> : null}
                             </div>
                             <div className="ProfilePicHolder">  <div className="ProfilePic">
                                 <img className="imge" src="./logo512.png" />
@@ -164,6 +203,7 @@ function Profile(prop) {
                 </div>}{popupState.open === true && (
                     <InfoPopup
                         account={popupState.account}
+                        myAcc={prop.myAccount}
                         onClick={() => setPopupState({ open: false })}
                         interests={interests}
 

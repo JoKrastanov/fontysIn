@@ -8,5 +8,6 @@ public class Account {
     private String name;
     private String bio;
     private String type;
+    private int visibility;
 
 }

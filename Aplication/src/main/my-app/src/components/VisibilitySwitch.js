@@ -29,10 +29,15 @@ class VisibilitySwitch extends Component {
         else{
             this.props.setSubmit(false);
         }
+        this.props.setSelected(val);
 
     };
 
+    count = 0;
+
+
     selectionStyle = () => {
+
         return {
             left: `${this.props.values.indexOf(this.state.selected) / 3 * 100}%`,
         };
@@ -50,7 +55,7 @@ class VisibilitySwitch extends Component {
             </span>
                     );
                 })}
-                <SwitchSelection style={this.selectionStyle()} />
+                <SwitchSelection className="switch-selection" style={this.selectionStyle()}  />
             </Switch>
         );
     }
