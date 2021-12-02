@@ -25,12 +25,10 @@ function InfoPopup({ account, onClick, interests, myAcc }) {
     {
         if(!myAcc)
         {
-            console.log("not visible");
             return "switch_visibility disp-none";
         }
         else
         {
-            console.log("visible");
             return "switch_visibility";
         }
     }
