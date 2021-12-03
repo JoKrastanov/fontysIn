@@ -1,5 +1,5 @@
 #SinglePersonWrapper{
-    background-color: rgb(226 223 231);
+    background-color: #e7e5e7;
     border: 1px solid rgba(112,112,112,1);
     padding-block: 2%;
     text-align: center;
@@ -9,7 +9,7 @@
 #AllPeopleWrapper{
     border-right: 1px solid rgba(112,112,112,1);
     border-block: 1px solid rgba(112,112,112,1);
-    background-color:rgb(223 219 228);
+    background-color:#e3dfe3;
     width: -webkit-fill-available;width: -moz-available;
     height: fit-content;
     padding-inline: 5%;
@@ -21,7 +21,7 @@
 #ViewBtn{
     color: #4d4d4d;
     border-bottom: 1px solid rgba(112,112,112,1);
-    background-color:rgb(226 223 231);
+    background-color:#e7e5e7;
 
 }
 body{
