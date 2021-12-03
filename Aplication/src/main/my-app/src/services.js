@@ -14,6 +14,38 @@ export const getAccount = () => {
     return null;
 };
 
+export const updateAccount = (account, newVisibility) => {
+    var data = JSON.stringify({
+        "pcn": account.pcn,
+        "name": account.name,
+        "bio": account.bio,
+        "type": account.type,
+        "visibility": newVisibility
+    });
+
+    var config = {
+        method: 'PUT',
+        url: url + '/account',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+    axios(config)
+        .then(function (response) {
+            if(response.status === 204)
+            {
+                console.log("Successfully changed visibility!")
+            }
+
+            return (response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
+
 export const setAccount = (pcnAccount, nameAccount) => {
     var obj = { pcn: pcnAccount, name: nameAccount };
     const date = new Date();
