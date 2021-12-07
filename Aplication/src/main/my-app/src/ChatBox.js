@@ -8,8 +8,6 @@ function ChatBox(props) {
 
     const [openedChat, setOpenedChat] = useState(0);
 
-
-
     const handleOpenChat = (e) => {
         setOpenedChat(e);
     }

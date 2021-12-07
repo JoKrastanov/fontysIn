@@ -13,9 +13,8 @@
     background-color: #663366;
 }
 #close-button {float: right;}
-
 .Class-button button {
-    border: 1px white solid;
+    border-radius: 20px;
     border-bottom: 0;
     font-size: 20px;
     width: 25px;
@@ -24,7 +23,7 @@
     color: white;
 
 }
-.Class-button{position: fixed; background-color: #663366; width: 300px}
+.Class-button{position: fixed; background-color: #663366; width: 300px;}
 .Class-button button:hover{background-color: #773366;
     cursor: pointer;}
 

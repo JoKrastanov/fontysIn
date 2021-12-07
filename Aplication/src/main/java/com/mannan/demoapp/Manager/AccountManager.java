@@ -25,7 +25,11 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public Account getAccountByPcn(Long pcn) {
-        return dataClass.findByPcn(pcn);
+        Account account = dataClass.findByPcn(pcn);
+
+        if (account != null) {return account;}
+        addAccount(new Account(pcn, "", "", "Student", 0));
+        return getAccountByPcn(pcn);
     }
 
     @Override
