@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount, getAllPendingRequests } from "./services";
+import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount, getAllPendingRequests, getHashCode } from "./services";
 
-function Login() {
+function Login(prop) {
+    setAccount("", "");
 
-    setAccount("1234" , "Joe");
+    useEffect(() => {
+        let mounted = true;
+        getHashCode()
+            .then(items => {
+                if (mounted) {
+                    setAccount(items , "");
+                    prop.setPcn(items)
+                }
+            })
+        return () => mounted = false;
+    }, [])
 
     return "";
 }

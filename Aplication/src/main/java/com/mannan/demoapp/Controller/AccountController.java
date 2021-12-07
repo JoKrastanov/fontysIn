@@ -26,6 +26,18 @@ public class AccountController {
     private IConnectionManager connectionManager;
 
 
+    @GetMapping("/my")
+    public ResponseEntity<Integer> getMyAccount(){
+        String test = "hello";  //the test account you want to log in as
+        int code = test.hashCode();
+        code = 1234;  //uncomment to get this account number and ignore hash
+        return ResponseEntity.ok().body(code);
+    }
+    //Production code. For development use the code above
+//    public ResponseEntity<Integer> getMyAccount(@RequestHeader("x-ms-client-principal-name") String name){
+//        return ResponseEntity.ok().body(name.hashCode());
+//    }
+//
     //region Account REST API Methods
     @GetMapping
     public ResponseEntity<List<Account>> getAllAccounts() {

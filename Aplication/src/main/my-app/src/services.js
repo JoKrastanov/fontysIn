@@ -3,7 +3,8 @@ import {PureComponent, useState} from 'react';
 const axios = require('axios');
 
 const url = "http://localhost:8080"
-
+//https://fontysin.azurewebsites.net
+//http://localhost:8080
 export const getAccount = () => {
     const value = "; " + document.Login;
     const parts = value.split("; " + "Login" + "=");
@@ -48,9 +49,7 @@ export const updateAccount = (account, newVisibility) => {
 
 export const setAccount = (pcnAccount, nameAccount) => {
     var obj = { pcn: pcnAccount, name: nameAccount };
-    const date = new Date();
-    date.setTime(date.getTime() + (1 * 60 * 60 * 1000));
-    document.Login = "Login=" + JSON.stringify(obj) + "; expires=" + date.toUTCString() + "; path=/";
+    document.Login = "Login=" + JSON.stringify(obj) + "; path=/";
 }
 
 export const getAccountData = async (pcn) => {
@@ -173,6 +172,16 @@ export const acceptRequest = async (request) => {
     };
 
     await axios(config)
+}
+
+export const getHashCode = async () => {
+    try {
+        const resp = await axios.get(url + '/account/my');
+        return resp.data;
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
 }
 
 export const getAccountChats = async (pcn) => {
