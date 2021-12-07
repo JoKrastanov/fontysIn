@@ -57,6 +57,59 @@ export const addProjectToAccount = async (accountId, project) => { //expects pro
             console.log(error);
         });
 }
+
+export const deleteProject = async (id, title, description, link, accountPCN) => {
+    var data = JSON.stringify({
+        "id": id,
+        "title": title,
+        "description": description,
+        "link": link,
+        "accountPCN": accountPCN
+    });
+
+    var config = {
+        method: 'delete',
+        url: url + '/account/projects/',
+        headers: {
+            'Content-Type': 'application/json'
+         },
+        data: data
+      };
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+};
+
+export const editProject = async (id, title, description, link, accountPCN) => {
+    var data = JSON.stringify({
+        "id": id,
+        "title": title,
+        "description": description,
+        "link": link,
+        "accountPCN": accountPCN
+    });
+
+    var config = {
+        method: 'put',
+        url: url + '/account/projects/',
+        headers: {
+            'Content-Type': 'application/json'
+         },
+        data: data
+      };
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+};
+
 export const getProjectsFromAccount = async (accountId) => {
     try {
         const resp = await axios.get(url + '/accounts/projects/' + accountId);
