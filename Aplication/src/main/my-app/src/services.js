@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import {PureComponent, useState} from 'react';
 
 const axios = require('axios');
 
@@ -141,4 +141,28 @@ export const acceptRequest = async (request) => {
     };
 
     await axios(config)
+}
+
+export const getAccountChats = async (pcn) => {
+
+    try {
+       const resp = await axios.get(url + '/chat/account/' + pcn)
+        return resp.data;
+    }
+    catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+
+}
+
+export const getChat = async (pcn1, pcn2) => {
+    try {
+        const resp = await axios.get(url + '/chat/' + pcn1 + '/' + pcn2)
+        return resp.data
+    }
+    catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
 }

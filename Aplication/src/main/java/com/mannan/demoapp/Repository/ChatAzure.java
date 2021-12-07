@@ -7,7 +7,10 @@ import com.mannan.demoapp.Repository.Interfaces.IChatAzure;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -24,7 +27,9 @@ public class ChatAzure implements IChatAzure {
     public Chat getChatByPCNs(Long pcn1, Long pcn2) {
         try {
             Chat chat;
-            PreparedStatement selectSql = connection.prepareStatement("Select * from Chat " +
+            PreparedStatement selectSql = connection.prepareStatement("Select c.Id, c.Pcn1, c.Pcn2, a1.Name, a2.Name from Chat as c " +
+                    "inner join  account as a1 on c.Pcn1 = a1.Pcn " +
+                    "inner join account as a2 on c.Pcn2 = a2.Pcn " +
                     "where (PCN1 = ? AND PCN2 = ?) OR (PCN1 = ? AND PCN2 = ?)");
             selectSql.setLong(1, pcn1);
             selectSql.setLong(2, pcn2);
@@ -32,10 +37,33 @@ public class ChatAzure implements IChatAzure {
             selectSql.setLong(4, pcn1);
             ResultSet result = selectSql.executeQuery();
             while (result.next()) {
-                chat = new Chat(result.getLong(1), result.getLong(2), result.getLong(3), new ArrayList<>());
+                chat = new Chat(result.getLong(1), result.getLong(2), result.getLong(3), result.getString(4), result.getString(5), new ArrayList<>());
                 chat.loadMessages(getChatMessages(chat.getId()));
                 return chat;
             }
+        }
+        catch (SQLException e) {e.printStackTrace();}
+        return null;
+    }
+
+    @Override
+    public List<Chat> getChatByPCN(Long pcn) {
+        try {
+            List<Chat> chats = new ArrayList<>();
+            PreparedStatement selectSql = connection.prepareStatement("Select c.Id, c.Pcn1, c.Pcn2, a1.Name, a2.Name from Chat as c " +
+                    "inner join  account as a1 on c.Pcn1 = a1.Pcn " +
+                    "inner join account as a2 on c.Pcn2 = a2.Pcn " +
+                    "where PCN1 = ? OR PCN2 = ? " +
+                    "order by c.LastMessage desc");
+            selectSql.setLong(1, pcn);
+            selectSql.setLong(2, pcn);
+            ResultSet result = selectSql.executeQuery();
+            while (result.next()) {
+                Chat chat = new Chat(result.getLong(1), result.getLong(2), result.getLong(3), result.getString(4), result.getString(5), new ArrayList<>());
+                chat.loadMessages(getChatMessages(chat.getId()));
+                chats.add(chat);
+            }
+            return chats;
         }
         catch (SQLException e) {e.printStackTrace();}
         return null;
@@ -67,6 +95,11 @@ public class ChatAzure implements IChatAzure {
                     selectSql.setLong(2, msg.getSenderPCN());
                     selectSql.setString(3, msg.getMessage());
                     selectSql.executeUpdate();
+                    PreparedStatement selectSql2 = connection.prepareStatement("Update Chat " +
+                            "SET LastMessage = GETDATE()" +
+                            "Where Id = ?");
+                    selectSql2.setLong(1, msg.getChatId());
+                    selectSql2.executeUpdate();
                     return true;
                 }
             } catch (SQLException e) {
@@ -91,13 +124,16 @@ public class ChatAzure implements IChatAzure {
     private List<Message> getChatMessages(Long id) {
         try {
             List<Message> messages = new ArrayList<>();
-            PreparedStatement selectSql = connection.prepareStatement("select * from message " +
-                    "where chatId = ?");
+            PreparedStatement selectSql = connection.prepareStatement("select m.Id, m.ChatId, m.SenderPCN, m.message, a.Name from message as m " +
+                    "inner join account as a on a.Pcn = m.senderpcn " +
+                    "where chatId = ? " +
+                    "order by Id");
             selectSql.setLong(1, id);
             ResultSet result = selectSql.executeQuery();
             while (result.next()) {
-                messages.add(new Message(result.getLong(1), result.getLong(2), result.getLong(3), result.getString(4)));
+                messages.add(new Message(result.getLong(1), result.getLong(2), result.getLong(3), result.getString(4), result.getString(5)));
             }
+            Collections.reverse(messages);
             return messages;
         }
         catch (SQLException e) {e.printStackTrace();}

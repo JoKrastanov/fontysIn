@@ -6,6 +6,10 @@ import com.mannan.demoapp.Model.ChatPackage.Message;
 import com.mannan.demoapp.Repository.Interfaces.IChatAzure;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class ChatManager implements IChatManager {
 
@@ -23,9 +27,18 @@ public class ChatManager implements IChatManager {
         if (chat == null) {
             Chat newChat = new Chat(pcn1, pcn2);
             if (dataClass.create(newChat))
-            {return newChat;}
+            {
+                Collections.reverse(newChat.getMessages());
+                return newChat;
+            }
         }
+        Collections.reverse(chat.getMessages());
         return chat;
+    }
+
+    @Override
+    public List<Chat> getChatByPcn(Long pcn) {
+        return dataClass.getChatByPCN(pcn);
     }
 
     @Override
