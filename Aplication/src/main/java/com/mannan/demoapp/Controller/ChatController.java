@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -23,6 +25,12 @@ public class ChatController {
     public ResponseEntity<Chat> getChat(@PathVariable(value = "pcn1") Long pcn1, @PathVariable(value = "pcn2") Long pcn2) {
         Chat chat = chatManager.getChat(pcn1, pcn2);
         return ResponseEntity.ok().body(chat);
+    }
+
+    @GetMapping("/account/{pcn}")
+    public ResponseEntity<List<Chat>> getChatByPcn(@PathVariable Long pcn) {
+        List<Chat> chats = chatManager.getChatByPcn(pcn);
+        return ResponseEntity.ok().body(chats);
     }
     //endregion
 

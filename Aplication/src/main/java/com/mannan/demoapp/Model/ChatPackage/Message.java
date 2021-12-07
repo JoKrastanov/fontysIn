@@ -12,6 +12,7 @@ public class Message {
     private Long chatId;
     private Long senderPCN;
     private String message;
+    private String senderName;
     //private var attachedFile;
 
     public Message(Long senderPCN, String message, Long chatId) {

@@ -30,9 +30,10 @@ public class AccountAzure implements IAccountAzure {
             while (con.getResult().next()) {
                 Account newAcc =
                         new Account(con.getResult().getLong(4),
-                                con.getResult().getString(5),
+                                con.getResult().getString(6),
                                 con.getResult().getString(3),
-                                con.getResult().getString(2));
+                                con.getResult().getString(2),
+                                con.getResult().getInt(6));
                 accounts.add(newAcc);
             }
             return accounts;
@@ -51,9 +52,10 @@ public class AccountAzure implements IAccountAzure {
             ResultSet result = selectSql.executeQuery();
             while (result.next()) {
                 newAcc = new Account(result.getLong(4),
-                        result.getString(5),
+                        result.getString(6),
                         result.getString(3),
-                        result.getString(2));
+                        result.getString(2),
+                        result.getInt(6));
             }
             return newAcc;
         } catch (SQLException e) {
@@ -78,11 +80,12 @@ public class AccountAzure implements IAccountAzure {
     @Override
     public boolean update(Account account) {
         try {
-            PreparedStatement selectSql = connection.prepareStatement("UPDATE Account SET AcademicType = ?, Bio = ?, Name = ? WHERE PCN = ?");
+            PreparedStatement selectSql = connection.prepareStatement("UPDATE Account SET AcademicType = ?, Bio = ?, Name = ?, Visibility = ? WHERE PCN = ?");
             selectSql.setString(1, account.getType());
             selectSql.setString(2, account.getBio());
             selectSql.setString(3, account.getName());
-            selectSql.setLong(4, account.getPcn());
+            selectSql.setLong(5, account.getPcn());
+            selectSql.setLong(4, account.getVisibility());
             selectSql.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -94,7 +97,7 @@ public class AccountAzure implements IAccountAzure {
     @Override
     public boolean create(Account account) {
         try {
-            PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Account (AcademicType, Bio, PCN, Name) VALUES (?,?,?,?)");
+            PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Account (AcademicType, Bio, PCN, Name, Visibility) VALUES (?,?,?,?, 0)");
             selectSql.setString(1, account.getType());
             selectSql.setString(2, account.getBio());
             selectSql.setLong(3, account.getPcn());

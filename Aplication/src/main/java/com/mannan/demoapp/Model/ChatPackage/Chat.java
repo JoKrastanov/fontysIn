@@ -10,6 +10,8 @@ public class Chat {
     private Long id;
     private Long pcn1;
     private Long pcn2;
+    private String account1;
+    private String account2;
     private List<Message> messages;
 
     public Chat(Long pcn1, Long pcn2) {

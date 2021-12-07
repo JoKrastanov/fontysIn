@@ -1,0 +1,49 @@
+#chat {
+    height: 275px;
+    width: 300px;
+    float: right;
+    position: fixed;
+    bottom: 0;
+    right: 25px;
+    margin: -270px auto auto;
+
+}
+
+#name {
+    position: center;
+    margin: auto;
+    color: black;
+    width: 150px;
+    text-align: center;
+    font-size: larger;
+    border-bottom: 1px dimgrey solid;
+}
+
+#messages {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 280px;
+    height: 200px;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.textbox {
+    position: fixed;
+    bottom: 10px;
+    margin-left: 5px;
+}
+.textbox input {
+    border: 1px solid black;
+    width: 260px;
+    border-radius: 10px;
+    height: 25px;
+}
+
+#send{
+    height: 20px;
+    width: 20px;
+    position: fixed;
+    bottom: 12px;
+    margin-left: 270px;
+}

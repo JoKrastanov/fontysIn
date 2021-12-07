@@ -6,7 +6,7 @@
     border-radius: 10px;
     overflow: hidden;
     padding: 0;
-    background-color: rgb(223 219 228);
+    background-color:#e3dfe3;
 }
 #PendingRequests{
     padding: 10px;
@@ -15,7 +15,7 @@
     padding: 5px;
 }
 .request-list-item{
-    background-color: rgb(226 223 231);
+    background-color: #e7e5e7;
 
     margin: 5px;
     padding: 5px;
@@ -35,7 +35,7 @@
     flex-direction: column;
 }
 .request-list-item-bio{
-    background-color: rgb(226 223 231);
+    background-color: #e7e5e7;
     display: block;
 }
 .user-main-info{
@@ -47,7 +47,7 @@
 .request-list-item-bio{
     border-radius: 5px;
 
-    background-color: rgb(226 223 231);
+    background-color: #e7e5e7;
     padding: 3px;
     padding: 3px;
     font-size: 14px;
@@ -64,7 +64,7 @@
 }
 .action-menu button{
     color: #4d4d4d;
-    background-color:rgb(226 223 231);
+    background-color:#e7e5e7;
     width:100%;
     border-radius: 2px;
     font-size: 15px;

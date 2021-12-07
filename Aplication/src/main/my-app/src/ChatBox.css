@@ -1,0 +1,36 @@
+.Chats{
+    height: 300px;
+    width: 300px;
+    float: right;
+    position: fixed;
+    bottom: 0;
+    right: 25px;
+    background-color: #f4f4f4;
+    border: 1px solid black;
+    overflow-y: auto;
+}
+#ChatBox-menu {
+    background-color: #663366;
+}
+#close-button {float: right;}
+
+.Class-button button {
+    border: 1px white solid;
+    border-bottom: 0;
+    font-size: 20px;
+    width: 25px;
+    height: 25px;
+    background-color: #663366;
+    color: white;
+
+}
+.Class-button{position: fixed; background-color: #663366; width: 300px}
+.Class-button button:hover{background-color: #773366;
+    cursor: pointer;}
+
+#id {margin-top: 40px;}
+
+#opened-chat {
+    position: fixed;
+    bottom: 0;
+}

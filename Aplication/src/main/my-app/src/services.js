@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import {PureComponent, useState} from 'react';
 
 const axios = require('axios');
 
@@ -14,6 +14,38 @@ export const getAccount = () => {
     }
     return null;
 };
+
+export const updateAccount = (account, newVisibility) => {
+    var data = JSON.stringify({
+        "pcn": account.pcn,
+        "name": account.name,
+        "bio": account.bio,
+        "type": account.type,
+        "visibility": newVisibility
+    });
+
+    var config = {
+        method: 'PUT',
+        url: url + '/account',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+    axios(config)
+        .then(function (response) {
+            if(response.status === 204)
+            {
+                console.log("Successfully changed visibility!")
+            }
+
+            return (response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
 
 export const setAccount = (pcnAccount, nameAccount) => {
     var obj = { pcn: pcnAccount, name: nameAccount };
@@ -147,6 +179,30 @@ export const getHashCode = async () => {
         const resp = await axios.get(url + '/account/my');
         return resp.data;
     } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+}
+
+export const getAccountChats = async (pcn) => {
+
+    try {
+       const resp = await axios.get(url + '/chat/account/' + pcn)
+        return resp.data;
+    }
+    catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+
+}
+
+export const getChat = async (pcn1, pcn2) => {
+    try {
+        const resp = await axios.get(url + '/chat/' + pcn1 + '/' + pcn2)
+        return resp.data
+    }
+    catch (err) {
         // Handle Error Here
         console.error(err);
     }
