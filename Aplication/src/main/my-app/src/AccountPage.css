@@ -1,6 +1,6 @@
 #AccountPageWrapper{
     display: grid;
-    background-color: rgb(244, 244, 244);
+    background-color: #7c637c;
     /* grid-template-areas: "a b b b c"; */
     grid-template-columns: repeat(13, minmax(0, 1fr));
 }
