@@ -101,6 +101,7 @@
     border-radius: 107px;
 }
 .InfoBg {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex-direction: column;
@@ -367,9 +368,7 @@
 
 }
 .close-btn{
-    position: absolute;
-    right: 0;
-    top: 0;
+
 }
 
 .close-btn i{
@@ -377,7 +376,9 @@
 }
 
 .close-btn button{
-    position: static;
+    position: absolute;
+    right:30px;
+    top: 30px;
     border-radius: 50%;
     width: 60px;
     height: 60px;

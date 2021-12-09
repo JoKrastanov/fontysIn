@@ -36,7 +36,7 @@ function PendingRequests({showReq}) {
     }
     else if (PendingRequests === undefined) {
         return (
-            <div>
+            <div className="request-list">
                 <p>No Pending Requests</p>
             </div>
         )
