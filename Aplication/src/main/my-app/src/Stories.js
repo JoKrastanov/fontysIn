@@ -32,7 +32,7 @@ function Stories(prop) {
 
     const editProjectasync = async (id, title, description, link, pcn) => {
         // console.log(id, title, description, link, 1234);
-        await editOneProject(id, title, description, link, 1234);
+        await editOneProject(id, title, description, link, pcn);
         setedit(false);
         window.location.reload(false);
     }
