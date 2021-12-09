@@ -66,7 +66,9 @@ function InfoPopup({ account, onClick, interests, myAcc }) {
                                 <p>Visibility level:</p>
                                 <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected}/>
                                 {showSubmit ? <button onClick={handleVisibilityChange}>Change</button> : null}
+                                <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
                             </div>
+
                             <div className="ProfilePicHolder">  <div className="ProfilePic">
                                 <img className="imge" src="./logo512.png" />
                             </div>
