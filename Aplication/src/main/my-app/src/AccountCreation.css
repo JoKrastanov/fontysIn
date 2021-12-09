@@ -1,0 +1,46 @@
+body{
+    background-color: #663366;
+}
+#LoginWrapperHor{
+    height: 100vh;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+#LoginWrapperVer{
+display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#LoginWrapperReal{
+    padding: 50px;
+border: #000000 1px solid;
+    border-radius: 10px;
+}
+#nameinput{
+    background-color: #5e3e5e;
+    color: #d4cbcb;
+    font-size: 30px;width: -webkit-fill-available;
+    width: -moz-available;
+}
+#bioinput{
+    background-color: #5e3e5e;
+    color: #d4cbcb;
+    font-size: 25px;width: -webkit-fill-available;
+    width: -moz-available;
+}
+#sumbitbtn{
+    position: relative;
+    justify-self: center;
+    background-color: #5e3e5e;
+    color: #d4cbcb;
+    font-size: 25px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+#header{
+    font-size: 25px;
+    color: #d4cbcb;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { editAccount } from './services';
+import './AccountCreation.css';
 
 function AccountCreation(prop) {
     const { register, handleSubmit } = useForm();
@@ -16,14 +17,17 @@ function AccountCreation(prop) {
     }
 
     return (
-        <div>
-            <p>Welcome to our site Please enter your name and bio</p>
+        <div id="LoginWrapperHor">
+            <div id="LoginWrapperVer">
+                <div id="LoginWrapperReal">
+            <div id="header">Welcome to our site Please enter your name and bio</div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name")} placeholder="name" /> <br/>
-                <input {...register("bio")} placeholder="bio" /> <br/>
-                <input type="submit" value="Submit" /> 
+                <input id="nameinput" {...register("name")} placeholder="name" /> <br/>
+                <input id="bioinput" {...register("bio")} placeholder="bio" /> <br/>
+                <input id="sumbitbtn" type="submit" value="Submit" />
             </form>
-            
+                </div>
+            </div>
         </div>
     )
 }
