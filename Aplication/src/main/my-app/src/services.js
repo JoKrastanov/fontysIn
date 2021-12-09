@@ -48,8 +48,10 @@ export const updateAccount = (account, newVisibility) => {
 
 
 export const setAccount = (pcnAccount, nameAccount) => {
-    var obj = { pcn: pcnAccount, name: nameAccount };
-    document.Login = "Login=" + JSON.stringify(obj) + "; path=/";
+    if (pcnAccount != ""){
+        var obj = { pcn: pcnAccount, name: nameAccount };
+        document.Login = "Login=" + JSON.stringify(obj) + "; path=/";
+    }
 }
 
 export const getAccountData = async (pcn) => {
@@ -206,4 +208,24 @@ export const getChat = async (pcn1, pcn2) => {
         // Handle Error Here
         console.error(err);
     }
+}
+
+export const editAccount = async (account) => {
+    var config = {
+        method: 'put',
+        url: url + '/account',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: account
+    };
+
+    return await axios(config)
+        .then(function () {
+            return true;
+        })
+        .catch(function (error) {
+            console.error(error);
+            return false;
+        });
 }
