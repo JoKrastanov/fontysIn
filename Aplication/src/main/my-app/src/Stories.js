@@ -27,6 +27,7 @@ function Stories(prop) {
     const selectProject = async (item) => {
         setdata(item);
         setedit(true);
+        window.scrollTo(0, 500);
     }
 
     const editProjectasync = async (id, title, description, link, pcn) => {
