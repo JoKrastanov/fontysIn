@@ -24,7 +24,7 @@ function Stories(prop) {
         window.location.reload(false);
     }
 
-    const editProject = async (item) => {
+    const selectProject = async (item) => {
         setdata(item);
         setedit(true);
     }
@@ -33,7 +33,7 @@ function Stories(prop) {
         // console.log(id, title, description, link, 1234);
         await editOneProject(id, title, description, link, 1234);
         setedit(false);
-        // window.location.reload(false);
+        window.location.reload(false);
     }
 
     useEffect(() => {
@@ -77,7 +77,7 @@ function Stories(prop) {
                                         <div>
                                             <SingularStory key={item.id} story={item} />
                                             <button id='AddButton' onClick={e => deleteProjectasync(item)}>delete</button>
-                                            <button id='AddButton' onClick={e => editProject(item)}>edit</button>
+                                            <button id='AddButton' onClick={e => selectProject(item)}>edit</button>
                                         </div>
                                     ))}
                                 </div>

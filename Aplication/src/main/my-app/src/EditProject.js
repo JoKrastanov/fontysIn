@@ -1,23 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import './AddProject.css'
 import {getAccount} from './services'
 
 function EditProject(prop) {
-    var id = prop.story.id;
-    var title;
-    var description;
-    var link;
+    const [title, settitle] = useState(prop.story.title);
+    const [description, setdescription] = useState(prop.story.description);
+    const [link, setlink] = useState(prop.story.link);
+    const [id, setid] = useState(prop.story.id);
+
 //the inputs need to be changed to textareas and that might break the submit
     return (
         <div id='AddWrapper'>
-            <label>Edit project {prop.story.title}</label>
-            <input id='TitleBox' onChange={e => title = e.target.value} placeholder="title"></input>
-            <textarea id='DescriptionBox' onChange={e => description = e.target.value} placeholder="description"></textarea>
-            <input id='LinkBox' onChange={e => link = e.target.value} placeholder="link"></input>
-            <button id='AddButton' onClick={e => prop.editProjectasync(id, title, description, link, getAccount().pcn) }>Submit</button>
+          <label>Edit project {prop.story.title}</label>
+          <input type="text" value={title} onChange={(e)=>{settitle(e.target.value)}} id='TitleBox'/> 
+          <input type="text" value={description} onChange={(e)=>{setdescription(e.target.value)}} id='DescriptionBox'/> 
+          <input type="text" value={link}  onChange={(e)=>{setlink(e.target.value)}} id='LinkBox'/> 
+          <button onClick={e => prop.editProjectasync(id, title, description, link, getAccount().pcn)} id='AddButton'>Update Project</button>  
         </div>
     )
 }
- 
-
 export default EditProject
