@@ -40,7 +40,7 @@ function Stories(prop) {
     useEffect(() => {
         if (!prop.rendered.hasRendered) {
             prop.rendered.setHasRendered(true);
-            getProjectsFromAccount(1234)
+            getProjectsFromAccount(prop.pcn)
                 .then(items => {
                     setProjects(items);
                 })
