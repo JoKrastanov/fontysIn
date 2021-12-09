@@ -59,7 +59,32 @@ function Stories(prop) {
             </div>
         )
     }
-    else return <p>Loading</p>
+    else return(
+        <div id="Stories">
+                <div id="Stories_g">
+                    <div id="Profile" className="Profile">
+                        <div id="StudentInfo">
+                            <Profile rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
+                        </div>
+                    </div>
+                    <div className="StoriesBg">
+                        <rect id="StoriesBg" >
+                            <div id="Stories_s">
+                                <span>Projects</span>
+                            </div>
+
+                            {prop.myAccount === true &&
+                                <div id="AddProject">
+                                    <AddProject addProjectasync={addProjectasync}/>
+                                </div>
+                            }
+                            <div id="SingleStoriesWrapper">
+                                </div>
+                        </rect>
+                    </div>
+                </div>
+            </div>
+        )
 
 }
 

@@ -2,13 +2,12 @@ import React, { Component, useState, useEffect } from 'react';
 import './App.css';
 import TopBar from "./TopBar";
 import AccountPage from "./AccountPage";
-import { getAccount } from "./services";
 import Login from './Login';
 import MessageIcon from "./MessageIcon";
 import LastChats from "./LastChats";
 
-function App() {
-    const [pcn, setPcn] = useState();
+function App(prop) {
+    const [pcn, setPcn] = useState(prop.pcn);
     const [hasRendered, setHasRendered] = useState(false);
     const [hasRendered2, setHasRendered2] = useState(false);
     const [hasRendered3, setHasRendered3] = useState(false);
@@ -23,8 +22,6 @@ function App() {
         setHasRendered3(false);
         setMyAccount(false)
     }
-    console.log(pcn)
-    if (pcn != undefined) {
         return (
             <>
                 <div><TopBar setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount} /></div>
@@ -37,7 +34,6 @@ function App() {
                 <div id={"messages"}><MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>
             </>
         )
-    }else { return <Login setPcn={setPcn}/> }
 }
 
 export default App;
