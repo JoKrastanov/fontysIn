@@ -11,6 +11,18 @@ function TopBar(prop) {
     const [allPeople, setAllpeople] = useState([]);
     const [typedText, setTypedText] = useState("");
 
+    const profileImage = (acc) =>
+    {
+
+        if(acc.binaryImage == null)
+        {
+            return "./defaultPhoto.png";
+        }
+        else{
+            return acc.binaryImage;
+        }
+    }
+
 
     useEffect(() => {
         let mounted = true;
@@ -77,7 +89,7 @@ function TopBar(prop) {
         const account = allPeople.find(acc => acc.pcn == pcn);
         return (<p dangerouslySetInnerHTML={{__html:
                 '<div class="search-list-img">' +
-                    '<img src="./logo512.png" alt="">' +
+                    '<img src="' + profileImage(account) + '" alt="">' +
                 '</div>' +
                 '<div class="search-list-name">' +
                     '<strong>'+account.name+'</strong>' +
@@ -132,7 +144,7 @@ function TopBar(prop) {
                                 <span>{account.name}</span>
                             </div>
                             <div className="UserPic">
-                            <img id="UserPic" src="./logo512.png">
+                            <img id="UserPic" src={profileImage(account)}>
                             </img>
                         </div>
                         </div>

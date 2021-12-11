@@ -2,6 +2,8 @@ package com.mannan.demoapp.Model.AccountPackage;
 
 import lombok.*;
 
+import java.sql.Blob;
+
 @Getter @NoArgsConstructor @AllArgsConstructor @Setter
 public class Account {
     private Long pcn;
@@ -9,5 +11,6 @@ public class Account {
     private String bio;
     private String type;
     private int visibility;
-
+    private String binaryImage;
 }
+

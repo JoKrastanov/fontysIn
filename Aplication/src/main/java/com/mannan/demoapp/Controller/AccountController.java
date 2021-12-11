@@ -86,6 +86,15 @@ public class AccountController {
         }
     }
 
+    @PutMapping("/picture")
+    public ResponseEntity<Account> updateAccountPicture(@RequestBody Account account) {
+        if (accountManager.updatePicture(account)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return new ResponseEntity("Please provide a valid id.", HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("{pcn}/view/{myPcn}")
     public ResponseEntity<Account> viewAccount(@PathVariable(value = "pcn") Long pcn, @PathVariable(value = "myPcn") Long myPcn)
     {

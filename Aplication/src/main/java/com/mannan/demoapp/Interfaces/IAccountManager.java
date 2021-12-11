@@ -10,6 +10,7 @@ public interface IAccountManager {
     boolean deleteAccount(Long pcn);
     boolean addAccount(Account acc);
     boolean updateAccount(Account acc);
+    boolean updatePicture(Account acc);
     Account viewAccount(Long pcn, Long myPcn);
     List<Account> searchAccount(String name);
 }

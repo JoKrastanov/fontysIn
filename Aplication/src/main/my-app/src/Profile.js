@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
-import {getAccount, getAccountData, getAllPendingRequests, getInterests, updateAccount} from "./services";
+import {getAccount, getAccountData, getAllPendingRequests, getInterests, updateAccount, updateAccountPictrure} from "./services";
 import './Profile.css';
 import VisibilitySwitch from "./components/VisibilitySwitch.js";
-function InfoPopup({ account, onClick, interests, myAcc }) {
+function InfoPopup({ account, onClick, interests, myAcc , profileImage}) {
     const [showSubmit, setShowSubmit] = useState(false);
     const [selected, setSelected] = useState(null);
+    const [showImageMenu, setShowImageMenu] = useState(false);
+    const [changePicBtn, setChangePicBtn] = useState(true);
+    const [binaryImage, setBinaryImage] = useState(profileImage);
+    const [selectImageStyle,setSelectImageStyle] = useState("");
+
 
     const getVisibility = () =>{
         switch(account.visibility) {
@@ -54,6 +59,47 @@ function InfoPopup({ account, onClick, interests, myAcc }) {
         window.location.reload();
     }
 
+    const onImageClickHandler = () =>
+    {
+        setShowImageMenu(!showImageMenu);
+        if(!changePicBtn)
+        {
+            setChangePicBtn(true);
+            setSelectImageStyle("");
+        }
+    }
+
+    const onChangePicOption = (e) =>
+    {
+        setChangePicBtn(false);
+        setSelectImageStyle("center-image-select");
+    }
+
+    const onImageUploaded = (e) =>
+    {
+        let file = e.target.files[0];
+        if(file)
+        {
+            const reader = new FileReader();
+            reader.onload = _handleReaderLoad.bind();
+            reader.readAsBinaryString(file);
+
+        }
+
+    }
+
+    const _handleReaderLoad = (readerEvt) =>
+    {
+        let binaryString = readerEvt.target.result;
+        setBinaryImage("data:image/png;base64," + btoa(binaryString));
+    }
+
+    const handleImageSubmission = () =>
+    {
+        updateAccountPictrure(account,binaryImage);
+        window.location.reload();
+    }
+
 
     return (
         <>
@@ -69,9 +115,24 @@ function InfoPopup({ account, onClick, interests, myAcc }) {
                             </div>
                             <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
 
-                            <div className="ProfilePicHolder">  <div className="ProfilePic">
-                                <img className="imge" src="./logo512.png" />
-                            </div>
+                            <div className="ProfilePicHolder">  
+                                <div className="ProfilePic">
+                                    <img onClick={onImageClickHandler} id="profile_pic" className="imge" src={binaryImage} />
+                                </div>
+                                {showImageMenu && myAcc ? <div className={"change-pic " + selectImageStyle}>
+                                        {changePicBtn ? <button onClick={onChangePicOption}>Change</button> :
+                                            <div className="select-pic">
+                                                <label>
+                                                    <input onChange={(e) => onImageUploaded(e)} className={""} type="file" name="image" id="file" accept=".jpeg, .png, .jpg"/>
+                                                    Upload an image
+                                                </label>
+                                                <button onClick={handleImageSubmission}>Submit</button>
+                                            </div>
+                                        }
+
+
+                                </div> : <></>}
+
                             </div>
                             <div id="MidInfo">
                                 <div id="DetailsWrapper">
@@ -192,11 +253,21 @@ function Profile(prop) {
 
     if (account != undefined) {
         //rx="117.5" ry="117.5" cx="117.5" cy="117.5"
+        const profileImage = () =>
+        {
+
+            if(account.binaryImage == null)
+            {
+                return "./defaultPhoto.png";
+            }
+            else{
+                return account.binaryImage;
+            }
+        }
         return (
             <div id="ProfileInfo" className="ProfileInfo">
                 <div className="ProfilePicture">
-                    <div id="ProfilePicture" >
-                    </div>
+                    <img src={profileImage()} alt="profile picture"/>
                 </div>
                 {<div id="InfoPopup">
                     <span id="NameSpan" href="#" onClick={showInfo(account)}>{account.name} ⓘ </span>
@@ -206,7 +277,7 @@ function Profile(prop) {
                         myAcc={prop.myAccount}
                         onClick={() => setPopupState({ open: false })}
                         interests={interests}
-
+                        profileImage={profileImage}
                     />
                 )}
             </div>
