@@ -9,6 +9,7 @@ public interface IAccountAzure {
     List<Account> findAll();
     Account findByPcn(Long pcn);
     boolean update(Account acc);
+    boolean updatePicture(Account acc);
     boolean create(Account acc);
     boolean delete(Long id);
     AccountRequest viewAccount(Long pcn, Long myPcn);

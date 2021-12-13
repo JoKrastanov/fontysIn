@@ -28,7 +28,7 @@ public class AccountManager implements IAccountManager {
         Account account = dataClass.findByPcn(pcn);
 
         if (account != null) {return account;}
-        addAccount(new Account(pcn, "", "", "Student", 0));
+        else addAccount(new Account(pcn, "", "", "Student", 0, null));
         return getAccountByPcn(pcn);
     }
 
@@ -46,6 +46,9 @@ public class AccountManager implements IAccountManager {
     public boolean updateAccount(Account account) {
         return dataClass.update(account);
     }
+
+    @Override
+    public boolean updatePicture(Account account) {return dataClass.updatePicture(account);}
 
     @Override
     public Account viewAccount(Long pcn, Long myPcn) {

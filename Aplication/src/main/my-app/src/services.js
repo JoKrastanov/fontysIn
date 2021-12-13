@@ -47,6 +47,39 @@ export const updateAccount = (account, newVisibility) => {
 };
 
 
+export const updateAccountPictrure = (account, newPic) => {
+    var data = JSON.stringify({
+        "pcn": account.pcn,
+        "name": "",
+        "bio": "",
+        "type": "",
+        "visibility": 0,
+        "binaryImage": newPic
+    });
+
+    var config = {
+        method: 'PUT',
+        url: url + '/account/picture',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+    axios(config)
+        .then(function (response) {
+            if(response.status === 204)
+            {
+                console.log("Successfully changed picture!")
+            }
+
+            return (response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
+
 export const setAccount = (pcnAccount, nameAccount) => {
     if (pcnAccount != ""){
         var obj = { pcn: pcnAccount, name: nameAccount };

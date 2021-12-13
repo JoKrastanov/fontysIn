@@ -33,7 +33,8 @@ public class AccountAzure implements IAccountAzure {
                                 con.getResult().getString(6),
                                 con.getResult().getString(3),
                                 con.getResult().getString(2),
-                                con.getResult().getInt(5));
+                                con.getResult().getInt(5),
+                                con.getResult().getString(7));
                 accounts.add(newAcc);
             }
             return accounts;
@@ -55,7 +56,8 @@ public class AccountAzure implements IAccountAzure {
                         result.getString(6),
                         result.getString(3),
                         result.getString(2),
-                        result.getInt(5));
+                        result.getInt(5),
+                        result.getString(7));
             }
             return newAcc;
         } catch (SQLException e) {
@@ -86,6 +88,21 @@ public class AccountAzure implements IAccountAzure {
             selectSql.setString(3, account.getName());
             selectSql.setLong(5, account.getPcn());
             selectSql.setLong(4, account.getVisibility());
+            selectSql.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    @Override
+    public boolean updatePicture(Account account) {
+        try {
+            PreparedStatement selectSql = connection.prepareStatement("UPDATE Account SET Image = ? WHERE PCN = ?");
+            selectSql.setString(1, account.getBinaryImage());
+            selectSql.setLong(2, account.getPcn());
             selectSql.executeUpdate();
             return true;
         } catch (SQLException e) {
