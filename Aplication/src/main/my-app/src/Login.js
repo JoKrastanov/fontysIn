@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount, getAllPendingRequests, getHashCode } from "./services";
 
 function Login(prop) {
-    setAccount("", "");
 
     useEffect(() => {
         let mounted = true;

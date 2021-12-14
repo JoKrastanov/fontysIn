@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ChatManager implements IChatManager {
@@ -49,6 +50,13 @@ public class ChatManager implements IChatManager {
     @Override
     public boolean deleteMessage(Long id) {
         return dataClass.delete(id);
+    }
+
+    @Override
+    public List<Chat> searchChats(Long pcn, String name) {
+        List<Chat> chats = getChatByPcn(pcn);
+        chats.removeIf(chat -> !chat.getAccount1().toLowerCase().startsWith(name.toLowerCase()) && !chat.getAccount2().toLowerCase().startsWith(name.toLowerCase()));
+        return chats;
     }
 
 }

@@ -10,4 +10,5 @@ public interface IChatManager {
     List<Chat> getChatByPcn(Long pcn);
     boolean sendMessage(Message msg);
     boolean deleteMessage(Long id);
+    List<Chat> searchChats(Long pcn, String name);
 }

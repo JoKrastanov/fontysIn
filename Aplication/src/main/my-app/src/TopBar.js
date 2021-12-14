@@ -62,7 +62,7 @@ function TopBar(prop) {
     const handleOnSearch = (string, results) => {
         // onSearch will have as the first callback parameter
         // the string searched and for the second the results.
-       // console.log(string, results)
+        // console.log(string, results)
     }
 
     const handleOnHover = (result) => {
@@ -89,10 +89,10 @@ function TopBar(prop) {
         const account = allPeople.find(acc => acc.pcn == pcn);
         return (<p dangerouslySetInnerHTML={{__html:
                 '<div class="search-list-img">' +
-                    '<img src="' + profileImage(account) + '" alt="">' +
+                '<img src="' + profileImage(account) + '" alt="">' +
                 '</div>' +
                 '<div class="search-list-name">' +
-                    '<strong>'+account.name+'</strong>' +
+                '<strong>'+account.name+'</strong>' +
                 '</div>'
         }}></p>); //To format result as html
     }
@@ -102,35 +102,35 @@ function TopBar(prop) {
             <div id="TopBar">
                 <div className="TopbarBg">
 
-                <div id="Logo">
-                    <span>Linkedtys</span>
-                </div>
-
-                <div id="SearchBar">
-                    <div className="SearchBg">
-                        <ReactSearchAutocomplete
-                            items={allPeople}
-                            onSearch={handleOnSearch}
-                            onHover={handleOnHover}
-                            onSelect={handleOnSelect}
-                            onFocus={handleOnFocus}
-                            showIcon={false}
-                            autoFocus
-                            formatResult={formatResult}
-                            inputSearchString={typedText}
-                            styling={{
-                                zIndex:"3",
-                                height: "30px"
-                            }}
-                            resultStringKeyName="pcn"
-                        />
-                        {/*<input id="Search" type="text" value="Search...">*/}
-                        {/*</input>*/}
-                        <div id="SearchBg">
-                        </div>
+                    <div id="Logo">
+                        <span>Linkedtys</span>
                     </div>
 
-                </div>
+                    <div id="SearchBar">
+                        <div className="SearchBg">
+                            <ReactSearchAutocomplete
+                                items={allPeople}
+                                onSearch={handleOnSearch}
+                                onHover={handleOnHover}
+                                onSelect={handleOnSelect}
+                                onFocus={handleOnFocus}
+                                showIcon={false}
+                                autoFocus
+                                formatResult={formatResult}
+                                inputSearchString={typedText}
+                                styling={{
+                                    zIndex:"3",
+                                    height: "30px"
+                                }}
+                                resultStringKeyName="pcn"
+                            />
+                            {/*<input id="Search" type="text" value="Search...">*/}
+                            {/*</input>*/}
+                            <div id="SearchBg">
+                            </div>
+                        </div>
+
+                    </div>
                     <div id="LoggedUser" className="LoggedUser">
                         <div className="small-panel">
                             <button className="pending-requests-btn" onClick={showRequests}>Req</button>
@@ -144,9 +144,9 @@ function TopBar(prop) {
                                 <span>{account.name}</span>
                             </div>
                             <div className="UserPic">
-                            <img id="UserPic" src={profileImage(account)}>
-                            </img>
-                        </div>
+                                <img id="UserPic" src={profileImage(account)}>
+                                </img>
+                            </div>
                         </div>
                     </div>
                 </div>
