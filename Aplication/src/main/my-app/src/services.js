@@ -3,14 +3,12 @@ import messageSound from "./media/juntos-607.mp3";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import * as stompClient from "sockjs-client";
+import { url } from './config/config';
 
 const axios = require('axios');
 
-const url = "http://localhost:8080"
-//https://fontysin.azurewebsites.net
-//http://localhost:8080
+const ENDPOINT = url + "/chat";
 
-const ENDPOINT = "http://localhost:8080/chat";
 
 export const getAccount = () => {
     const value = "; " + document.Login;

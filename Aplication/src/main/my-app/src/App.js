@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import './App.css';
+import ReactDOM from 'react-dom';
 import TopBar from "./TopBar";
 import AccountPage from "./AccountPage";
 
@@ -44,8 +45,7 @@ function App(prop) {
                     <AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}
                                  myAccount={myAccount}/>
                 </div>
-                <div id={"messages"}><MessageIcon stomp={stompClient} openChat={setOpenedChat} openedChat={openedChat}
-                                                  pcn={pcn}/></div>
+                <div id={"messages"}><MessageIcon stomp={stompClient} openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>
             </>
         )
     }

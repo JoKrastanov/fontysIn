@@ -8,7 +8,8 @@ export default function AccountPage(prop) {
 
     return (
         <div id="AccountPageWrapper">
-            <div id="StoriesWrapper">
+            
+            <div id="StoriesWrapper">     
                 <Stories rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
             </div>
             <div id="AccountWrapper">

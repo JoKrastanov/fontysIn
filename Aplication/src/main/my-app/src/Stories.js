@@ -7,12 +7,21 @@ import SingularStory from "./SingularStory";
 import { getAccount, getAccountData, getInterests, getProjectsFromAccount, addProjectToAccount, deleteProject, editOneProject } from "./services";
 import AddProject from "./AddProject";
 import EditProject from "./EditProject";
+import ProjectsExporter from './Portfolio/ProjectsExporter';
+import { PDFViewer } from '@react-pdf/renderer';
+import Popup from './components/Popup';
+
 
 function Stories(prop) {
+
+    const [buttonPopupPdf, setButtonPopupPdf] = useState(false);
     const [projects, setProjects] = useState([]);
     const [edit, setedit] = useState(false);
     const [data, setdata] = useState();
 
+    function updateButton (){
+       setButtonPopupPdf(true);
+    }
 
     const addProjectasync = async (title, description, link, pcn) => {
         await addProjectToAccount(title, description, link, pcn);
@@ -51,12 +60,22 @@ function Stories(prop) {
     if (projects.length != 0) {
         return (
             <div id="Stories">
-                <div id="Stories_g">
+               <div id="Stories_g">
+                 {(getAccount().pcn == prop.pcn) ? <div className="pdfButton">
+                   <button className="buttonExport"  onClick={updateButton}>Export portfolio to PDF</button>
+                   <Popup trigger={buttonPopupPdf} setTrigger={setButtonPopupPdf}>
+                    <PDFViewer><ProjectsExporter/></PDFViewer>
+                    </Popup>
+                          </div> : ''}
                     <div id="Profile" className="Profile">
                         <div id="StudentInfo">
+                       
                             <Profile rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
+                      
                         </div>
+                       
                     </div>
+                    
                     <div className="StoriesBg">
                         <rect id="StoriesBg" >
                             <div id="Stories_s">
@@ -77,8 +96,8 @@ function Stories(prop) {
                                     {projects.map(item => (
                                         <div>
                                             <SingularStory key={item.id} story={item} />
-                                            <button id='AddButton' onClick={e => deleteProjectasync(item)}>delete</button>
-                                            <button id='AddButton' onClick={e => selectProject(item)}>edit</button>
+                                            <button id='project-button-delete' onClick={e => deleteProjectasync(item)}>Delete</button>
+                                            <button id='project-button-edit' onClick={e => selectProject(item)}>Edit</button>
                                         </div>
                                     ))}
                                 </div>

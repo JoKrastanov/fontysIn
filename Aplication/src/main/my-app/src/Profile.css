@@ -2,11 +2,14 @@
 
 #ProfileInfo {
     align-items: flex-end;
-    display: flex;
-    overflow: visible;
-    left: 20%;
-    position: relative;
+display: flex;
+overflow: visible;
+position: relative;
+margin-left: 50px;
+    
 }
+
+
 #ProfilePicture {
     fill: rgba(255,255,255,1);
     stroke: rgba(112,112,112,1);
@@ -355,6 +358,8 @@ img{
 }
 #NameSpan {
     position: relative;
+    color: rgb(231, 227, 227);
+   cursor: pointer;
 }
 
 .disp-none{

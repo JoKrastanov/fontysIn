@@ -6,6 +6,12 @@ body{
   background-color: rgb(246 245 249);
   overflow-x: hidden;
 }
+
+iframe{
+  width: 550px;
+  height: 450px;
+}
+
 input{
   color: #4d4d4d;
 }
