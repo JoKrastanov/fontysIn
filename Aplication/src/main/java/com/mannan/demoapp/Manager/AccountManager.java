@@ -28,8 +28,12 @@ public class AccountManager implements IAccountManager {
         Account account = dataClass.findByPcn(pcn);
 
         if (account != null) {return account;}
-        else addAccount(new Account(pcn, "", "", "Student", 0, ""));
-        return getAccountByPcn(pcn);
+        else
+        {
+            account = new Account(pcn, "", "", "Student", 0, "");
+            addAccount(account);
+            return account;
+        }
     }
 
     @Override
