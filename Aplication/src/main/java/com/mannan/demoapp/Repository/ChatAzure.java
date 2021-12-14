@@ -17,16 +17,15 @@ import java.util.List;
 public class ChatAzure implements IChatAzure {
 
     DefaultCon con = new DefaultCon();
-    Connection connection = DriverManager.getConnection(con.getCon());
-    Statement statement = connection.createStatement();
 
     public ChatAzure() throws SQLException {
     }
 
     @Override
-    public Chat getChatByPCNs(Long pcn1, Long pcn2) {
+    public Chat getChatByPCNs(Long pcn1, Long pcn2) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
-            Chat chat;
+            Chat chat = null;
             PreparedStatement selectSql = connection.prepareStatement("Select c.Id, c.Pcn1, c.Pcn2, a1.Name, a2.Name from Chat as c " +
                     "inner join  account as a1 on c.Pcn1 = a1.Pcn " +
                     "inner join account as a2 on c.Pcn2 = a2.Pcn " +
@@ -39,15 +38,18 @@ public class ChatAzure implements IChatAzure {
             while (result.next()) {
                 chat = new Chat(result.getLong(1), result.getLong(2), result.getLong(3), result.getString(4), result.getString(5), new ArrayList<>());
                 chat.loadMessages(getChatMessages(chat.getId()));
-                return chat;
             }
+            connection.close();
+            return chat;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
 
     @Override
-    public List<Chat> getChatByPCN(Long pcn) {
+    public List<Chat> getChatByPCN(Long pcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Chat> chats = new ArrayList<>();
             PreparedStatement selectSql = connection.prepareStatement("Select c.Id, c.Pcn1, c.Pcn2, a1.Name, a2.Name from Chat as c " +
@@ -63,14 +65,17 @@ public class ChatAzure implements IChatAzure {
                 chat.loadMessages(getChatMessages(chat.getId()));
                 chats.add(chat);
             }
+            connection.close();
             return chats;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
 
     @Override
-    public boolean create(Chat chat) {
+    public boolean create(Chat chat) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Chat " +
                     "(PCN1, PCN2) " +
@@ -78,14 +83,17 @@ public class ChatAzure implements IChatAzure {
             selectSql.setLong(1, chat.getPcn1());
             selectSql.setLong(2, chat.getPcn2());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public boolean sendMessage(Message msg) {
+    public boolean sendMessage(Message msg) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
             try {
                 if (getChatById(msg.getChatId())) {
                     PreparedStatement selectSql = connection.prepareStatement("Insert into Message " +
@@ -100,28 +108,34 @@ public class ChatAzure implements IChatAzure {
                             "Where Id = ?");
                     selectSql2.setLong(1, msg.getChatId());
                     selectSql2.executeUpdate();
+                    connection.close();
                     return true;
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            connection.close();
         return false;
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("Delete from Message " +
                     "where id = ?");
             selectSql.setLong(1, id);
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
-    private List<Message> getChatMessages(Long id) {
+    private List<Message> getChatMessages(Long id) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Message> messages = new ArrayList<>();
             PreparedStatement selectSql = connection.prepareStatement("select m.Id, m.ChatId, m.SenderPCN, m.message, a.Name from message as m " +
@@ -134,12 +148,15 @@ public class ChatAzure implements IChatAzure {
                 messages.add(new Message(result.getLong(1), result.getLong(2), result.getLong(3), result.getString(4), result.getString(5)));
             }
             Collections.reverse(messages);
+            connection.close();
             return messages;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
-    private boolean getChatById(Long id) {
+    private boolean getChatById(Long id) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         int rows = 0;
         try {
             PreparedStatement selectSql = connection.prepareStatement("Select * From Chat " +
@@ -147,9 +164,11 @@ public class ChatAzure implements IChatAzure {
             selectSql.setLong(1, id);
             ResultSet result = selectSql.executeQuery();
             while (result.next()) {rows++;}
+            connection.close();
         }
         catch (SQLException e) {e.printStackTrace();}
         if (rows > 0) {return true;}
+        connection.close();
         return false;
     }
 

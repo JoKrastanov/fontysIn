@@ -17,19 +17,30 @@ public class InterestManager implements IInterestManager {
 
     @Override
     public List<Interest> getInterestsByPcn(Long pcn) {
-        List<Interest> interests = dataClass.findAllByPcn(pcn);
-        Collections.reverse(interests);
-        return interests;
+        try {
+            List<Interest> interests = dataClass.findAllByPcn(pcn);
+            Collections.reverse(interests);
+            return interests;
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return null;
     }
 
     @Override
     public boolean addInterest(Interest interest) {
-        return dataClass.create(interest);
+        try {
+            return dataClass.create(interest);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 
     @Override
     public boolean deleteInterest(Interest interest) {
-        return dataClass.delete(interest);
+        try {
+            return dataClass.delete(interest);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
-
 }

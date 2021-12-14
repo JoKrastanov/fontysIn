@@ -14,12 +14,12 @@ public class ConnectionAzure implements IConnectionAzure {
 
     public ConnectionAzure() throws SQLException {}
     DefaultCon con = new DefaultCon();
-    java.sql.Connection connection = DriverManager.getConnection(con.getCon());
-    Statement statement = connection.createStatement();
 
     @Override
-    public Connection findByPCNs(Long pcn1, Long pcn2) {
+    public Connection findByPCNs(Long pcn1, Long pcn2) throws SQLException {
+        java.sql.Connection connection = DriverManager.getConnection(con.getCon());
         try {
+            Connection connection1 = null;
             PreparedStatement selectSql = connection.prepareStatement(
                     "select * from Connection where (pcn1 = ? AND pcn2 = ?) OR (pcn1 = ? AND pcn2 = ?) ");
             selectSql.setLong(1, pcn1);
@@ -29,15 +29,19 @@ public class ConnectionAzure implements IConnectionAzure {
             ResultSet result = selectSql.executeQuery();
             while(result.next())
             {
-                return new Connection(result.getLong(1),result.getLong(2), result.getLong(3), result.getInt(4));
+                connection1 = new Connection(result.getLong(1),result.getLong(2), result.getLong(3), result.getInt(4));
             }
+            connection.close();
+            return connection1;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
 
     @Override
-    public List<Connection> findPendingByPcn(Long pcn) {
+    public List<Connection> findPendingByPcn(Long pcn) throws SQLException {
+        java.sql.Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Connection> connections = new ArrayList<>();
             PreparedStatement selectSql = connection.prepareStatement(
@@ -49,13 +53,16 @@ public class ConnectionAzure implements IConnectionAzure {
             {
                 connections.add(new Connection(result.getLong(1),result.getLong(2), result.getLong(3), result.getInt(4)));
             }
+            connection.close();
             return connections;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
     @Override
-    public List<Connection> findAcceptedByPcn(Long pcn) {
+    public List<Connection> findAcceptedByPcn(Long pcn) throws SQLException {
+        java.sql.Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Connection> connections = new ArrayList<>();
             PreparedStatement selectSql = connection.prepareStatement(
@@ -67,39 +74,48 @@ public class ConnectionAzure implements IConnectionAzure {
             {
                 connections.add(new Connection(result.getLong(1),result.getLong(2), result.getLong(3), result.getInt(4)));
             }
+            connection.close();
             return connections;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
 
     @Override
-    public boolean createConnection(Connection connect) {
+    public boolean createConnection(Connection connect) throws SQLException {
+        java.sql.Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Connection (Pcn1, Pcn2) VALUES (?,?)");
             selectSql.setLong(1, connect.getPcn1());
             selectSql.setLong(2, connect.getPcn2());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public boolean deleteConnection(Connection connect) {
+    public boolean deleteConnection(Connection connect) throws SQLException {
+        java.sql.Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("DELETE FROM Connection WHERE Id = ?");
             selectSql.setLong(1, connect.getId());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public boolean update(Connection connect) {
+    public boolean update(Connection connect) throws SQLException {
+        java.sql.Connection connection = DriverManager.getConnection(con.getCon());
         try {
             connect.setAccepted(1);
             PreparedStatement selectSql = connection.prepareStatement("UPDATE [dbo].[Connection]" +
@@ -109,9 +125,11 @@ public class ConnectionAzure implements IConnectionAzure {
             selectSql.setInt(1, connect.getAccepted());
             selectSql.setLong(2, connect.getId());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 }

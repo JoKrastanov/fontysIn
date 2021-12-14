@@ -14,11 +14,10 @@ public class ExperienceAzure implements IExperienceAzure {
 
     public ExperienceAzure() throws SQLException {}
     DefaultCon con = new DefaultCon();
-    Connection connection = DriverManager.getConnection(con.getCon());
-    Statement statement = connection.createStatement();
 
     @Override
-    public List<Experience> findAllByPcn(Long pcn) {
+    public List<Experience> findAllByPcn(Long pcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Experience> experiences = new ArrayList<>();
             PreparedStatement selectSql = connection.prepareStatement(
@@ -29,14 +28,17 @@ public class ExperienceAzure implements IExperienceAzure {
             {
                 experiences.add(new Experience(result.getLong(1),result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getLong(6)));
             }
+            connection.close();
             return experiences;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
 
     @Override
-    public boolean create(Experience experience) {
+    public boolean create(Experience experience) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement(
                     "INSERT INTO [dbo].[Experience]" +
@@ -48,15 +50,18 @@ public class ExperienceAzure implements IExperienceAzure {
             selectSql.setString(4, experience.getInstitute());
             selectSql.setLong(5, experience.getAccountPcn());
             selectSql.executeQuery();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
 
     @Override
-    public boolean update(Experience experience) {
+    public boolean update(Experience experience) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("UPDATE [dbo].[Experience]" +
                     "SET" +
@@ -71,21 +76,26 @@ public class ExperienceAzure implements IExperienceAzure {
             selectSql.setString(4, experience.getInstitute());
             selectSql.setLong(5, experience.getId());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public boolean delete(Experience experience) {
+    public boolean delete(Experience experience) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("DELETE FROM Experience WHERE Id = ?");
             selectSql.setLong(1, experience.getId());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 }

@@ -15,11 +15,11 @@ public class PostAzure implements IPostAzure {
     public PostAzure() throws SQLException {}
 
     DefaultCon con = new DefaultCon();
-    Connection connection = DriverManager.getConnection(con.getCon());
 
 
     @Override
-    public boolean create(Post post) {
+    public boolean create(Post post) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("INSERT  INTO Post " +
                     "(Title, Description, AccountPCN) " +
@@ -32,11 +32,13 @@ public class PostAzure implements IPostAzure {
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public Post getPostById(Long id) {
+    public Post getPostById(Long id) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("Select * from Post " +
                     "where id = ?");
@@ -47,11 +49,13 @@ public class PostAzure implements IPostAzure {
             }
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
 
     @Override
-    public List<Post> getAccountPostsByPcn(Long pcn) {
+    public List<Post> getAccountPostsByPcn(Long pcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         List<Post> posts = new ArrayList<>();
         try {
             PreparedStatement selectSql = connection.prepareStatement("Select * from Post " +
@@ -62,21 +66,26 @@ public class PostAzure implements IPostAzure {
             while(result.next()) {
                 posts.add(new Post(result.getLong(1), result.getString(2), result.getString(3), result.getLong(4)));
             }
+            return posts;
         }
         catch (SQLException e) {e.printStackTrace();}
-        return posts;
+        connection.close();
+        return null;
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("DELETE FROM POST " +
                     "WHERE Id = ?");
             selectSql.setLong(1, id);
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 }

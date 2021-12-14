@@ -17,23 +17,39 @@ public class ExperienceManager implements IExperienceManager {
 
     @Override
     public List<Experience> getExperiencesByPcn(Long pcn) {
-        List<Experience> experiences = dataClass.findAllByPcn(pcn);
-        Collections.reverse(experiences);
-        return experiences;
+        try {
+            List<Experience> experiences = dataClass.findAllByPcn(pcn);
+            Collections.reverse(experiences);
+            return experiences;
+        }
+        catch (Exception e) { e.printStackTrace();}
+        return null;
     }
 
     @Override
     public boolean addExperience(Experience experience) {
-        return dataClass.create(experience);
+        try {
+            return dataClass.create(experience);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 
     @Override
     public boolean updateExperience(Experience experience) {
-        return dataClass.update(experience);
+        try {
+            return dataClass.update(experience);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 
     @Override
     public boolean deleteExperience(Experience experience) {
-        return dataClass.delete(experience);
+        try {
+            return dataClass.delete(experience);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 }

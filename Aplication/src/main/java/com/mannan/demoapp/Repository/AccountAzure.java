@@ -14,38 +14,39 @@ import java.util.List;
 public class AccountAzure implements IAccountAzure {
 
     DefaultCon con = new DefaultCon();
-    Connection connection = DriverManager.getConnection(con.getCon());
-    Statement statement = connection.createStatement();
 
     public AccountAzure() throws SQLException {
     }
 
     @Override
-    public List<Account> findAll() {
+    public List<Account> findAll() throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Account> accounts = new ArrayList<>();
-            String selectSql = "SELECT *  from Account";
-            con.setResult(statement.executeQuery(selectSql));
-
-            while (con.getResult().next()) {
+            PreparedStatement selectSql = connection.prepareStatement("SELECT *  from Account");
+            ResultSet result = selectSql.executeQuery();
+            while (result.next()) {
                 Account newAcc =
-                        new Account(con.getResult().getLong(4),
-                                con.getResult().getString(6),
-                                con.getResult().getString(3),
-                                con.getResult().getString(2),
-                                con.getResult().getInt(5),
-                                con.getResult().getString(7));
+                        new Account(result.getLong(4),
+                                result.getString(6),
+                                result.getString(3),
+                                result.getString(2),
+                                result.getInt(5),
+                                result.getString(7));
                 accounts.add(newAcc);
             }
+            connection.close();
             return accounts;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        connection.close();
         return null;
     }
 
     @Override
-    public Account findByPcn(Long pcn) {
+    public Account findByPcn(Long pcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             Account newAcc = null;
             PreparedStatement selectSql = connection.prepareStatement("SELECT * FROM Account WHERE PCN = ?");
@@ -59,28 +60,34 @@ public class AccountAzure implements IAccountAzure {
                         result.getInt(5),
                         result.getString(7));
             }
+            connection.close();
             return newAcc;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        connection.close();
         return null;
     }
 
     @Override
-    public boolean delete(Long pcn) {
+    public boolean delete(Long pcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("DELETE FROM Account WHERE PCN = ?");
             selectSql.setLong(1, pcn);
             selectSql.executeUpdate();
+            connection.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        connection.close();
+        return false;
     }
 
     @Override
-    public boolean update(Account account) {
+    public boolean update(Account account) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("UPDATE Account SET AcademicType = ?, Bio = ?, Name = ?, Visibility = ? WHERE PCN = ?");
             selectSql.setString(1, account.getType());
@@ -89,30 +96,36 @@ public class AccountAzure implements IAccountAzure {
             selectSql.setLong(5, account.getPcn());
             selectSql.setLong(4, account.getVisibility());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        connection.close();
+        return false;
     }
 
 
     @Override
-    public boolean updatePicture(Account account) {
+    public boolean updatePicture(Account account) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("UPDATE Account SET Image = ? WHERE PCN = ?");
             selectSql.setString(1, account.getBinaryImage());
             selectSql.setLong(2, account.getPcn());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        connection.close();
+        return false;
     }
 
     @Override
-    public boolean create(Account account) {
+    public boolean create(Account account) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Account (AcademicType, Bio, PCN, Name, Visibility) VALUES (?,?,?,?, 0)");
             selectSql.setString(1, account.getType());
@@ -120,15 +133,18 @@ public class AccountAzure implements IAccountAzure {
             selectSql.setLong(3, account.getPcn());
             selectSql.setString(4, account.getName());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        connection.close();
         return false;
     }
 
     @Override
-    public AccountRequest viewAccount(Long pcn, Long myPcn) {
+    public AccountRequest viewAccount(Long pcn, Long myPcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             AccountRequest request = new AccountRequest();
             request.setPcn2(myPcn);
@@ -150,17 +166,19 @@ public class AccountAzure implements IAccountAzure {
             ResultSet result2 = selectSql2.executeQuery();
             if (!result2.next()) {
                 request.setAccepted(0);
+                connection.close();
                 return  request;
             }
                 else {
                     request.setAccepted(result2.getInt(1));
                 }
-
+            connection.close();
             return request;
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
+        connection.close();
+        return null;
     }
 }
 

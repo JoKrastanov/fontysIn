@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -40,7 +41,7 @@ public class AccountController {
 
     //region Account REST API Methods
     @GetMapping
-    public ResponseEntity<List<Account>> getAllAccounts() {
+    public ResponseEntity<List<Account>> getAllAccounts() throws SQLException {
         List<Account> accounts = accountManager.getAccounts();
         if (accounts != null) {
             return ResponseEntity.ok().body(accounts);
@@ -107,7 +108,7 @@ public class AccountController {
     }
 
     @GetMapping("/search/{name}")
-    public ResponseEntity<List<Account>> searchAccount(@PathVariable String name) {
+    public ResponseEntity<List<Account>> searchAccount(@PathVariable String name) throws SQLException {
         List<Account> accounts = accountManager.searchAccount(name);
         if (accounts != null) {
             return ResponseEntity.ok().body(accounts);

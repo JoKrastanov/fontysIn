@@ -17,28 +17,48 @@ public class ProjectManager implements IProjectManager {
 
     @Override
     public List<Project> getProjectsByPcn(Long pcn) {
-        List<Project> projects = dataClass.findAllByPcn(pcn);
-        Collections.reverse(projects);
-        return projects;
+        try {
+            List<Project> projects = dataClass.findAllByPcn(pcn);
+            Collections.reverse(projects);
+            return projects;
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return null;
     }
 
     @Override
     public Project getProject(Project project) {
-        return dataClass.findProject(project);
+        try {
+            return dataClass.findProject(project);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return null;
     }
 
     @Override
     public boolean deleteProject(Project project) {
-        return dataClass.delete(project);
+        try {
+            return dataClass.delete(project);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 
     @Override
     public boolean addProject(Project project) {
-        return dataClass.create(project);
+        try {
+            return dataClass.create(project);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 
     @Override
     public boolean updateProject(Project project) {
-        return dataClass.update(project);
+        try {
+            return dataClass.update(project);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 }

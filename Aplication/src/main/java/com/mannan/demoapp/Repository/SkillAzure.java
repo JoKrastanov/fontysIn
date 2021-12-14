@@ -14,10 +14,10 @@ public class SkillAzure implements ISkillAzure {
 
     public SkillAzure() throws SQLException {}
     DefaultCon con = new DefaultCon();
-    Connection connection = DriverManager.getConnection(con.getCon());
 
     @Override
-    public List<Skill> findAllByPcn(Long pcn) {
+    public List<Skill> findAllByPcn(Long pcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Skill> skills = new ArrayList<>();
             PreparedStatement selectSql = connection.prepareStatement(
@@ -28,28 +28,34 @@ public class SkillAzure implements ISkillAzure {
             {
                 skills.add(new Skill(result.getLong(1),result.getString(2), result.getString(4), result.getLong(3)));
             }
+            connection.close();
             return skills;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
 
     @Override
-    public boolean create(Skill skill) {
+    public boolean create(Skill skill) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Skill (SKill, Description, AccountPcn) VALUES (?,?,?)");
             selectSql.setString(1, skill.getSkill());
             selectSql.setString(2, skill.getDescription());
             selectSql.setLong(3, skill.getAccountPcn());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public boolean update(Skill skill) {
+    public boolean update(Skill skill) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("UPDATE Skill SET " +
                     "Skill = ?, Description = ?, AccountPcn = ?" +
@@ -59,21 +65,26 @@ public class SkillAzure implements ISkillAzure {
             selectSql.setLong(3, skill.getAccountPcn());
             selectSql.setLong(4, skill.getId());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public boolean delete(Skill skill) {
+    public boolean delete(Skill skill) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("DELETE FROM Skill WHERE Id = ?");
             selectSql.setLong(1, skill.getId());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 }

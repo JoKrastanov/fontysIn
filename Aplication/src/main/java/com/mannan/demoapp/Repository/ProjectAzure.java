@@ -14,11 +14,11 @@ public class ProjectAzure implements IProjectAzure {
 
     public ProjectAzure() throws SQLException {}
     DefaultCon con = new DefaultCon();
-    Connection connection = DriverManager.getConnection(con.getCon());
-    Statement statement = connection.createStatement();
+
 
     @Override
-    public List<Project> findAllByPcn(Long pcn) {
+    public List<Project> findAllByPcn(Long pcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Project> projects = new ArrayList<>();
             PreparedStatement selectSql = connection.prepareStatement(
@@ -32,13 +32,14 @@ public class ProjectAzure implements IProjectAzure {
             return projects;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return null;
     }
 
     @Override
-    public Project findProject(Project prj) {
+    public Project findProject(Project prj) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
        try {
-           Project project = null;
            PreparedStatement selectSql = connection.prepareStatement("SELECT * from Project where accountpcn = ? AND Title like ?");
            selectSql.setLong(1, prj.getAccountPCN());
            selectSql.setString(2, prj.getTitle());
@@ -46,17 +47,18 @@ public class ProjectAzure implements IProjectAzure {
            ResultSet result = selectSql.executeQuery();
            while(result.next())
            {
-               project = new Project(result.getLong(1), result.getString(2), result.getString(4), result.getString(3), result.getLong(5));
-               return project;
+               return new Project(result.getLong(1), result.getString(2), result.getString(4), result.getString(3), result.getLong(5));
            }
 
        }
        catch (SQLException e) {e.printStackTrace();}
+       connection.close();
        return null;
     }
 
     @Override
-    public boolean create(Project project) {
+    public boolean create(Project project) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Project (Title, Link, Description, AccountPcn) VALUES (?,?,?,?)");
             selectSql.setString(1, project.getTitle());
@@ -64,14 +66,17 @@ public class ProjectAzure implements IProjectAzure {
             selectSql.setString(3, project.getDescription());
             selectSql.setLong(4, project.getAccountPCN());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public boolean update(Project project) {
+    public boolean update(Project project) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("UPDATE [dbo].[Project]" +
                     "SET" +
@@ -86,22 +91,27 @@ public class ProjectAzure implements IProjectAzure {
             selectSql.setLong(4, project.getAccountPCN());
             selectSql.setLong(5, project.getId());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 
     @Override
-    public boolean delete(Project project) {
+    public boolean delete(Project project) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
         try {
             PreparedStatement selectSql = connection.prepareStatement("DELETE FROM [dbo].[Project]" +
                     "WHERE Id = ? ");
             selectSql.setLong(1, project.getId());
             selectSql.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException e) {e.printStackTrace();}
+        connection.close();
         return false;
     }
 }

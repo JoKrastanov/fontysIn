@@ -16,23 +16,39 @@ public class SkillManager implements ISkillManager {
 
     @Override
     public List<Skill> getSkillsByPcn(Long pcn) {
-        List<Skill> skills = dataClass.findAllByPcn(pcn);
-        Collections.reverse(skills);
-        return skills;
+        try {
+            List<Skill> skills = dataClass.findAllByPcn(pcn);
+            Collections.reverse(skills);
+            return skills;
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return null;
     }
 
     @Override
     public boolean addSkill(Skill skill) {
-        return dataClass.create(skill);
+        try {
+            return dataClass.create(skill);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 
     @Override
     public boolean deleteSkill(Skill skill) {
-        return dataClass.delete(skill);
+        try {
+            return dataClass.delete(skill);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 
     @Override
     public boolean updateSkill(Skill skill) {
-        return dataClass.update(skill);
+        try {
+            return dataClass.update(skill);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 }

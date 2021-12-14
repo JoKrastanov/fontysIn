@@ -18,23 +18,39 @@ public class PostManager implements IPostManager {
 
     @Override
     public boolean createPost(Post post) {
-        return dataClass.create(post);
+        try {
+            return dataClass.create(post);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 
     @Override
     public Post getPost(Long id) {
-        return dataClass.getPostById(id);
+        try {
+            return dataClass.getPostById(id);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return null;
     }
 
     @Override
     public List<Post> getAccountPosts(Long pcn) {
-        List<Post> posts = dataClass.getAccountPostsByPcn(pcn);
-        Collections.reverse(posts);
-        return posts;
+        try {
+            List<Post> posts = dataClass.getAccountPostsByPcn(pcn);
+            Collections.reverse(posts);
+            return posts;
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return null;
     }
 
     @Override
     public boolean deletePost(Long id) {
-        return dataClass.delete(id);
+        try {
+            return dataClass.delete(id);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return false;
     }
 }
