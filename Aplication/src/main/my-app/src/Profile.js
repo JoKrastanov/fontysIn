@@ -59,8 +59,11 @@ function InfoPopup({ account, onClick, interests, myAcc }) {
         <>
             <div className="Overlay" />
             <div id="profileInfo" >
+        
                 <div id="ProfileInfo" className="ProfileInfo">
+                
                     <div id="InfoCard">
+                  
                         <div className="InfoBg" id="InfoBg">
                             <div className={showVisibilityStyle()}>
                                 <p>Visibility level:</p>
@@ -69,8 +72,11 @@ function InfoPopup({ account, onClick, interests, myAcc }) {
                             </div>
                             <div className="ProfilePicHolder">  <div className="ProfilePic">
                                 <img className="imge" src="./logo512.png" />
+                                
                             </div>
+                           
                             </div>
+                           
                             <div id="MidInfo">
                                 <div id="DetailsWrapper">
                                     <span>20<br /><br />Estonia<br />Estonian, Finnish, English</span>
@@ -149,13 +155,17 @@ function InfoPopup({ account, onClick, interests, myAcc }) {
                                     </div>
                                 </div>
                             </div>
+                           
 
 
                         </div>
-
+                       
                     </div>
+                   
                 </div>
+               
             </div>
+           
         </>
     );
 }
