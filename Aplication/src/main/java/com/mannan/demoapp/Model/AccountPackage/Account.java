@@ -9,5 +9,6 @@ public class Account {
     private String bio;
     private String type;
     private int visibility;
+    private String binaryImage;
 
 }

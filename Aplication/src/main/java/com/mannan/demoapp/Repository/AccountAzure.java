@@ -33,7 +33,8 @@ public class AccountAzure implements IAccountAzure {
                                 con.getResult().getString(6),
                                 con.getResult().getString(3),
                                 con.getResult().getString(2),
-                                con.getResult().getInt(5));
+                                con.getResult().getInt(5),
+                                con.getResult().getString(7));
                 accounts.add(newAcc);
             }
             return accounts;
@@ -55,7 +56,8 @@ public class AccountAzure implements IAccountAzure {
                         result.getString(6),
                         result.getString(3),
                         result.getString(2),
-                        result.getInt(5));
+                        result.getInt(5),
+                        result.getString(7));
             }
             return newAcc;
         } catch (SQLException e) {

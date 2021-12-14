@@ -1,10 +1,17 @@
 import {PureComponent, useState} from 'react';
+import messageSound from "./media/juntos-607.mp3";
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
+import * as stompClient from "sockjs-client";
 
 const axios = require('axios');
 
 const url = "http://localhost:8080"
 //https://fontysin.azurewebsites.net
 //http://localhost:8080
+
+const ENDPOINT = "http://localhost:8080/chat";
+
 export const getAccount = () => {
     const value = "; " + document.Login;
     const parts = value.split("; " + "Login" + "=");
@@ -207,3 +214,60 @@ export const getChat = async (pcn1, pcn2) => {
         console.error(err);
     }
 }
+
+
+export const connectToChats = async (pcn, setStompClient) => {
+    try {
+
+        let chats = "";
+        const resp = await getAccountChats(pcn);
+        for (let i = 0; i < resp.length; i++) {
+            chats += (`,${resp[i].id}`)
+        }
+        let ids = chats.split(',')
+        const socket = SockJS(ENDPOINT);
+        const stompClient = Stomp.over(socket);
+        stompClient.connect({}, () => {
+            // subscribe to the backend
+            for (let i = 1; i < ids.length; i++) {
+                stompClient.subscribe('/topic/messages/' + ids[i], (data) => {
+                    onMessageReceived(data);
+                });
+            }
+        });
+        // maintain the client for sending and receiving
+        setStompClient(stompClient);
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+export const onMessageReceived = (data) =>
+{
+    try {
+        let audio = new Audio(messageSound);
+        const message = JSON.parse(data.body)
+        if(getAccount().pcn !== message.senderPCN)  {audio.play();}
+        const updateChat = new CustomEvent('build', {
+            detail: {message : message}
+        }, {once : true});
+        document.dispatchEvent(updateChat);
+
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+export const searchForChats = async (name, pcn) => {
+    try {
+        const resp = await axios.get(url + `/chat/search/` + pcn + '/' + name)
+        console.log(resp.data);
+        return resp.data;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
