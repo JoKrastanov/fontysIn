@@ -61,12 +61,7 @@ function Stories(prop) {
         return (
             <div id="Stories">
                <div id="Stories_g">
-                 {(getAccount().pcn == prop.pcn) ? <div className="pdfButton">
-                   <button className="buttonExport"  onClick={updateButton}>Export portfolio to PDF</button>
-                   <Popup trigger={buttonPopupPdf} setTrigger={setButtonPopupPdf}>
-                    <PDFViewer><ProjectsExporter/></PDFViewer>
-                    </Popup>
-                          </div> : ''}
+
                     <div id="Profile" className="Profile">
                         <div id="StudentInfo">
                        
@@ -94,11 +89,17 @@ function Stories(prop) {
                             {prop.myAccount === true &&
                                 <div id="SingleStoriesWrapper">
                                     {projects.map(item => (
-                                        <div>
+                                        <div id="SingleStory">
+                                            <div className="SingleStoryWrapper">
+                                                <div id="SingleStoryWrapper" >
+                                                    <button id='project-button-delete' onClick={e => deleteProjectasync(item)}>🗑</button>
+                                                    <button id='project-button-edit' onClick={e => selectProject(item)}>✎</button>
                                             <SingularStory key={item.id} story={item} />
-                                            <button id='project-button-delete' onClick={e => deleteProjectasync(item)}>Delete</button>
-                                            <button id='project-button-edit' onClick={e => selectProject(item)}>Edit</button>
+
                                         </div>
+                                            </div>
+                                        </div>
+
                                     ))}
                                 </div>
                             }
@@ -114,6 +115,12 @@ function Stories(prop) {
                         </rect>
                     </div>
                 </div>
+                {(getAccount().pcn == prop.pcn) ? <div className="pdfButton">
+                    <button className="buttonExport"  onClick={updateButton}>Export portfolio to PDF</button>
+                    <Popup trigger={buttonPopupPdf} setTrigger={setButtonPopupPdf}>
+                        <PDFViewer><ProjectsExporter/></PDFViewer>
+                    </Popup>
+                </div> : ''}
             </div>
         )
     }

@@ -120,11 +120,8 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                                         </div>
                                     }
                                 </div> : <></>}
-                                <div className="ProfilePicHolder">  <div className="ProfilePic">
-                                    <img className="imge" src="./logo512.png" />
+                            </div>
 
-                                </div>
-                                </div>
                                 <div id="MidInfo">
                                     <div id="DetailsWrapper">
                                         <span>20<br /><br />Estonia<br />Estonian, Finnish, English</span>
@@ -200,7 +197,6 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                         </div>
                     </div>
                 </div>
-            </div>
         </>
     );
 }

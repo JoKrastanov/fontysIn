@@ -2,13 +2,14 @@
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    background-color:rgb(244, 244, 244);
+    background-color:#e7e5e7;
     border: 1px solid rgba(112,112,112,1);
     border-radius: 10px;
 
 }
 #DescriptionBox{
     resize: none;
+    padding-block: .5%;
     background-color:#e7e5e7;
     font-size: 30px;
     height: 100px;
@@ -16,6 +17,7 @@
 }
 #LinkBox{
     background-color:#e7e5e7;
+    padding-block: .5%;
     font-size: 30px;
     border-top: 1px solid rgba(112,112,112,1);
 }
@@ -23,6 +25,7 @@ input:focus{
 
 }
 #TitleBox{
+    padding-block: .5%;
     background-color:#e7e5e7;
     font-size: 30px;
 }
@@ -35,4 +38,8 @@ input:focus{
 }
 *:focus {
     outline: inherit;
+}
+label{
+    border-bottom: 1px solid #4d4d4d;
+    padding-block: .5%;
 }

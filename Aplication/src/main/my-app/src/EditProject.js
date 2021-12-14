@@ -13,7 +13,7 @@ function EditProject(prop) {
         <div id='AddWrapper'>
           <label>Edit project {prop.story.title}</label>
           <input type="text" value={title} onChange={(e)=>{settitle(e.target.value)}} id='TitleBox'/> 
-          <input type="text" value={description} onChange={(e)=>{setdescription(e.target.value)}} id='DescriptionBox'/> 
+          <textarea type="text" value={description} onChange={(e)=>{setdescription(e.target.value)}} id='DescriptionBox'/>
           <input type="text" value={link}  onChange={(e)=>{setlink(e.target.value)}} id='LinkBox'/> 
           <button onClick={e => prop.editProjectasync(id, title, description, link, getAccount().pcn)} id='AddButton'>Update Project</button>  
         </div>
