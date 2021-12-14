@@ -30,7 +30,7 @@ public class AccountController {
     public ResponseEntity<Integer> getMyAccount(){
         String test = "j.krastanov@student.fontys.nl";  //the test account you want to log in as
         int code = test.hashCode();
-        //code = 1234;  //uncomment to get this account number and ignore hash
+        code = 2345;  //uncomment to get this account number and ignore hash
         return ResponseEntity.ok().body(code);
     }
 /*    public ResponseEntity<Long> getMyAccount(@RequestHeader("x-ms-client-principal-name") String name){

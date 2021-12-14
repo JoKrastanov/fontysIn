@@ -68,7 +68,8 @@ processResources {
 
 
 dependencies {
-	compile "com.microsoft.sqlserver:mssql-jdbc:9.4.0.jre11"
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    compile "com.microsoft.sqlserver:mssql-jdbc:9.4.0.jre11"
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.projectlombok:lombok:1.18.22'
 	implementation 'mysql:mysql-connector-java:8.0.25'

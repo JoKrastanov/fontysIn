@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import "./ChatBox.css"
 import ChatList from "./ChatList";
 import Chat from "./Chat.js";
+import LastChats from "./LastChats";
 
 function ChatBox(props) {
 
@@ -28,7 +29,7 @@ function ChatBox(props) {
                         <ChatList chat={handleOpenChat}/>
                     </div> :
                     <div id={"opened-chat"}>
-                        <Chat key={openedChat} id={openedChat}/>
+                        <Chat stomp={props.stomp} key={openedChat} id={openedChat}/>
                     </div>
                 }
             </div>

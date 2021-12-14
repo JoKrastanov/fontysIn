@@ -13,4 +13,3 @@ public class Account {
     private int visibility;
     private String binaryImage;
 }
-
