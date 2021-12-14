@@ -28,16 +28,20 @@ public class AccountManager implements IAccountManager {
     public Account getAccountByPcn(Long pcn) {
         try {
             Account account = dataClass.findByPcn(pcn);
-
-            if (account != null) {return account;}
-            else addAccount(new Account(pcn, "", "", "Student", 0, ""));
-            return getAccountByPcn(pcn);
+            if (account != null) {
+                return account;
+            } else {
+                account = new Account(pcn, "", "", "Student", 0, "");
+                addAccount(account);
+                return account;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) {e.printStackTrace();}
         return null;
     }
 
-    @Override
+        @Override
     public boolean deleteAccount(Long pcn) {
         try {
             return dataClass.delete(pcn);
