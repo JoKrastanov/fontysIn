@@ -1,18 +1,39 @@
 import React, { useEffect, useState } from "react";
 import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
-import { getAccount, getAccountData, getInterests, getProjectsFromAccount, addProjectToAccount } from "./services";
 import Profile from "./Profile";
 import './Stories.css'
 import SingularStory from "./SingularStory";
+import { getAccount, getAccountData, getInterests, getProjectsFromAccount, addProjectToAccount, deleteProject, editOneProject } from "./services";
 import AddProject from "./AddProject";
-
+import EditProject from "./EditProject";
 
 function Stories(prop) {
     const [projects, setProjects] = useState([]);
+    const [edit, setedit] = useState(false);
+    const [data, setdata] = useState();
+
 
     const addProjectasync = async (title, description, link, pcn) => {
         await addProjectToAccount(title, description, link, pcn);
+        window.location.reload(false);
+    }
+
+    const deleteProjectasync = async (item) => {
+        await deleteProject(item.id, item.title, item.description, item.link, getAccount().pcn);
+        window.location.reload(false);
+    }
+
+    const selectProject = async (item) => {
+        setdata(item);
+        setedit(true);
+        window.scrollTo(0, 500);
+    }
+
+    const editProjectasync = async (id, title, description, link, pcn) => {
+        // console.log(id, title, description, link, 1234);
+        await editOneProject(id, title, description, link, pcn);
+        setedit(false);
         window.location.reload(false);
     }
 
@@ -25,7 +46,6 @@ function Stories(prop) {
                 })
             return;
         }
-
     })
 
     if (projects.length != 0) {
@@ -42,17 +62,36 @@ function Stories(prop) {
                             <div id="Stories_s">
                                 <span>Projects</span>
                             </div>
-
                             {prop.myAccount === true &&
                                 <div id="AddProject">
-                                    <AddProject addProjectasync={addProjectasync}/>
+                                    <AddProject addProjectasync={addProjectasync} />
                                 </div>
                             }
-                            <div id="SingleStoriesWrapper">
-                            {projects.map(item => (
-                                <SingularStory key={item.id} story={item} />
-                            ))}
+                            {prop.myAccount === true && edit === true &&
+                                <div id="AddProject">
+                                    <EditProject editProjectasync={editProjectasync} story={data}/>
                                 </div>
+                            }
+                            {prop.myAccount === true &&
+                                <div id="SingleStoriesWrapper">
+                                    {projects.map(item => (
+                                        <div>
+                                            <SingularStory key={item.id} story={item} />
+                                            <button id='AddButton' onClick={e => deleteProjectasync(item)}>delete</button>
+                                            <button id='AddButton' onClick={e => selectProject(item)}>edit</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            }
+                            {prop.myAccount === false &&
+                                <div id="SingleStoriesWrapper">
+                                    {projects.map(item => (
+                                        <div>
+                                            <SingularStory key={item.id} story={item} />
+                                        </div>
+                                    ))}
+                                </div>
+                            }
                         </rect>
                     </div>
                 </div>
