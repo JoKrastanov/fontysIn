@@ -7,6 +7,7 @@ import SkillsExportHelper from './SkillsExportHelper';
 import InterestsExportHelper from './InterestsExportHelper';
 import ExperiencesExportHelper from './ExperiencesExportHelper';
 import {getAccount} from "../services";
+import { url } from '../config/config';
 
 
 export function ProjectsExporter() {
@@ -40,7 +41,7 @@ export function ProjectsExporter() {
     
 
     useEffect(() => { 
-      axios.get(`http://localhost:8080/account/${getAccount().pcn}/projects`).then((response) => { 
+      axios.get(url + `/account/${getAccount().pcn}/projects`).then((response) => { 
         if(response.status===200){
           console.log(response.data);
           setPost(response.data);
@@ -51,7 +52,7 @@ export function ProjectsExporter() {
     }, []); 
 
     useEffect(() => { 
-      axios.get(`http://localhost:8080/account/${getAccount().pcn}/skills`).then((response) => { 
+      axios.get(url + `/account/${getAccount().pcn}/skills`).then((response) => { 
         if(response.status===200){
           console.log(response.data);
           setSkills(response.data);
@@ -62,7 +63,7 @@ export function ProjectsExporter() {
     }, []); 
 
     useEffect(() => { 
-      axios.get(`http://localhost:8080/account/${getAccount().pcn}/interests`).then((response) => { 
+      axios.get(url + `/account/${getAccount().pcn}/interests`).then((response) => { 
         if(response.status===200){
           console.log(response.data);
           setInterests(response.data);
@@ -73,7 +74,7 @@ export function ProjectsExporter() {
     }, []); 
 
     useEffect(() => { 
-      axios.get(`http://localhost:8080/account/${getAccount().pcn}/experiences`).then((response) => { 
+      axios.get(url + `/account/${getAccount().pcn}/experiences`).then((response) => { 
         if(response.status===200){
           console.log(response.data);
           setExperiences(response.data);

@@ -1,10 +1,7 @@
 import {PureComponent, useState} from 'react';
-
+import { url } from './config/config';
 const axios = require('axios');
 
-const url = "http://localhost:8080"
-//https://fontysin.azurewebsites.net
-//http://localhost:8080
 export const getAccount = () => {
     const value = "; " + document.Login;
     const parts = value.split("; " + "Login" + "=");
