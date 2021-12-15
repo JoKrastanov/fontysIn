@@ -14,9 +14,9 @@
 .popup-inner{
     position: relative;
     padding: 32px;
-    width: 100%;
+    width: fit-content;
     max-width: 640px;
-    background:  rgba(200, 196, 207, 1);
+    background: #d8d4de;
     color: #707070;
     border-radius: 10px;
     outline: solid #707070 1px;
@@ -26,7 +26,7 @@
     position: absolute;
     top: 5%;
     right: 3%;
-    background: rgba(200, 196, 207, 1);
+    background: #e7e5e7;
 }
 #ConnectionButton{
     text-align: center;

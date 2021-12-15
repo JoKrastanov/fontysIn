@@ -70,7 +70,12 @@ function Stories(prop) {
                         </div>
                        
                     </div>
-                    
+                   {(getAccount().pcn == prop.pcn) ? <div className="pdfButton">
+                       <button className="buttonExport"  onClick={updateButton}>Export portfolio to PDF</button>
+                       <Popup trigger={buttonPopupPdf} setTrigger={setButtonPopupPdf}>
+                           <PDFViewer><ProjectsExporter/></PDFViewer>
+                       </Popup>
+                   </div> : ''}
                     <div className="StoriesBg">
                         <rect id="StoriesBg" >
                             <div id="Stories_s">
@@ -104,23 +109,23 @@ function Stories(prop) {
                                 </div>
                             }
                             {prop.myAccount === false &&
-                                <div id="SingleStoriesWrapper">
-                                    {projects.map(item => (
-                                        <div>
-                                            <SingularStory key={item.id} story={item} />
+                            <div id="SingleStoriesWrapper">
+                                {projects.map(item => (
+                                    <div id="SingleStory">
+                                        <div className="SingleStoryWrapper">
+                                            <div id="SingleStoryWrapper" >
+                                                <SingularStory key={item.id} story={item} />
+                                            </div>
                                         </div>
-                                    ))}
-                                </div>
+                                    </div>
+
+                                ))}
+                            </div>
                             }
                         </rect>
                     </div>
                 </div>
-                {(getAccount().pcn == prop.pcn) ? <div className="pdfButton">
-                    <button className="buttonExport"  onClick={updateButton}>Export portfolio to PDF</button>
-                    <Popup trigger={buttonPopupPdf} setTrigger={setButtonPopupPdf}>
-                        <PDFViewer><ProjectsExporter/></PDFViewer>
-                    </Popup>
-                </div> : ''}
+
             </div>
         )
     }
