@@ -447,3 +447,5 @@ img{
     color: rgba(255,255,255,0.5);
     margin-right: 5px;
 }
+
+#change-visibility-button{z-index: 10;}
