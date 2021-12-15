@@ -22,11 +22,11 @@ function App(prop) {
     const rendered = {hasRendered, setHasRendered, hasRendered2, setHasRendered2, hasRendered3, setHasRendered3}
     const [myAccount, setMyAccount] = useState(true);
     const [openedChat, setOpenedChat] = useState(0);
-    const [stompClient, setStompClient] = useState(null);
+
 
 
     useEffect(() => {
-        connectToChats(getAccount().pcn, setStompClient).then();
+        connectToChats(getAccount().pcn).then();
     }, []);
 
     function setPcnStates(pcn) {
@@ -45,7 +45,7 @@ function App(prop) {
                     <AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}
                                  myAccount={myAccount}/>
                 </div>
-                <div id={"messages"}><MessageIcon stomp={stompClient} openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>
+                <div id={"messages"}><MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>
             </>
         )
     }

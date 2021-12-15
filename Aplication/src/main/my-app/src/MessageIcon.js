@@ -19,7 +19,7 @@ function MessageIcon(props) {
                 <img id={"icon"} src={ChatIcon}/>
             </button>
             <div id={"chats"} style={{visibility : chatVisibilityState ? 'visible' : 'hidden'}}>
-                <ChatBox stomp={props.stomp} onChange={toggleChatVisibilityState}/>
+                <ChatBox close={setChatVisibilityState}/>
             </div>
         </div>
     )

@@ -3,6 +3,7 @@ package com.mannan.demoapp.Repository;
 import com.mannan.demoapp.Model.AccountPackage.Account;
 import com.mannan.demoapp.Model.AccountPackage.AccountRequest;
 import com.mannan.demoapp.Repository.AzureConn.DefaultCon;
+import com.mannan.demoapp.Repository.AzureConn.DefaultImage;
 import com.mannan.demoapp.Repository.Interfaces.IAccountAzure;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class AccountAzure implements IAccountAzure {
 
     DefaultCon con = new DefaultCon();
+    DefaultImage img = new DefaultImage();
 
     public AccountAzure() throws SQLException {
     }
@@ -76,6 +78,41 @@ public class AccountAzure implements IAccountAzure {
             PreparedStatement selectSql = connection.prepareStatement("DELETE FROM Account WHERE PCN = ?");
             selectSql.setLong(1, pcn);
             selectSql.executeUpdate();
+
+            PreparedStatement selectSql1 = connection.prepareStatement("DELETE FROM Chat WHERE PCN1 = ? OR PCN2 = ?");
+            selectSql1.setLong(1, pcn);
+            selectSql1.setLong(2, pcn);
+            selectSql.executeUpdate();
+
+            PreparedStatement selectSql2 = connection.prepareStatement("DELETE FROM Connection WHERE Pcn1 = ? OR Pcn2 = ?");
+            selectSql2.setLong(1, pcn);
+            selectSql2.setLong(2, pcn);
+            selectSql.executeUpdate();
+
+            PreparedStatement selectSql3 = connection.prepareStatement("DELETE FROM Experience WHERE AccountPcn = ?");
+            selectSql3.setLong(1, pcn);
+            selectSql.executeUpdate();
+
+            PreparedStatement selectSql4 = connection.prepareStatement("DELETE FROM Interest WHERE PCN = ?");
+            selectSql4.setLong(1, pcn);
+            selectSql.executeUpdate();
+
+            PreparedStatement selectSql5 = connection.prepareStatement("DELETE FROM Message WHERE SenderPCN = ?");
+            selectSql5.setLong(1, pcn);
+            selectSql.executeUpdate();
+
+            PreparedStatement selectSql6 = connection.prepareStatement("DELETE FROM Post WHERE AccountPCN = ?");
+            selectSql6.setLong(1, pcn);
+            selectSql.executeUpdate();
+
+            PreparedStatement selectSql7 = connection.prepareStatement("DELETE FROM Project WHERE AccountPcn = ?");
+            selectSql7.setLong(1, pcn);
+            selectSql.executeUpdate();
+
+            PreparedStatement selectSql8 = connection.prepareStatement("DELETE FROM Skill WHERE AccountPcn = ?");
+            selectSql8.setLong(1, pcn);
+            selectSql.executeUpdate();
+
             connection.close();
             return true;
         } catch (SQLException e) {
@@ -127,11 +164,12 @@ public class AccountAzure implements IAccountAzure {
     public boolean create(Account account) throws SQLException {
         Connection connection = DriverManager.getConnection(con.getCon());
         try {
-            PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Account (AcademicType, Bio, PCN, Name, Visibility) VALUES (?,?,?,?, 0)");
+            PreparedStatement selectSql = connection.prepareStatement("INSERT INTO Account (AcademicType, Bio, PCN, Name, Visibility, Image) VALUES (?,?,?,?, 0, ?)");
             selectSql.setString(1, account.getType());
             selectSql.setString(2, account.getBio());
             selectSql.setLong(3, account.getPcn());
             selectSql.setString(4, account.getName());
+            selectSql.setString(5, img.getImage());
             selectSql.executeUpdate();
             connection.close();
             return true;
@@ -148,8 +186,8 @@ public class AccountAzure implements IAccountAzure {
         try {
             AccountRequest request = new AccountRequest();
             request.setPcn2(myPcn);
-            PreparedStatement selectSql = connection.prepareStatement("select a.pcn, a.visibility from account as a\n" +
-                    "where a.PCN = ?");
+            PreparedStatement selectSql = connection.prepareStatement("select a.pcn, a.visibility from account as a" +
+                    " where a.PCN = ?");
             selectSql.setLong(1, pcn);
             ResultSet result = selectSql.executeQuery();
             while (result.next()) {
