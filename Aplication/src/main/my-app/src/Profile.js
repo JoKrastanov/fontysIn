@@ -139,7 +139,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                                         </Popup>
                                     </div>
                                 </div>
-                            </div>
+
                             <div id="Info">
                                 <div id="Bio">
                                     <div className="BioBg">
@@ -200,6 +200,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
