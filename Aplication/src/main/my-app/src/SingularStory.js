@@ -16,7 +16,7 @@ export default function SingularStory (prop){
                         <span>{prop.story.description}</span>
                     </div>
                             <div id="StoryLinkWrap">
-                                <span>{prop.story.link}</span>
+                                <a href={prop.story.link}>{prop.story.link}</a>
                             </div>
 
 
