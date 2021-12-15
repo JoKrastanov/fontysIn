@@ -115,22 +115,33 @@ function Stories(prop) {
                             {prop.myAccount === true &&
                                 <div id="SingleStoriesWrapper">
                                     {projects.map(item => (
-                                        <div>
+                                        <div id="SingleStory">
+                                            <div className="SingleStoryWrapper">
+                                                <div id="SingleStoryWrapper" >
+                                                    <button id='project-button-delete' onClick={e => deleteProjectasync(item)}>🗑</button>
+                                                    <button id='project-button-edit' onClick={e => selectProject(item)}>✎</button>
                                             <SingularStory key={item.id} story={item} />
-                                            <button id='project-button-delete' onClick={e => deleteProjectasync(item)}>Delete</button>
-                                            <button id='project-button-edit' onClick={e => selectProject(item)}>Edit</button>
+
                                         </div>
+                                            </div>
+                                        </div>
+
                                     ))}
                                 </div>
                             }
                             {prop.myAccount === false &&
-                                <div id="SingleStoriesWrapper">
-                                    {projects.map(item => (
-                                        <div>
-                                            <SingularStory key={item.id} story={item} />
+                            <div id="SingleStoriesWrapper">
+                                {projects.map(item => (
+                                    <div id="SingleStory">
+                                        <div className="SingleStoryWrapper">
+                                            <div id="SingleStoryWrapper" >
+                                                <SingularStory key={item.id} story={item} />
+                                            </div>
                                         </div>
-                                    ))}
-                                </div>
+                                    </div>
+
+                                ))}
+                            </div>
                             }
                         </rect>
                     </div>

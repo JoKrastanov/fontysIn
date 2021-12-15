@@ -4,9 +4,8 @@ import {getProjectsFromAccount, getAccountData,getAccount} from "./services";
 export default function SingularStory (prop){
         if(prop.story != undefined){
             return (
-                <div id="SingleStory">
-                    <div className="SingleStoryWrapper">
-                        <div id="SingleStoryWrapper" >
+                <div>
+
                     <div id="DateWrap">
                         <span>10Sep</span>
                     </div>
@@ -20,8 +19,7 @@ export default function SingularStory (prop){
                                 <span>{prop.story.link}</span>
                             </div>
 
-                        </div>
-                    </div>
+
                 </div>
             )
         }

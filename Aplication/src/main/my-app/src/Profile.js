@@ -4,6 +4,8 @@ import InterestDropdown from "./InterestDropdown";
 import { getAccount, getAccountData, getAllPendingRequests, getInterests, updateAccount, updateAccountPictrure } from "./services";
 import './Profile.css';
 import VisibilitySwitch from "./components/VisibilitySwitch.js";
+import Popup from './components/Popup';
+import EditProfile from "./EditProfile";
 
 function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
     const [showSubmit, setShowSubmit] = useState(false);
@@ -12,6 +14,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
     const [changePicBtn, setChangePicBtn] = useState(true);
     const [binaryImage, setBinaryImage] = useState(profileImage);
     const [selectImageStyle, setSelectImageStyle] = useState("");
+    const [buttonPopup, setButtonPopup] = useState(false);
 
 
     const getVisibility = () => {
@@ -122,15 +125,19 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                                 </div> : <></>}
                             </div>
 
-                            <div id="MidInfo">
-                                <div id="DetailsWrapper">
-                                    <span>20<br /><br />Estonia<br />Estonian, Finnish, English</span>
-                                </div>
-                                <div id="CardName">
-                                    <span>{account.name}</span>
-                                </div>
-                                <div id="EditBtn">
-                                    <button id="EditBg">Edit</button>
+                                <div id="MidInfo">
+                                    <div id="DetailsWrapper">
+                                        <span>20<br /><br />Estonia<br />Estonian, Finnish, English</span>
+                                    </div>
+                                    <div id="CardName">
+                                        <span>{account.name}</span>
+                                    </div>
+                                    <div id="EditBtn">
+                                        <button onClick={() => setButtonPopup(true)} id="EditBg">Edit</button>
+                                        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                                            <EditProfile setTrigger={setButtonPopup} />
+                                        </Popup>
+                                    </div>
                                 </div>
                             </div>
                             <div id="Info">
@@ -196,7 +203,6 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                         </div>
                     </div>
                 </div>
-            </div>
         </>
     );
 }

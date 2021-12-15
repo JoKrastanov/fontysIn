@@ -6,11 +6,9 @@
 }
 
 .pdfButton{
+    right: 0px;
     position: absolute;
-    margin-top: 154px;
-    height: 50px;
-    width: 100px;
-    margin-left:  74%;
+    top: 160px;
     
    
 }
@@ -34,8 +32,6 @@
     
   width: 225px;
   height: 37px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  cursor: pointer;
   border-radius: 7px;
   border: 0.5px solid rgb(62, 62, 61);
   padding: 5px;
@@ -46,7 +42,6 @@
 
 .buttonExport:hover{
    color: rgb(255, 254, 253);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 54px 55px, rgba(0, 0, 0, 0.35) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 #Stories {
@@ -90,15 +85,14 @@
     padding-bottom: 20px;
 }
 #SingleStory {
-
+    padding-block: .5%;
     padding-inline: 5%;
     position: relative;
 
 }
 #SingleStoryWrapper {
     background-color: #e7e5e7;
-    border-top: 1px solid rgba(112,112,112,1);
-    border-inline: 1px solid rgba(112,112,112,1);
+    border: 1px solid rgba(112,112,112,1);
 border-radius: 5px;
     padding-inline: 5%;
     padding-block: 2.5%;
@@ -205,6 +199,7 @@ background-color: #e7e5e7;
     color: rgba(112,112,112,1);
 }
 #AddProject{
+    padding-top: 5px;
     padding-inline: 5%;
 }
 #Stories_s {
@@ -258,19 +253,44 @@ background-color: #e7e5e7;
 }
 
 #project-button-edit {
- border: 1px solid black;
-    width: 6rem;
-    font-size: 18px;
-    border-radius: 10px;
-    margin-top: .3rem;
-    margin-left: 24rem;
-    margin-bottom: .5rem;
+    color: rgb(130 130 130);
+    float: right;
+    font-size: 25px;
+    background-color: inherit;
+    padding-right: 1%;
 }
 #project-button-delete {
-    border: 1px solid black;
-    width: 6rem;
-    font-size: 18px;
-    border-radius: 10px;
-    margin-top: .3rem;
-    margin-left: 3rem;
+    color: rgb(130 130 130);
+    float: right;
+    font-size: 25px;
+    background-color: inherit;
+}
+#EditWrapper{
+    justify-content: center;
+}
+#NameInput{
+    width: -moz-available;
+    width: -webkit-fill-available;
+    background-color: #ccc9d2;
+    resize: none;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
+    font-size: 30px;
+}
+#BioInput{
+    width: -moz-available;
+    width: -webkit-fill-available;
+    background-color: #ccc9d2;
+    resize: none;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
+    font-size: 30px;
+}
+#SaveButton{
+    width: -moz-available;
+    width: -webkit-fill-available;
+    background-color: #ccc9d2;
+    resize: none;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
 }
