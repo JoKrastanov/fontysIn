@@ -8,6 +8,7 @@
     background-color: #f4f4f4;
     border: 1px solid black;
     overflow-y: auto;
+    z-index: 10;
 }
 .Chats::-webkit-scrollbar {
     height: 250px;

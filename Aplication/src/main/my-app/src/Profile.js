@@ -101,7 +101,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                             <div className={showVisibilityStyle()}>
                                 <p>Visibility level:</p>
                                 <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
-                                {showSubmit ? <button onClick={handleVisibilityChange}>Change</button> : null}
+                                {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Change</button> : null}
                             </div>
                             <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
 
@@ -120,79 +120,75 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                                         </div>
                                     }
                                 </div> : <></>}
-                                <div className="ProfilePicHolder">  <div className="ProfilePic">
-                                    <img className="imge" src="./logo512.png" />
+                            </div>
 
+                            <div id="MidInfo">
+                                <div id="DetailsWrapper">
+                                    <span>20<br /><br />Estonia<br />Estonian, Finnish, English</span>
                                 </div>
+                                <div id="CardName">
+                                    <span>{account.name}</span>
                                 </div>
-                                <div id="MidInfo">
-                                    <div id="DetailsWrapper">
-                                        <span>20<br /><br />Estonia<br />Estonian, Finnish, English</span>
-                                    </div>
-                                    <div id="CardName">
-                                        <span>{account.name}</span>
-                                    </div>
-                                    <div id="EditBtn">
-                                        <button id="EditBg">Edit</button>
-                                    </div>
+                                <div id="EditBtn">
+                                    <button id="EditBg">Edit</button>
                                 </div>
-                                <div id="Info">
-                                    <div id="Bio">
-                                        <div className="BioBg">
-                                            <div id="BioBg" >
-                                                <div id="BioText">
-                                                    <span>{account.bio}</span>
-                                                </div>
+                            </div>
+                            <div id="Info">
+                                <div id="Bio">
+                                    <div className="BioBg">
+                                        <div id="BioBg" >
+                                            <div id="BioText">
+                                                <span>{account.bio}</span>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <div id="IES">
-                                        <div id="Interests">
-                                            <div id="InterestsBtn">
-                                                <div className="InterestsBtnBg">
-                                                    <div id="InterestsBtnBg">
-                                                        <div id="Interests_z">
-                                                            <span>Interests</span>
-                                                        </div>
+
+                                </div>
+                                <div id="IES">
+                                    <div id="Interests">
+                                        <div id="InterestsBtn">
+                                            <div className="InterestsBtnBg">
+                                                <div id="InterestsBtnBg">
+                                                    <div id="Interests_z">
+                                                        <span>Interests</span>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <div id="IntertestsList">
+
+                                        </div>
+                                        <div id="IntertestsList">
                                                 <span>{interests.map(item => (
                                                     <Interest key={item.id} interest={item} />
                                                 ))}</span>
-                                            </div>
                                         </div>
-                                        <div id="Experience">
-                                            <div id="ExperienceBtn">
-                                                <div className="ExperienceBtnBg">
-                                                    <div id="ExperienceBtnBg" >
-                                                        <div id="Experience_s">
-                                                            <span>Experience</span>
-                                                        </div>
+                                    </div>
+                                    <div id="Experience">
+                                        <div id="ExperienceBtn">
+                                            <div className="ExperienceBtnBg">
+                                                <div id="ExperienceBtnBg" >
+                                                    <div id="Experience_s">
+                                                        <span>Experience</span>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                            </div>
-                                            <div id="ExperienceList">
-                                                <span>I did a thing once, Living in my parents house</span>
-                                            </div>
                                         </div>
-                                        <div id="Skills">
-                                            <div id="SkillsBtn">
-                                                <div className="SkillsBtnBg">
-                                                    <div id="SkillsBtnBg" >
-                                                        <div id="Skills_">
-                                                            <span>Skills</span>
-                                                        </div>
+                                        <div id="ExperienceList">
+                                            <span>I did a thing once, Living in my parents house</span>
+                                        </div>
+                                    </div>
+                                    <div id="Skills">
+                                        <div id="SkillsBtn">
+                                            <div className="SkillsBtnBg">
+                                                <div id="SkillsBtnBg" >
+                                                    <div id="Skills_">
+                                                        <span>Skills</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="SkillsList">
-                                                <div>Making toast without burning the house down, Copying and pasting from stackoverflow, Able to make oxygen into carbon dioxide</div>
-                                            </div>
+                                        </div>
+                                        <div id="SkillsList">
+                                            <div>Making toast without burning the house down, Copying and pasting from stackoverflow, Able to make oxygen into carbon dioxide</div>
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +235,7 @@ function Profile(prop) {
         const profileImage = () => {
 
             if (account.binaryImage == null) {
-                return "./defaultPhoto.png";
+                return "./logo512.png";
             }
             else {
                 return account.binaryImage;
@@ -253,14 +249,14 @@ function Profile(prop) {
                 {<div id="InfoPopup">
                     <span id="NameSpan" href="#" onClick={showInfo(account)}>{account.name} ⓘ </span>
                 </div>}{popupState.open === true && (
-                    <InfoPopup
-                        account={popupState.account}
-                        myAcc={prop.myAccount}
-                        onClick={() => setPopupState({ open: false })}
-                        interests={interests}
-                        profileImage={profileImage}
-                    />
-                )}
+                <InfoPopup
+                    account={popupState.account}
+                    myAcc={prop.myAccount}
+                    onClick={() => setPopupState({ open: false })}
+                    interests={interests}
+                    profileImage={profileImage}
+                />
+            )}
             </div>
             /*<>
                 <p>{account.name}</p>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getAccount, getALlAccounts, isAccountVisable, makeConnectionRequest } from '../services';
+import { getAccount, getALlAccounts, isAccountVisible, makeConnectionRequest } from '../services';
 import OnePerson from './OnePerson';
 import Popup from '../components/Popup';
 import './AllPeople.css';
@@ -21,7 +21,7 @@ function AllPeople(prop) {
     }, [])
 
     const redirectIfAccountIsVisible = async (pcn) => {
-        if (await isAccountVisable(pcn, getAccount().pcn)) {
+        if (await isAccountVisible(pcn, getAccount().pcn)) {
             prop.setPcnStates(pcn);
         }
         else {

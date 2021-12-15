@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {getAccount, getAccountData, getInterests, getALlAccounts, isAccountVisable} from "./services";
+import {getAccount, getAccountData, getInterests, getALlAccounts, isAccountVisible} from "./services";
 import './TopBar.css'
 import PendingRequests from "./connections/PendingRequests";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
@@ -72,7 +72,7 @@ function TopBar(prop) {
 
     const handleOnSelect = async (item) => {
         setTypedText(item.name);
-        if (await isAccountVisable(item.pcn, account.pcn)) {
+        if (await isAccountVisible(item.pcn, account.pcn)) {
             prop.setPcnStates(item.pcn);
         }
         else {

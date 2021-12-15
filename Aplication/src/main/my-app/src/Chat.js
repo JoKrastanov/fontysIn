@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 
-import {getChat, getAccount,getAccountData, connectToChats} from './services'
+import {getChat, getAccount,getAccountData, sendMessage} from './services'
+
+
 
 import "./Chat.css";
 import Message from "./Message";
@@ -40,7 +42,7 @@ function Chat(props) {
             message : document.getElementById("text").value,
             senderName : account.name
         }
-        props.stomp.send("/app/chat/" + message.chatId, {} ,JSON.stringify(message));
+        sendMessage(message);
         document.getElementById('text').value = ''
     }
 

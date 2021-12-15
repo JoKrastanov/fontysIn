@@ -2,7 +2,6 @@ import {PureComponent, useState} from 'react';
 import messageSound from "./media/juntos-607.mp3";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
-import * as stompClient from "sockjs-client";
 import { url } from './config/config';
 
 const axios = require('axios');
@@ -208,7 +207,7 @@ export const getALlAccounts = async () => {
     }
 }
 
-export const isAccountVisable = async (pcn, myPcn) => {
+export const isAccountVisible = async (pcn, myPcn) => {
     try {
         const resp = await axios.get(url + '/account/' + pcn + '/view/' + myPcn);
         return true;
@@ -276,7 +275,7 @@ export const getHashCode = async () => {
         console.error(err);
     }
 }
-
+let stompCl;
 export const getAccountChats = async (pcn) => {
 
     try {
@@ -293,12 +292,27 @@ export const getAccountChats = async (pcn) => {
 export const getChat = async (pcn1, pcn2) => {
     try {
         const resp = await axios.get(url + '/chat/' + pcn1 + '/' + pcn2)
+        if(resp.data.id == null) {
+            const resp = await axios.get(url + '/chat/' + pcn1 + '/' + pcn2);
+            const socket = SockJS(ENDPOINT);
+            const stompClient = Stomp.over(socket);
+            stompClient.connect({}, () => {
+                    stompClient.subscribe('/topic/messages/' + resp.data.id, (data) => {
+                        onMessageReceived(data);
+                    });
+            });
+            console.log(resp.data)
+            return resp.data
+        }
         return resp.data
     }
     catch (err) {
         // Handle Error Here
         console.error(err);
     }
+}
+export const sendMessage = (message) => {
+    stompCl.send("/app/chat/" + message.chatId, {} ,JSON.stringify(message));
 }
 
 export const editAccount = async (account) => {
@@ -322,9 +336,8 @@ export const editAccount = async (account) => {
 }
 
 
-export const connectToChats = async (pcn, setStompClient) => {
+export const connectToChats = async (pcn) => {
     try {
-
         let chats = "";
         const resp = await getAccountChats(pcn);
         for (let i = 0; i < resp.length; i++) {
@@ -332,17 +345,17 @@ export const connectToChats = async (pcn, setStompClient) => {
         }
         let ids = chats.split(',')
         const socket = SockJS(ENDPOINT);
-        const stompClient = Stomp.over(socket);
-        stompClient.connect({}, () => {
+        const stompClient1 = Stomp.over(socket);
+        stompClient1.connect({}, () => {
             // subscribe to the backend
             for (let i = 1; i < ids.length; i++) {
-                stompClient.subscribe('/topic/messages/' + ids[i], (data) => {
+                stompClient1.subscribe('/topic/messages/' + ids[i], (data) => {
                     onMessageReceived(data);
                 });
             }
         });
         // maintain the client for sending and receiving
-        setStompClient(stompClient);
+        stompCl = stompClient1;
     }
     catch (err) {
         console.log(err);

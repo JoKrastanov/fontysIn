@@ -14,6 +14,22 @@
     
    
 }
+#send-msg-button {
+    position: absolute;
+    margin-top: 154px;
+    margin-left:  74%;
+    width: 150px;
+    height: 37px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    cursor: pointer;
+    border-radius: 7px;
+    border: 0.5px solid rgb(62, 62, 61);
+    padding: 5px;
+    font-size: 18px;
+    color: rgb(41, 41, 41);
+    background-color: rgb(96, 67, 95);
+}
+#send-msg-button:hover {opacity: .8;}
 .buttonExport{
     
   width: 225px;
