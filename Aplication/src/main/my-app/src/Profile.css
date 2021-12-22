@@ -33,7 +33,6 @@
 }
 
 .Overlay {
-    z-index: 9;
     position: fixed;
     top: 0;
     left: 0;
@@ -45,7 +44,6 @@
     opacity: 0.5;
 }
 #InfoCard {
-    z-index: 10;
     position: absolute;
     width: 1436px;
     height: 1128px;
