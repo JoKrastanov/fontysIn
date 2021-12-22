@@ -12,7 +12,7 @@ function Login() {
         "description": "A nice test",
         "link": "poo.com"
     });
-    //addProjectToAccount(1, data)
+    addProjectToAccount(1, data)
 
     //example getting project
     const [projects, setProjects] = useState([]);
