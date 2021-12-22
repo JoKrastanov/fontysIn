@@ -1,40 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount } from "./services";
+import { getAccount, setAccount, addProjectToAccount, getProjectsFromAccount, getAllPendingRequests, getHashCode } from "./services";
 
-function Login() {
-
-    setAccount("2323", "Joe");
-
-    //example adding project
-    var data = JSON.stringify({
-        "id": 1,
-        "title": "test",
-        "description": "A nice test",
-        "link": "poo.com"
-    });
-    addProjectToAccount(1, data)
-
-    //example getting project
-    const [projects, setProjects] = useState([]);
+function Login(prop) {
 
     useEffect(() => {
         let mounted = true;
-        getProjectsFromAccount(1) // 1 is UserId
+        getHashCode()
             .then(items => {
                 if (mounted) {
-                    setProjects(items)
-                    console.log(items)
+                    setAccount(items , "");
+                    prop.setPcn(items)
                 }
             })
         return () => mounted = false;
     }, [])
 
-    let Account = getAccount();
-    console.log(Account.pcn);
-    console.log(Account.name);
-
-
-    return (<p> Logged in as {Account.name} {Account.pcn}</p>)
+    return "";
 }
 
 export default Login;

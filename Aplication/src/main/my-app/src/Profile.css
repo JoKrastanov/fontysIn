@@ -1,0 +1,451 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+#ProfileInfo {
+    align-items: flex-end;
+display: flex;
+overflow: visible;
+position: relative;
+margin-left: 50px;
+    
+}
+
+
+#ProfilePicture {
+    fill: rgba(255,255,255,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+    z-index: 1;
+}
+.ProfilePicture {
+    top: 50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #86639f;
+    border: 1px solid rgba(112,112,112,1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.ProfilePicture img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#InfoPopup {
+
+}
+.InfoPopUp {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    padding: 32px;
+    border-radius: 12px;
+    transform: translate(-50%, -50%);
+}
+
+.Overlay {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+}
+.imge{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+#MidInfo{
+    display: grid;
+    align-items: center;
+    /* grid-template-areas: "a b b b c"; */
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+/*hide for chrome edge*/
+#InfoCard::-webkit-scrollbar {
+    display: none;
+}
+#InfoCard {
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    z-index: 10;
+    position: fixed;
+    width: -webkit-fill-available;width: -moz-available;
+    height: 100%;
+    overflow-y: scroll;
+    left: 0%;
+    top: 0px;
+
+}
+#InfoBg {
+    /*margin-inline: 20%;
+    margin-block: 5%;*/
+    margin: auto;
+    background-color: rgba(216,212,222,1);
+    fill: rgba(216,212,222,1);
+    /* stroke: rgba(112,112,112,1); */
+    stroke-width: 159px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+    border: thin;
+    border-color: rgba(112,112,112,1);
+    border-width: 114px;
+    border-radius: 107px;
+}
+.InfoBg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+
+    overflow: visible;
+    width: 1230px;
+    height: max-content;
+    left: 0px;
+
+    padding: 2.5%;
+}
+img{
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+#CardName {
+    text-align: center;
+    grid-column: 2/5;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 54px;
+    color: rgba(112,112,112,1);
+}
+#ProfilePic {
+
+    fill: rgba(255,255,255,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.ProfilePicHolder {
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    user-select: none;
+}
+.ProfilePic {
+    background-color: cadetblue;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    width: 450px;
+    height: 450px;
+}
+#Info {
+    position: relative;
+}
+#Experience {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+#ExperienceList {
+    white-space: pre-wrap;
+    grid-column: 2/6;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    color: rgba(112,112,112,1);
+}
+#ExperienceBtn {
+}
+#ExperienceBtnBg {
+    fill: rgba(204,201,210,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.ExperienceBtnBg {
+
+}
+#Experience_s {
+    position: relative;
+    overflow: visible;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 30px;
+    text-align: center;
+}
+#Bio {
+    position: relative;
+}
+#BioBg {
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 10px;
+}
+.BioBg {
+
+}
+#BioText {
+    white-space: pre-wrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+    color: rgba(112,112,112,1);
+}
+#Interests {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+}
+#InterestsBtn {
+
+}
+#InterestsBtnBg {
+    fill: rgba(204,201,210,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.InterestsBtnBg {
+
+}
+#Interests_z {
+    position: relative;
+    overflow: visible;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 30px;
+    text-align: center;
+}
+#IntertestsList {
+    white-space: pre-wrap;
+    grid-column: 2/6;
+    position: relative;
+    overflow: visible;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    color: rgba(112,112,112,1);
+}
+#Skills {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+}
+#SkillsList {
+    white-space: pre-wrap;
+    grid-column: 2/6;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+    color: rgba(112,112,112,1);
+}
+#SkillsBtn {
+
+}
+#SkillsBtnBg {
+    fill: rgba(204,201,210,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.SkillsBtnBg {
+
+}
+#Skills_ {
+    position: relative;
+    overflow: visible;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 30px;
+    text-align: center;
+}
+#EditBtn {
+    grid-column: 5;
+    display: flex;
+    width: -webkit-fill-available;width: -moz-available;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 5%;
+}
+#EditBg {
+    width: 100%;
+    height: 25%;
+    background-color: rgba(204,201,210,1);
+    border: 1px solid rgba(112,112,112,1);
+    border-radius: 10px;
+    align-self: end;
+    font-size: 20px;
+}
+.EditBg {
+}
+#Edit {
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 27px;
+    color: rgba(112,112,112,1);
+}
+#DetailsWrapper {
+    grid-column: 1;
+    padding-left: 5%;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: rgba(177,177,177,1);
+}
+#NameSpan {
+    position: relative;
+    color: rgb(231, 227, 227);
+   cursor: pointer;
+}
+
+.disp-none{
+    display: none;
+}
+
+.switch_visibility{
+    font-size: 20px;
+    margin-left: 10px;
+    position: relative;
+}
+.switch_visibility button{
+    border-radius: 5px;
+    background-color: #e4e4e4;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 30%), 0 1px rgb(255 255 255 / 10%);
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+}
+
+.switch_visibility button:active{
+
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 30%), 0 1px rgb(255 255 255 / 10%);
+
+}
+.close-btn{
+
+}
+
+.close-btn i{
+    font-size: 36px;
+}
+
+.close-btn button{
+    position: absolute;
+    right:30px;
+    top: 30px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: #636;
+    color: white;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.change-pic{
+    position: absolute;
+    bottom: 40px;
+    z-index: 0;
+}
+
+.change-pic button{
+    padding: 5px 10px;
+    background-color: rgba(0,0,0,0.5);
+    font-size: 25px;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.5);
+    cursor: pointer;
+}
+
+.select-pic{
+    position: relative;
+    padding: 15px 20px 20px 20px;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.center-image-select{
+    bottom: 180px;
+}
+
+.select-pic input[type="file"]{
+    display: none;
+}
+
+.select-pic label{
+    font-size: 25px;
+    border: 1px solid rgba(255,255,255,0.5);
+    display: inline-block;
+    padding: 0px 10px 5px 10px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.5);
+    margin-right: 5px;
+}
+
+#change-visibility-button{z-index: 10;}
