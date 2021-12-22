@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 
 const axios = require('axios');
 
-const url = "http://localhost:8880"
+const url = "http://localhost:8080"
 
 export const getAccount = () => {
     const value = "; " + document.Login;
