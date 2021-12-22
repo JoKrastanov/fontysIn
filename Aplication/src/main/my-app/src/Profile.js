@@ -6,8 +6,9 @@ import './Profile.css';
 import VisibilitySwitch from "./components/VisibilitySwitch.js";
 import Popup from './components/Popup';
 import EditProfile from "./EditProfile";
+import DeleteAccountWarning from "./DeleteAccountWarning";
 
-function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
+function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
     const [showSubmit, setShowSubmit] = useState(false);
     const [selected, setSelected] = useState(null);
     const [showImageMenu, setShowImageMenu] = useState(false);
@@ -15,6 +16,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
     const [binaryImage, setBinaryImage] = useState(profileImage);
     const [selectImageStyle, setSelectImageStyle] = useState("");
     const [buttonPopup, setButtonPopup] = useState(false);
+    const [buttonPopupDel, setButtonPopupDel] = useState(false);
 
 
     const getVisibility = () => {
@@ -93,6 +95,10 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
         window.location.reload();
     }
 
+    const handleAccountDelete = () => {
+
+    }
+
 
     return (
         <>
@@ -100,13 +106,43 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
             <div id="profileInfo" >
                 <div id="ProfileInfo" className="ProfileInfo">
                     <div id="InfoCard">
+                        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                            <EditProfile setTrigger={setButtonPopup} />
+                        </Popup>
+                        <Popup trigger={buttonPopupDel} setTrigger={setButtonPopupDel}>
+                            <DeleteAccountWarning pcn={account.pcn}/>
+                        </Popup>
                         <div className="InfoBg" id="InfoBg">
-                            <div className={showVisibilityStyle()}>
-                                <p>Visibility level:</p>
-                                <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
-                                {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Change</button> : null}
+                            <div className="edit-options">
+                                {myAcc?
+                                    <div className={showVisibilityStyle()}>
+                                        <p>Visibility level:</p>
+                                        <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
+                                        {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Change</button> : null}
+                                    </div>
+                                    :
+                                    <></>
+                                }
+                                {myAcc?
+                                    <div className="edit-menu-wrapper" >
+                                        <div className="edit-menu">
+                                            <input type="checkbox" id="edit-menu-cb"/>
+                                            <label htmlFor="edit-menu-cb">Options</label>
+                                            <ul className="edit-menu-list">
+                                                <li  onClick={() => setButtonPopup(true)}>Edit Name & Bio</li>
+                                                <li onClick={() => {pdf();onClick()}}>Export to PDF</li>
+                                                <li onClick={() => setButtonPopupDel(true)}>Delete my account</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    :
+                                    <></>
+                                }
+
+                                <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
                             </div>
-                            <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
+
+
 
                             <div className="ProfilePicHolder">
                                 <div className="ProfilePic">
@@ -131,12 +167,6 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage }) {
                                     </div>
                                     <div id="CardName">
                                         <span>{account.name}</span>
-                                    </div>
-                                    <div id="EditBtn">
-                                        <button onClick={() => setButtonPopup(true)} id="EditBg">Edit</button>
-                                        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                                            <EditProfile setTrigger={setButtonPopup} />
-                                        </Popup>
                                     </div>
                                 </div>
 
@@ -262,6 +292,7 @@ function Profile(prop) {
                     onClick={() => setPopupState({ open: false })}
                     interests={interests}
                     profileImage={profileImage}
+                    pdf={prop.pdf}
                 />
             )}
             </div>
