@@ -33,7 +33,7 @@ function Stories(prop) {
     const [chat, setChat] = useState(undefined);
     const [openedChat, setOpenedChat] = useState(true);
 
-    function updateButton (){
+    function pdfHandler (){
        setButtonPopupPdf(true);
     }
 
@@ -85,16 +85,13 @@ function Stories(prop) {
         return (
             <div id="Stories">
                <div id="Stories_g">
-                 {(getAccount().pcn == prop.pcn) ? <div className="pdfButton">
-                   <button className="buttonExport"  onClick={updateButton}>Export portfolio to PDF</button>
                    <Popup trigger={buttonPopupPdf} setTrigger={setButtonPopupPdf}>
-                    <PDFViewer><ProjectsExporter/></PDFViewer>
-                    </Popup>
-                          </div> : <button onClick={() => {openChat()}} id={"send-msg-button"}>Message</button>}
+                       <PDFViewer><ProjectsExporter/></PDFViewer>
+                   </Popup>
+                 {(getAccount().pcn == prop.pcn) ? <></> : <button onClick={() => {openChat()}} id={"send-msg-button"}>Message</button>}
                     <div id="Profile" className="Profile">
                         <div id="StudentInfo">
-                       
-                            <Profile rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
+                            <Profile pdf={pdfHandler} rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
                         </div>
                     </div>
                     <div className="StoriesBg">

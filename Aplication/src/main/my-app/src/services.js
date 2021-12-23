@@ -101,6 +101,24 @@ export const getAccountData = async (pcn) => {
     }
 };
 
+export const deleteAccount = async (pcn) => {
+
+    var config = {
+        method: 'delete',
+        url: url + '/account/' + pcn,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
 export const deleteProject = async (id, title, description, link, accountPCN) => {
     var data = JSON.stringify({
         "id": id,
