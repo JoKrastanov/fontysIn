@@ -7,7 +7,7 @@ function DeleteAccountWarning(prop) {
         return (
             <div className="deleteAccountWarning">
                 <h6>Are you sure you want to delete your account?</h6>
-                <button id="SaveButton" onClick={() => {deleteAccount(prop.pcn); window.location.reload();}}>Delete</button>
+                <button id="SaveButton" onClick={() => {deleteAccount(prop.pcn); window.location.href="https://login.windows.net/common/oauth2/logout";}}>Delete</button>
             </div>
         )
 }
