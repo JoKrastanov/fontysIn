@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
-import { getAccount, getAccountData, getAllPendingRequests, getInterests, updateAccount, updateAccountPictrure } from "./services";
+import { addInterest, deleteInterest, getAccount, getAccountData, getAllPendingRequests, getInterests, updateAccount, updateAccountPictrure } from "./services";
 import './Profile.css';
 import VisibilitySwitch from "./components/VisibilitySwitch.js";
 import Popup from './components/Popup';
 import EditProfile from "./EditProfile";
 import DeleteAccountWarning from "./DeleteAccountWarning";
+import EditInterest from "./EditInterest";
 
-function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
+function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addInterestAsync, deleteInterestAsync }) {
     const [showSubmit, setShowSubmit] = useState(false);
     const [selected, setSelected] = useState(null);
     const [showImageMenu, setShowImageMenu] = useState(false);
@@ -17,6 +18,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
     const [selectImageStyle, setSelectImageStyle] = useState("");
     const [buttonPopup, setButtonPopup] = useState(false);
     const [buttonPopupDel, setButtonPopupDel] = useState(false);
+    const [interestPopup, setInterestPopup] = useState(false);
 
 
     const getVisibility = () => {
@@ -198,6 +200,14 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
                                                     <Interest key={item.id} interest={item} />
                                                 ))}</span>
                                         </div>
+                                        {myAcc === true &&
+                                            <>
+                                                <button onClick={() => setInterestPopup(true)}>Edit</button>
+                                                <Popup trigger={interestPopup} setTrigger={setInterestPopup}>
+                                                    <EditInterest interests={interests} pcn={account.pcn} addInterestAsync={addInterestAsync} deleteInterestAsync={deleteInterestAsync}/>
+                                                </Popup>
+                                            </>
+                                        }
                                     </div>
                                     <div id="Experience">
                                         <div id="ExperienceBtn">
@@ -243,6 +253,28 @@ function Profile(prop) {
     const [interests, setInterests] = useState([]);
     const [popupState, setPopupState] = React.useState({ open: false });
 
+    const addInterestAsync = async (input) => {
+        let interest = JSON.stringify({
+            "interest" : input,
+            "pcn" : account.pcn
+        })
+        if (await addInterest(interest)){
+            window.location.reload();
+        }
+
+        getInterests(prop.pcn).then( items => { //update the display
+            setInterests(items)
+        })
+
+    }
+
+    const deleteInterestAsync = async (id) => {
+        await deleteInterest(id);
+
+        getInterests(prop.pcn).then( items => { //update the display
+            setInterests(items)
+        })
+    }
 
     useEffect(() => {
         if (!prop.rendered.hasRendered2) {
@@ -293,6 +325,8 @@ function Profile(prop) {
                     interests={interests}
                     profileImage={profileImage}
                     pdf={prop.pdf}
+                    addInterestAsync={addInterestAsync}
+                    deleteInterestAsync={deleteInterestAsync}
                 />
             )}
             </div>
