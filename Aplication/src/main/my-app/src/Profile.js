@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Interest from "./Interest";
 import InterestDropdown from "./InterestDropdown";
-import { getAccount, getAccountData, getAllPendingRequests, getInterests, updateAccount, updateAccountPictrure } from "./services";
+import { getAccount, getAccountData, getAllPendingRequests, getInterests, updateAccount, updateAccountPictrure, updateLanguage, getLanguage } from "./services";
 import './Profile.css';
 import VisibilitySwitch from "./components/VisibilitySwitch.js";
+import LanguageSwitch from "./components/LanguageSwitch.js";
 import Popup from './components/Popup';
 import EditProfile from "./EditProfile";
 import DeleteAccountWarning from "./DeleteAccountWarning";
@@ -11,6 +12,7 @@ import DeleteAccountWarning from "./DeleteAccountWarning";
 function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
     const [showSubmit, setShowSubmit] = useState(false);
     const [selected, setSelected] = useState(null);
+    const [selLanguage, setSelLanguage] = useState(null);
     const [showImageMenu, setShowImageMenu] = useState(false);
     const [changePicBtn, setChangePicBtn] = useState(true);
     const [binaryImage, setBinaryImage] = useState(profileImage);
@@ -54,7 +56,44 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
         }
     }
 
+    const getnewLanguage = () =>{
+        switch(account.Language) {
+            case 0:
+                return 'english';
+            case 1:
+                return 'dutch';
+            default:
+                return '';
+        }
+    }
 
+    const showLanguageStyle = () =>
+    {
+        if(!myAcc)
+        {
+            return "switch_language disp-none";
+        }
+        else
+        {
+            return "switch_language";
+        }
+    }
+
+    const getLanguageNum = (prop) =>{
+        switch(prop) {
+            case 'english':
+                return "eng";
+            case 'dutch':
+                return "ned";
+            default:
+                return '';
+        }
+    }
+    const handleLanguageChange = () =>
+    {
+        updateLanguage(getLanguageNum(selLanguage));
+        window.location.reload();
+    }
 
     const handleVisibilityChange = () => {
         updateAccount(account, getVisibilityNum(selected));
@@ -99,7 +138,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
 
     }
 
-
+if(getLanguage() === "eng"){
     return (
         <>
             <div className="Overlay" />
@@ -124,6 +163,15 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
                                     <></>
                                 }
                                 {myAcc?
+                                    <div className={showLanguageStyle()}>
+                                        <p>Language:</p>
+                                        <LanguageSwitch values={['english', 'dutch']} selected={getnewLanguage()} setSubmit={setShowSubmit} setSelected={setSelLanguage}/>
+                                        {showSubmit ? <button onClick={handleLanguageChange}>Change</button> : null}
+                                    </div>
+                                    :
+                                    <></>
+                                }
+                                {myAcc?
                                     <div className="edit-menu-wrapper" >
                                         <div className="edit-menu">
                                             <input type="checkbox" id="edit-menu-cb"/>
@@ -141,10 +189,8 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
 
                                 <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
                             </div>
-
-
-
                             <div className="ProfilePicHolder">
+
                                 <div className="ProfilePic">
                                     <img onClick={onImageClickHandler} id="profile_pic" className="imge" src={binaryImage} />
                                 </div>
@@ -236,6 +282,152 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf }) {
                 </div>
         </>
     );
+}
+else{
+    return (
+        <>
+            <div className="Overlay" />
+            <div id="profileInfo" >
+                <div id="ProfileInfo" className="ProfileInfo">
+                    <div id="InfoCard">
+                        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                            <EditProfile setTrigger={setButtonPopup} />
+                        </Popup>
+                        <Popup trigger={buttonPopupDel} setTrigger={setButtonPopupDel}>
+                            <DeleteAccountWarning pcn={account.pcn}/>
+                        </Popup>
+                        <div className="InfoBg" id="InfoBg">
+                            <div className="edit-options">
+                                {myAcc?
+                                    <div className={showVisibilityStyle()}>
+                                        <p>Zichtbaarheidsniveau:</p>
+                                        <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
+                                        {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Verander</button> : null}
+                                    </div>
+                                    :
+                                    <></>
+                                }
+                                {myAcc?
+                                    <div className={showLanguageStyle()}>
+                                        <p>Taal:</p>
+                                        <LanguageSwitch values={['english', 'dutch']} selected={getLanguage()} setSubmit={setShowSubmit} setSelected={setSelLanguage}/>
+                                        {showSubmit ? <button onClick={handleLanguageChange}>Verander</button> : null}
+                                    </div>
+                                    :
+                                    <></>
+                                }
+                                {myAcc?
+                                    <div className="edit-menu-wrapper" >
+                                        <div className="edit-menu">
+                                            <input type="checkbox" id="edit-menu-cb"/>
+                                            <label htmlFor="edit-menu-cb">Opties</label>
+                                            <ul className="edit-menu-list">
+                                                <li  onClick={() => setButtonPopup(true)}>Verander Naam & Bio</li>
+                                                <li onClick={() => {pdf();onClick()}}>Exporteer naar PDF</li>
+                                                <li onClick={() => setButtonPopupDel(true)}>Verwijder mijn account</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    :
+                                    <></>
+                                }
+
+                                <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
+                            </div>
+                            <div className="ProfilePicHolder">
+
+                                <div className="ProfilePic">
+                                    <img onClick={onImageClickHandler} id="profile_pic" className="imge" src={binaryImage} />
+                                </div>
+                                {showImageMenu && myAcc ? <div className={"change-pic " + selectImageStyle}>
+                                    {changePicBtn ? <button onClick={onChangePicOption}>Verander</button> :
+                                        <div className="select-pic">
+                                            <label>
+                                                <input onChange={(e) => onImageUploaded(e)} className={""} type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
+                                                Upload een afbeelding
+                                            </label>
+                                            <button onClick={handleImageSubmission}>Bevestigen</button>
+                                        </div>
+                                    }
+                                </div> : <></>}
+                            </div>
+
+                                <div id="MidInfo">
+                                    <div id="DetailsWrapper">
+                                        <span>20<br /><br />Nederlands<br />Estonian, Finnish, English</span>
+                                    </div>
+                                    <div id="CardName">
+                                        <span>{account.name}</span>
+                                    </div>
+                                </div>
+
+                            <div id="Info">
+                                <div id="Bio">
+                                    <div className="BioBg">
+                                        <div id="BioBg" >
+                                            <div id="BioText">
+                                                <span>{account.bio}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="IES">
+                                    <div id="Interests">
+                                        <div id="InterestsBtn">
+                                            <div className="InterestsBtnBg">
+                                                <div id="InterestsBtnBg">
+                                                    <div id="Interests_z">
+                                                        <span>Intresses</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="IntertestsList">
+                                                <span>{interests.map(item => (
+                                                    <Interest key={item.id} interest={item} />
+                                                ))}</span>
+                                        </div>
+                                    </div>
+                                    <div id="Experience">
+                                        <div id="ExperienceBtn">
+                                            <div className="ExperienceBtnBg">
+                                                <div id="ExperienceBtnBg" >
+                                                    <div id="Experience_s">
+                                                        <span>Ervaring</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="ExperienceList">
+                                            <span>I did a thing once, Living in my parents house</span>
+                                        </div>
+                                    </div>
+                                    <div id="Skills">
+                                        <div id="SkillsBtn">
+                                            <div className="SkillsBtnBg">
+                                                <div id="SkillsBtnBg" >
+                                                    <div id="Skills_">
+                                                        <span>Skills</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="SkillsList">
+                                            <div>Making toast without burning the house down, Copying and pasting from stackoverflow, Able to make oxygen into carbon dioxide</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </>
+    );
+}
 }
 
 function Profile(prop) {
