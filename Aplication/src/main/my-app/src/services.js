@@ -50,6 +50,37 @@ export const updateAccount = (account, newVisibility) => {
         });
 };
 
+export const updateLanguageAccount = (account, newLanguage) => {
+    var data = JSON.stringify({
+        "pcn": account.pcn,
+        "name": account.name,
+        "bio": account.bio,
+        "type": account.type,
+        "visibility": account.visibility,
+        "language": newLanguage
+    });
+
+    var config = {
+        method: 'PUT',
+        url: url + '/account/Language',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+    axios(config)
+        .then(function (response) {
+            if(response.status === 204)
+            {
+                console.log("Successfully changed language!")
+            }
+
+            return (response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
 
 export const updateAccountPictrure = (account, newPic) => {
     var data = JSON.stringify({
