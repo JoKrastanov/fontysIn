@@ -8,6 +8,28 @@ const axios = require('axios');
 
 const ENDPOINT = url + "/chat";
 
+export function setCookie(cname, cvalue, exHours) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exHours * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+export function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 export const getAccount = () => {
     const value = "; " + document.Login;
@@ -49,6 +71,19 @@ export const updateAccount = (account, newVisibility) => {
             console.log(error);
         });
 };
+
+export const updateLanguage = (newLanguage) => {
+    setCookie("lang", newLanguage, 1000)
+};
+
+export const getLanguage = () => {
+    let lang = getCookie("lang")
+    if (lang === ""){
+        setCookie("lang", "eng", 1000)
+        return "eng"
+    }
+    else return lang
+}
 
 
 export const updateAccountPictrure = (account, newPic) => {
