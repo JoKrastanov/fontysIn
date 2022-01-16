@@ -25,7 +25,7 @@ public class AccountAzure implements IAccountAzure {
         Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Account> accounts = new ArrayList<>();
-            PreparedStatement selectSql = connection.prepareStatement("SELECT *  from Account");
+            PreparedStatement selectSql = connection.prepareStatement("SELECT *  from Account WHERE Visibility != 0");
             ResultSet result = selectSql.executeQuery();
             while (result.next()) {
                 Account newAcc =
