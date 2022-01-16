@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Repository
@@ -45,7 +47,7 @@ public class PostAzure implements IPostAzure {
             selectSql.setLong(1, id);
             ResultSet result = selectSql.executeQuery();
             while(result.next()) {
-                return new Post(result.getLong(1), result.getString(2), result.getString(3), result.getLong(4));
+                return new Post(result.getLong(1), result.getString(2), result.getString(3), result.getLong(4), result.getString(5));
             }
         }
         catch (SQLException e) {e.printStackTrace();}
@@ -64,7 +66,7 @@ public class PostAzure implements IPostAzure {
             ResultSet result = selectSql.executeQuery();
 
             while(result.next()) {
-                posts.add(new Post(result.getLong(1), result.getString(2), result.getString(3), result.getLong(4)));
+                posts.add(new Post(result.getLong(1), result.getString(2), result.getString(3), result.getLong(4), result.getString(5)));
             }
             return posts;
         }
@@ -88,4 +90,25 @@ public class PostAzure implements IPostAzure {
         connection.close();
         return false;
     }
-}
+
+    @Override
+    public List<Post> getAccountNewsfeed(Long pcn) throws SQLException {
+        Connection connection = DriverManager.getConnection(con.getCon());
+        try {
+            List<Post> posts = new ArrayList<>();
+           PreparedStatement selectSql = connection.prepareStatement("select p.id, p.Title, p.[Description], p.[Date], p.AccountPCN from post as p" +
+                   " inner join Connection as c on p.AccountPCN = c.Pcn1 or p.AccountPCN = c.Pcn2 where c.pcn1 = ? or c.pcn2 = ? ORDER by id DESC");
+           selectSql.setLong(1, pcn);
+           selectSql.setLong(2, pcn);
+           ResultSet resultSet = selectSql.executeQuery();
+           while (resultSet.next()) {
+               posts.add(new Post(resultSet.getLong(1), resultSet.getString(2),resultSet.getString(3), resultSet.getLong(5), resultSet.getString(4)));
+           }
+           return posts;
+        }
+        catch (SQLException e) {e.printStackTrace();}
+        connection.close();
+        return null;
+        }
+    }
+
