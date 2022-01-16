@@ -58,8 +58,8 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
         }
     }
 
-    const getnewLanguage = () =>{
-        switch(account.Language) {
+    const getnewLanguage = () => {
+        switch (account.Language) {
             case 0:
                 return 'english';
             case 1:
@@ -69,20 +69,17 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
         }
     }
 
-    const showLanguageStyle = () =>
-    {
-        if(!myAcc)
-        {
+    const showLanguageStyle = () => {
+        if (!myAcc) {
             return "switch_language disp-none";
         }
-        else
-        {
+        else {
             return "switch_language";
         }
     }
 
-    const getLanguageNum = (prop) =>{
-        switch(prop) {
+    const getLanguageNum = (prop) => {
+        switch (prop) {
             case 'english':
                 return "eng";
             case 'dutch':
@@ -91,8 +88,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
                 return '';
         }
     }
-    const handleLanguageChange = () =>
-    {
+    const handleLanguageChange = () => {
         updateLanguage(getLanguageNum(selLanguage));
         window.location.reload();
     }
@@ -140,304 +136,236 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
 
     }
 
-if(getLanguage() === "eng"){
-    return (
-        <>
-            <div className="Overlay" />
-            <div id="profileInfo" >
-                <div id="ProfileInfo" className="ProfileInfo">
-                    <div id="InfoCard">
-                        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                            <EditProfile setTrigger={setButtonPopup} />
-                        </Popup>
-                        <Popup trigger={buttonPopupDel} setTrigger={setButtonPopupDel}>
-                            <DeleteAccountWarning pcn={account.pcn}/>
-                        </Popup>
-                        <div className="InfoBg" id="InfoBg">
-                            <div className="edit-options">
-                                {myAcc?
-                                    <div className={showVisibilityStyle()}>
-                                        <p>Visibility level:</p>
-                                        <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
-                                        {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Change</button> : null}
-                                    </div>
-                                    :
-                                    <></>
-                                }
-                                {myAcc?
-                                    <div className={showLanguageStyle()}>
-                                        <p>Language:</p>
-                                        <LanguageSwitch values={['english', 'dutch']} selected={getnewLanguage()} setSubmit={setShowSubmit} setSelected={setSelLanguage}/>
-                                        {showSubmit ? <button onClick={handleLanguageChange}>Change</button> : null}
-                                    </div>
-                                    :
-                                    <></>
-                                }
-                                {myAcc?
-                                    <div className="edit-menu-wrapper" >
-                                        <div className="edit-menu">
-                                            <input type="checkbox" id="edit-menu-cb"/>
-                                            <label htmlFor="edit-menu-cb">Options</label>
-                                            <ul className="edit-menu-list">
-                                                <li  onClick={() => setButtonPopup(true)}>Edit Name & Bio</li>
-                                                <li onClick={() => {pdf();onClick()}}>Export to PDF</li>
-                                                <li onClick={() => setButtonPopupDel(true)}>Delete my account</li>
-                                            </ul>
+    if (getLanguage() === "eng") {
+        return (
+            <>
+                <div className="Overlay" />
+                <div id="profileInfo" >
+                    <div id="ProfileInfo" className="ProfileInfo">
+                        <div id="InfoCard">
+                            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                                <EditProfile setTrigger={setButtonPopup} />
+                            </Popup>
+                            <Popup trigger={buttonPopupDel} setTrigger={setButtonPopupDel}>
+                                <DeleteAccountWarning pcn={account.pcn} />
+                            </Popup>
+                            <div className="InfoBg" id="InfoBg">
+                                <div className="edit-options">
+                                    {myAcc ?
+                                        <div className={showVisibilityStyle()}>
+                                            <p>Visibility level:</p>
+                                            <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
+                                            {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Change</button> : null}
                                         </div>
-                                    </div>
-                                    :
-                                    <></>
-                                }
-
-                                <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
-                            </div>
-                            <div className="ProfilePicHolder">
-
-                                <div className="ProfilePic">
-                                    <img onClick={onImageClickHandler} id="profile_pic" className="imge" src={binaryImage} />
-                                </div>
-                                {showImageMenu && myAcc ? <div className={"change-pic " + selectImageStyle}>
-                                    {changePicBtn ? <button onClick={onChangePicOption}>Change</button> :
-                                        <div className="select-pic">
-                                            <label>
-                                                <input onChange={(e) => onImageUploaded(e)} className={""} type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
-                                                Upload an image
-                                            </label>
-                                            <button onClick={handleImageSubmission}>Submit</button>
-                                        </div>
+                                        :
+                                        <></>
                                     }
-                                </div> : <></>}
-                            </div>
-
-                                <div id="MidInfo">
-                                    <div id="DetailsWrapper">
-                                        <span>20<br /><br />Estonia<br />Estonian, Finnish, English</span>
-                                    </div>
-                                    <div id="CardName">
-                                        <span>{account.name}</span>
-                                    </div>
-                                </div>
-
-                            <div id="Info">
-                                <div id="Bio">
-                                    <div className="BioBg">
-                                        <div id="BioBg" >
-                                            <div id="BioText">
-                                                <span>{account.bio}</span>
+                                    {myAcc ?
+                                        <div className={showLanguageStyle()}>
+                                            <p>Language:</p>
+                                            <LanguageSwitch values={['english', 'dutch']} selected={getnewLanguage()} setSubmit={setShowSubmit} setSelected={setSelLanguage} />
+                                            {showSubmit ? <button onClick={handleLanguageChange}>Change</button> : null}
+                                        </div>
+                                        :
+                                        <></>
+                                    }
+                                    {myAcc ?
+                                        <div className="edit-menu-wrapper" >
+                                            <div className="edit-menu">
+                                                <input type="checkbox" id="edit-menu-cb" />
+                                                <label htmlFor="edit-menu-cb">Options</label>
+                                                <ul className="edit-menu-list">
+                                                    <li onClick={() => setButtonPopup(true)}>Edit Name & Bio</li>
+                                                    <li onClick={() => { pdf(); onClick() }}>Export to PDF</li>
+                                                    <li onClick={() => setButtonPopupDel(true)}>Delete my account</li>
+                                                </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                        :
+                                        <></>
+                                    }
 
+                                    <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
                                 </div>
-                                <div id="IES">
-                                    <div id="Interests">
-                                        <div id="InterestsBtn">
-                                            <div className="InterestsBtnBg">
-                                                <div id="InterestsBtnBg">
-                                                    <div id="Interests_z">
-                                                        <span>Interests</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div className="ProfilePicHolder">
 
-                                        </div>
-                                        <div id="IntertestsList">
-                                                <span>{interests.map(item => (
-                                                    <Interest key={item.id} interest={item} />
-                                                ))}</span>
-                                        </div>
-                                        {myAcc === true &&
-                                            <>
-                                                <button onClick={() => setInterestPopup(true)}>Edit</button>
-                                                <Popup trigger={interestPopup} setTrigger={setInterestPopup}>
-                                                    <EditInterest interests={interests} pcn={account.pcn} addInterestAsync={addInterestAsync} deleteInterestAsync={deleteInterestAsync}/>
-                                                </Popup>
-                                            </>
+                                    <div className="ProfilePic">
+                                        <img onClick={onImageClickHandler} id="profile_pic" className="imge" src={binaryImage} />
+                                    </div>
+                                    {showImageMenu && myAcc ? <div className={"change-pic " + selectImageStyle}>
+                                        {changePicBtn ? <button onClick={onChangePicOption}>Change</button> :
+                                            <div className="select-pic">
+                                                <label>
+                                                    <input onChange={(e) => onImageUploaded(e)} className={""} type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
+                                                    Upload an image
+                                                </label>
+                                                <button onClick={handleImageSubmission}>Submit</button>
+                                            </div>
                                         }
-                                    </div>
-                                    <div id="Experience">
-                                        <div id="ExperienceBtn">
-                                            <div className="ExperienceBtnBg">
-                                                <div id="ExperienceBtnBg" >
-                                                    <div id="Experience_s">
-                                                        <span>Experience</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div> : <></>}
+                                </div>
 
-                                        </div>
-                                        <div id="ExperienceList">
-                                            <span>I did a thing once, Living in my parents house</span>
-                                        </div>
-                                    </div>
-                                    <div id="Skills">
-                                        <div id="SkillsBtn">
-                                            <div className="SkillsBtnBg">
-                                                <div id="SkillsBtnBg" >
-                                                    <div id="Skills_">
-                                                        <span>Skills</span>
-                                                    </div>
+                                <div id="Info">
+                                    <div id="Bio">
+                                        <div className="BioBg">
+                                            <div id="BioBg" >
+                                                <div id="BioText">
+                                                    <span>{account.bio}</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="SkillsList">
-                                            <div>Making toast without burning the house down, Copying and pasting from stackoverflow, Able to make oxygen into carbon dioxide</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-        </>
-    );
-}
-else{
-    return (
-        <>
-            <div className="Overlay" />
-            <div id="profileInfo" >
-                <div id="ProfileInfo" className="ProfileInfo">
-                    <div id="InfoCard">
-                        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                            <EditProfile setTrigger={setButtonPopup} />
-                        </Popup>
-                        <Popup trigger={buttonPopupDel} setTrigger={setButtonPopupDel}>
-                            <DeleteAccountWarning pcn={account.pcn}/>
-                        </Popup>
-                        <div className="InfoBg" id="InfoBg">
-                            <div className="edit-options">
-                                {myAcc?
-                                    <div className={showVisibilityStyle()}>
-                                        <p>Zichtbaarheidsniveau:</p>
-                                        <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
-                                        {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Verander</button> : null}
-                                    </div>
-                                    :
-                                    <></>
-                                }
-                                {myAcc?
-                                    <div className={showLanguageStyle()}>
-                                        <p>Taal:</p>
-                                        <LanguageSwitch values={['english', 'dutch']} selected={getLanguage()} setSubmit={setShowSubmit} setSelected={setSelLanguage}/>
-                                        {showSubmit ? <button onClick={handleLanguageChange}>Verander</button> : null}
-                                    </div>
-                                    :
-                                    <></>
-                                }
-                                {myAcc?
-                                    <div className="edit-menu-wrapper" >
-                                        <div className="edit-menu">
-                                            <input type="checkbox" id="edit-menu-cb"/>
-                                            <label htmlFor="edit-menu-cb">Opties</label>
-                                            <ul className="edit-menu-list">
-                                                <li  onClick={() => setButtonPopup(true)}>Verander Naam & Bio</li>
-                                                <li onClick={() => {pdf();onClick()}}>Exporteer naar PDF</li>
-                                                <li onClick={() => setButtonPopupDel(true)}>Verwijder mijn account</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    :
-                                    <></>
-                                }
 
-                                <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
-                            </div>
-                            <div className="ProfilePicHolder">
-
-                                <div className="ProfilePic">
-                                    <img onClick={onImageClickHandler} id="profile_pic" className="imge" src={binaryImage} />
-                                </div>
-                                {showImageMenu && myAcc ? <div className={"change-pic " + selectImageStyle}>
-                                    {changePicBtn ? <button onClick={onChangePicOption}>Verander</button> :
-                                        <div className="select-pic">
-                                            <label>
-                                                <input onChange={(e) => onImageUploaded(e)} className={""} type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
-                                                Upload een afbeelding
-                                            </label>
-                                            <button onClick={handleImageSubmission}>Bevestigen</button>
-                                        </div>
-                                    }
-                                </div> : <></>}
-                            </div>
-
-                                <div id="MidInfo">
-                                    <div id="DetailsWrapper">
-                                        <span>20<br /><br />Nederlands<br />Estonian, Finnish, English</span>
                                     </div>
-                                    <div id="CardName">
-                                        <span>{account.name}</span>
-                                    </div>
-                                </div>
-
-                            <div id="Info">
-                                <div id="Bio">
-                                    <div className="BioBg">
-                                        <div id="BioBg" >
-                                            <div id="BioText">
-                                                <span>{account.bio}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div id="IES">
-                                    <div id="Interests">
-                                        <div id="InterestsBtn">
-                                            <div className="InterestsBtnBg">
-                                                <div id="InterestsBtnBg">
-                                                    <div id="Interests_z">
-                                                        <span>Intresses</span>
+                                    <div id="IES">
+                                        <div id="Interests">
+                                            <div id="InterestsBtn">
+                                                <div className="InterestsBtnBg">
+                                                    <div id="InterestsBtnBg">
+                                                        <div id="Interests_z">
+                                                            <span>Interests</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                        </div>
-                                        <div id="IntertestsList">
+                                            </div>
+                                            <div id="IntertestsList">
                                                 <span>{interests.map(item => (
                                                     <Interest key={item.id} interest={item} />
                                                 ))}</span>
-                                        </div>
-                                    </div>
-                                    <div id="Experience">
-                                        <div id="ExperienceBtn">
-                                            <div className="ExperienceBtnBg">
-                                                <div id="ExperienceBtnBg" >
-                                                    <div id="Experience_s">
-                                                        <span>Ervaring</span>
-                                                    </div>
-                                                </div>
                                             </div>
-
-                                        </div>
-                                        <div id="ExperienceList">
-                                            <span>I did a thing once, Living in my parents house</span>
-                                        </div>
-                                    </div>
-                                    <div id="Skills">
-                                        <div id="SkillsBtn">
-                                            <div className="SkillsBtnBg">
-                                                <div id="SkillsBtnBg" >
-                                                    <div id="Skills_">
-                                                        <span>Skills</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="SkillsList">
-                                            <div>Making toast without burning the house down, Copying and pasting from stackoverflow, Able to make oxygen into carbon dioxide</div>
+                                            {myAcc === true &&
+                                                <>
+                                                    <button onClick={() => setInterestPopup(true)}>Edit</button>
+                                                    <Popup trigger={interestPopup} setTrigger={setInterestPopup}>
+                                                        <EditInterest interests={interests} pcn={account.pcn} addInterestAsync={addInterestAsync} deleteInterestAsync={deleteInterestAsync} />
+                                                    </Popup>
+                                                </>
+                                            }
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </>
+        );
+    }
+    else {
+        return (
+            <>
+                <div className="Overlay" />
+                <div id="profileInfo" >
+                    <div id="ProfileInfo" className="ProfileInfo">
+                        <div id="InfoCard">
+                            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                                <EditProfile setTrigger={setButtonPopup} />
+                            </Popup>
+                            <Popup trigger={buttonPopupDel} setTrigger={setButtonPopupDel}>
+                                <DeleteAccountWarning pcn={account.pcn} />
+                            </Popup>
+                            <div className="InfoBg" id="InfoBg">
+                                <div className="edit-options">
+                                    {myAcc ?
+                                        <div className={showVisibilityStyle()}>
+                                            <p>Zichtbaarheidsniveau:</p>
+                                            <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
+                                            {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Verander</button> : null}
+                                        </div>
+                                        :
+                                        <></>
+                                    }
+                                    {myAcc ?
+                                        <div className={showLanguageStyle()}>
+                                            <p>Taal:</p>
+                                            <LanguageSwitch values={['english', 'dutch']} selected={getLanguage()} setSubmit={setShowSubmit} setSelected={setSelLanguage} />
+                                            {showSubmit ? <button onClick={handleLanguageChange}>Verander</button> : null}
+                                        </div>
+                                        :
+                                        <></>
+                                    }
+                                    {myAcc ?
+                                        <div className="edit-menu-wrapper" >
+                                            <div className="edit-menu">
+                                                <input type="checkbox" id="edit-menu-cb" />
+                                                <label htmlFor="edit-menu-cb">Opties</label>
+                                                <ul className="edit-menu-list">
+                                                    <li onClick={() => setButtonPopup(true)}>Verander Naam & Bio</li>
+                                                    <li onClick={() => { pdf(); onClick() }}>Exporteer naar PDF</li>
+                                                    <li onClick={() => setButtonPopupDel(true)}>Verwijder mijn account</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        :
+                                        <></>
+                                    }
+
+                                    <div className={"close-btn"}><button onClick={onClick}><i className="fa fa-close"></i></button></div>
+                                </div>
+                                <div className="ProfilePicHolder">
+
+                                    <div className="ProfilePic">
+                                        <img onClick={onImageClickHandler} id="profile_pic" className="imge" src={binaryImage} />
+                                    </div>
+                                    {showImageMenu && myAcc ? <div className={"change-pic " + selectImageStyle}>
+                                        {changePicBtn ? <button onClick={onChangePicOption}>Verander</button> :
+                                            <div className="select-pic">
+                                                <label>
+                                                    <input onChange={(e) => onImageUploaded(e)} className={""} type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
+                                                    Upload een afbeelding
+                                                </label>
+                                                <button onClick={handleImageSubmission}>Bevestigen</button>
+                                            </div>
+                                        }
+                                    </div> : <></>}
+                                </div>
+
+                                <div id="Info">
+                                    <div id="Bio">
+                                        <div className="BioBg">
+                                            <div id="BioBg" >
+                                                <div id="BioText">
+                                                    <span>{account.bio}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="IES">
+                                        <div id="Interests">
+                                            <div id="InterestsBtn">
+                                                <div className="InterestsBtnBg">
+                                                    <div id="InterestsBtnBg">
+                                                        <div id="Interests_z">
+                                                            <span>Intresses</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div id="IntertestsList">
+                                                <span>{interests.map(item => (
+                                                    <Interest key={item.id} interest={item} />
+                                                ))}</span>
+                                            </div>
+                                            {myAcc === true &&
+                                                <>
+                                                    <button onClick={() => setInterestPopup(true)}>Edit</button>
+                                                    <Popup trigger={interestPopup} setTrigger={setInterestPopup}>
+                                                        <EditInterest interests={interests} pcn={account.pcn} addInterestAsync={addInterestAsync} deleteInterestAsync={deleteInterestAsync} />
+                                                    </Popup>
+                                                </>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-        </>
-    );
-}
+            </>
+        );
+    }
 }
 
 function Profile(prop) {
@@ -447,14 +375,14 @@ function Profile(prop) {
 
     const addInterestAsync = async (input) => {
         let interest = JSON.stringify({
-            "interest" : input,
-            "pcn" : account.pcn
+            "interest": input,
+            "pcn": account.pcn
         })
-        if (await addInterest(interest)){
+        if (await addInterest(interest)) {
             window.location.reload();
         }
 
-        getInterests(prop.pcn).then( items => { //update the display
+        getInterests(prop.pcn).then(items => { //update the display
             setInterests(items)
         })
 
@@ -463,7 +391,7 @@ function Profile(prop) {
     const deleteInterestAsync = async (id) => {
         await deleteInterest(id);
 
-        getInterests(prop.pcn).then( items => { //update the display
+        getInterests(prop.pcn).then(items => { //update the display
             setInterests(items)
         })
     }
@@ -510,17 +438,17 @@ function Profile(prop) {
                 {<div id="InfoPopup">
                     <span id="NameSpan" href="#" onClick={showInfo(account)}>{account.name} ⓘ </span>
                 </div>}{popupState.open === true && (
-                <InfoPopup
-                    account={popupState.account}
-                    myAcc={prop.myAccount}
-                    onClick={() => setPopupState({ open: false })}
-                    interests={interests}
-                    profileImage={profileImage}
-                    pdf={prop.pdf}
-                    addInterestAsync={addInterestAsync}
-                    deleteInterestAsync={deleteInterestAsync}
-                />
-            )}
+                    <InfoPopup
+                        account={popupState.account}
+                        myAcc={prop.myAccount}
+                        onClick={() => setPopupState({ open: false })}
+                        interests={interests}
+                        profileImage={profileImage}
+                        pdf={prop.pdf}
+                        addInterestAsync={addInterestAsync}
+                        deleteInterestAsync={deleteInterestAsync}
+                    />
+                )}
             </div>
             /*<>
                 <p>{account.name}</p>
