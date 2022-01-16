@@ -408,3 +408,55 @@ export const searchForChats = async (name, pcn) => {
     }
 }
 
+export const addInterest = async (interest) => {
+    interest = JSON.parse(interest);
+    console.log(interest);
+    var data = JSON.stringify({
+        "interest": interest.interest,
+        "accountPCN": interest.pcn
+    });
+    console.log(data);
+
+    var config = {
+        method: 'post',
+        url: url + '/account/interests',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    return await axios(config)
+        .then(function (response) {
+            return true;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
+        });
+}
+
+export const deleteInterest = async (id) => {
+    console.log(id);
+    var data = JSON.stringify({
+        "id": id
+    });
+
+    var config = {
+        method: 'delete',
+        url: url + '/account/interests',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    return await axios(config)
+        .then(function (response) {
+            return true;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
+        });
+}
