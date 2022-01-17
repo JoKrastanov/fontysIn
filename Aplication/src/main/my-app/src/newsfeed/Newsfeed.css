@@ -20,10 +20,10 @@
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     overflow: hidden;
+    position: relative;
 }
 
 .nameAndDate{
-    float: left;
     height: 100%;
     position: absolute;
     left: 70px;
@@ -40,6 +40,7 @@
 
 .storyBody{
     color:black;
+    margin-top: 10px;
 }
 
 .imgHolder{
@@ -58,12 +59,59 @@
 }
 
 .inputContainer{
-    float: left;
+    float: none;
+    overflow: hidden;
+    padding-left: 10px;
 }
 
-.inputContainer textarea{
+.inputContainer > *{
+    margin: 5px 0 5px 0;
+}
+
+.inputContainer input{
+    height: 30px;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    font-size: 1.5em;
+    padding: 5px;
+}
+
+.inputContainer input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 0.6; /* Firefox */
+}
+
+.inputContainer label{
+    border: none;
+}
+
+.inputContainer span{
     display: block;
     resize: none;
-    border: 1px solid black;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     width: 100%;
+    padding: 5px;
+}
+
+.inputContainer button{
+    float: right;
+    cursor: pointer;
+    width: 20%;
+    height: 30px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+.inputContainer button:active{
+    box-shadow: inset rgba(0, 0, 0, 0.07) 0px 1px 1px, inset rgba(0, 0, 0, 0.07) 0px 2px 2px,inset rgba(0, 0, 0, 0.07) 0px 4px 4px,inset rgba(0, 0, 0, 0.07) 0px 8px 8px,inset rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+
+.textarea {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: both;
+    min-height: 60px;
+    line-height: 20px;
+}
+
+.textarea[contenteditable]:empty::before {
+    content: "Write what's on your mind...";
+    color: gray;
 }
