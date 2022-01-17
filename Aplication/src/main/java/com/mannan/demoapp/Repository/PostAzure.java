@@ -96,7 +96,7 @@ public class PostAzure implements IPostAzure {
         Connection connection = DriverManager.getConnection(con.getCon());
         try {
             List<Post> posts = new ArrayList<>();
-           PreparedStatement selectSql = connection.prepareStatement("select p.id, p.Title, p.[Description], p.[Date], p.AccountPCN from post as p" +
+           PreparedStatement selectSql = connection.prepareStatement("select distinct p.id, p.Title, CAST(p.[Description] as varchar(max)), p.[Date], p.AccountPCN from post as p" +
                    " inner join Connection as c on p.AccountPCN = c.Pcn1 or p.AccountPCN = c.Pcn2 where c.pcn1 = ? or c.pcn2 = ? ORDER by id DESC");
            selectSql.setLong(1, pcn);
            selectSql.setLong(2, pcn);
