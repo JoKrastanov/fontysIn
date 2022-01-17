@@ -20,7 +20,9 @@ function App(prop) {
     const [hasRendered, setHasRendered] = useState(false);
     const [hasRendered2, setHasRendered2] = useState(false);
     const [hasRendered3, setHasRendered3] = useState(false);
+    const [hasRendered4, setHasRendered4] = useState(false);
     const rendered = {hasRendered, setHasRendered, hasRendered2, setHasRendered2, hasRendered3, setHasRendered3}
+    const renderedStoryes = { hasRendered4, setHasRendered4};
     const [myAccount, setMyAccount] = useState(true);
     const [openedChat, setOpenedChat] = useState(0);
     const [openNewsfeed, setOpenNewsfeed] = useState(false);
@@ -36,6 +38,7 @@ function App(prop) {
         setHasRendered(false);
         setHasRendered2(false);
         setHasRendered3(false);
+        setHasRendered4(false);
         setMyAccount(false)
     }
 

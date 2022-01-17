@@ -3,53 +3,55 @@ import { getAccount, getALlAccounts, isAccountVisible, makeConnectionRequest } f
 import OnePerson from './OnePerson';
 import Popup from '../components/Popup';
 import './AllPeople.css';
+import { url } from '../config/config';
+
+import axios from "axios";
 
 function AllPeople(prop) {
     const [accounts, setAccounts] = useState();
     const [buttonPopup, setButtonPopup] = useState(false);
     const [requestPcn, setRequestPcn] = useState();
+    const [stories, setStories] = useState([]);
 
+    // useEffect(() => {
+    //     axios.get(url + `/story/account/${prop.pcn}`).then((response) => {
+    //         if (response.status === 200) {
+
+    //             setStories(response.data);
+
+    //         } else {
+    //             console.log("stories are not loading")
+    //         }
+    //     });
+    // }, []);
     useEffect(() => {
-        let mounted = true;
-        getALlAccounts()
-            .then(items => {
-                if (mounted) {
-                    setAccounts(items);
+        if (!prop.renderedStoryes.hasRendered4) {
+            prop.renderedStoryes.setHasRendered4(true);
+            axios.get(url + `/story/account/${prop.pcn}`).then((response) => {
+                if (response.status === 200) {
+
+                    setStories(response.data);
+
+                } else {
+                    console.log("stories are not loading")
                 }
-            })
-        return () => mounted = false;
-    }, [])
-
-    const redirectIfAccountIsVisible = async (pcn) => {
-        if (await isAccountVisible(pcn, getAccount().pcn)) {
-            prop.setPcnStates(pcn);
+            });
+            return;
         }
-        else {
-            console.log(pcn);
-            setRequestPcn(pcn);
-            setButtonPopup(true);
-        }
-    }
+    })
 
-    if (accounts != undefined) {
+    if (stories != undefined) {
         return (
             <div id='AllPeopleWrapper'>
-                <div id="PepopeTxt">People</div>
-                {accounts.map(item => (
+                <div id="PepopeTxt">Stories</div>
+                {stories.map(story => (
                     <>
-                        {item.pcn != getAccount().pcn &&
-                            <OnePerson key={item.pcn} person={item} redirectIfAccountIsVisible={redirectIfAccountIsVisible} />
-                        }
+
+                        <OnePerson myAccount={prop.myAccount} key={story.id} person={story} />
+
                     </>
                 ))}
-                <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                    <div>You don't have a connection with this person. Do you want to send a connection request?</div>
-                    <button id="ConnectionButton" onClick={() => {
-                        console.log(getAccount().pcn);
-                        makeConnectionRequest(getAccount().pcn, requestPcn);
-                        setButtonPopup(false);
-                    }}>Send Connection request</button>
-                </Popup>
+
             </div>
 
         )
