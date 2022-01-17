@@ -44,7 +44,7 @@ function AllPeople(prop) {
     if (accounts != undefined) {
         return (
             <div id='AllPeopleWrapper'>
-                <div id="PepopeTxt">My stories</div>
+                <div id="PepopeTxt">Stories</div>
                 {stories.map(story => (
                     <>
                         
