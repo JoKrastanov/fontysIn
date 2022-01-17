@@ -53,4 +53,13 @@ public class PostManager implements IPostManager {
         catch (Exception e) {e.printStackTrace();}
         return false;
     }
+
+    @Override
+    public List<Post> getNewsFeed(Long pcn) {
+        try {
+            return dataClass.getAccountNewsfeed(pcn);
+        }
+        catch (Exception e) {e.printStackTrace();}
+        return null;
+    }
 }

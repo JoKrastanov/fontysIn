@@ -10,4 +10,5 @@ public interface IPostAzure {
     Post getPostById(Long id) throws SQLException;
     List<Post> getAccountPostsByPcn(Long pcn) throws SQLException;
     boolean delete(Long id) throws SQLException;
+    List<Post> getAccountNewsfeed(Long id) throws SQLException;
 }

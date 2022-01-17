@@ -495,3 +495,42 @@ export const deleteInterest = async (id) => {
             return false;
         });
 }
+
+export const getNewsfeed = async (pcn) => {
+    try {
+        const resp = await axios.get(url + `/story/feed/` + pcn)
+        return resp.data;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+export const postStory = async (title,description,pcn) => {
+    var data = JSON.stringify({
+        "title": title,
+        "description": description,
+        "accountPCN": pcn
+    });
+    console.log(data);
+
+    var config = {
+        method: 'post',
+        url: url + '/story',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    return await axios(config)
+        .then(function (response) {
+            return true;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
+        });
+}
+
+

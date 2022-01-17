@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -49,6 +50,18 @@ public class PostController {
 
 
     }
+    //endregion
+
+    //region NewsFeed
+    @GetMapping("/feed/{pcn}")
+    public ResponseEntity<List<Post>> getAccountNewsFeed(@PathVariable Long pcn) {
+        List<Post> newsFeed = postManager.getNewsFeed(pcn);
+        if(newsFeed == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return  ResponseEntity.ok().body(newsFeed);
+    }
+
     //endregion
 
 }

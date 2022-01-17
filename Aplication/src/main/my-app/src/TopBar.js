@@ -77,6 +77,7 @@ function TopBar(prop) {
         setTypedText(item.name);
         if (await isAccountVisible(item.pcn, account.pcn)) {
             prop.setPcnStates(item.pcn);
+            prop.setNewsfeed(false);
         }
         else {
             setRequestPcn(item.pcn);
@@ -87,6 +88,10 @@ function TopBar(prop) {
 
     const handleOnFocus = () => {
         //console.log('Focused')
+    }
+
+    const openNewsfeed = () => {
+        prop.setNewsfeed(true);
     }
 
     const formatResult = (pcn) => {
@@ -106,7 +111,7 @@ function TopBar(prop) {
             <div id="TopBar">
                 <div className="TopbarBg">
 
-                    <div id="Logo">
+                    <div onClick={openNewsfeed} id="Logo">
                         <span>Linkedtys</span>
                     </div>
 
@@ -150,6 +155,7 @@ function TopBar(prop) {
                         <div id="UserWrapper" onClick={() => {
                             prop.setPcnStates(getAccount().pcn);
                             prop.setMyAccount(true);
+                            prop.setNewsfeed(false);
                         }}>
                             <div id="UserName">
                                 <span>{account.name}</span>

@@ -13,7 +13,7 @@ export default function AccountPage(prop) {
                 <Stories rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
             </div>
             <div id="AccountWrapper">
-                <AllPeople setPcnStates={prop.setPcnStates} hasRendered={"false"} />
+                <AllPeople setPcnStates={prop.setPcnStates} hasRendered={"false"} myAccount={prop.myAccount} pcn={prop.pcn} renderedStoryes={prop.renderedStoryes} />
             </div>
         </div>
     )
