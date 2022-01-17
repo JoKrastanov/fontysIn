@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {getAccount, getAccountData, getInterests, getALlAccounts, isAccountVisible} from "./services";
+import {getAccount, getAccountData, getInterests, getALlAccounts, isAccountVisible, makeConnectionRequest} from "./services";
 import './TopBar.css'
 import PendingRequests from "./connections/PendingRequests";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import Popup from "./components/Popup";
 
 function TopBar(prop) {
     const [account, setAccount] = useState();
@@ -10,6 +11,8 @@ function TopBar(prop) {
     const [showReq, setShowReq] = useState(true);
     const [allPeople, setAllpeople] = useState([]);
     const [typedText, setTypedText] = useState("");
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [requestPcn, setRequestPcn] = useState()
 
     const profileImage = (acc) =>
     {
@@ -76,7 +79,8 @@ function TopBar(prop) {
             prop.setPcnStates(item.pcn);
         }
         else {
-            alert("You don't have access to this account!");
+            setRequestPcn(item.pcn);
+            setButtonPopup(true);
         }
 
     }
@@ -129,7 +133,14 @@ function TopBar(prop) {
                             <div id="SearchBg">
                             </div>
                         </div>
-
+                        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                            <div>You don't have a connection with this person. Do you want to send a connection request?</div>
+                            <button id="ConnectionButton" onClick={() => {
+                                console.log(getAccount().pcn);
+                                makeConnectionRequest(getAccount().pcn, requestPcn);
+                                setButtonPopup(false);
+                            }}>Send Connection request</button>
+                        </Popup>
                     </div>
                     <div id="LoggedUser" className="LoggedUser">
                         <div className="small-panel">
@@ -144,7 +155,7 @@ function TopBar(prop) {
                                 <span>{account.name}</span>
                             </div>
                             <div className="UserPic">
-                                <img id="UserPic" src={profileImage(account)}>
+                                <img id="UserPic" alt="User" src={profileImage(account)}>
                                 </img>
                             </div>
                         </div>
