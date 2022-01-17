@@ -17,4 +17,4 @@ test:
     - ./gradlew.bat --stop
   artifacts:
     paths:
-      - Back-End\build\reports\tests\test
+      - Aplication\build\reports\tests\test

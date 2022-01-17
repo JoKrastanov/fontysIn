@@ -8,6 +8,8 @@ import lombok.Setter;
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Post implements Comparable<Post> {
     private Long id;
+    private String name;
+    private String image;
     private String title;
     private String description;
     private Long accountPCN;
