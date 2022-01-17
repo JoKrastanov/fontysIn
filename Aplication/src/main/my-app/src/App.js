@@ -23,6 +23,7 @@ function App(prop) {
     const rendered = {hasRendered, setHasRendered, hasRendered2, setHasRendered2, hasRendered3, setHasRendered3}
     const [myAccount, setMyAccount] = useState(true);
     const [openedChat, setOpenedChat] = useState(0);
+    const [openNewsfeed, setOpenNewsfeed] = useState(false);
 
 
 
@@ -41,11 +42,15 @@ function App(prop) {
     if (pcn != undefined) {
         return (
             <>
-                <div><TopBar setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount}/></div>
+                <div><TopBar setNewsfeed={setOpenNewsfeed} setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount}/></div>
                 <div>
-                    {/*<AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}*/}
-                    {/*             myAccount={myAccount}/>*/}
-                    <Newsfeed/>
+                    {!openNewsfeed ?
+                        <AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}
+                                     myAccount={myAccount}/>
+                        :
+                        <Newsfeed pcn={pcn}/>
+                    }
+
                 </div>
                 <div id={"messages"}><MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>
             </>
