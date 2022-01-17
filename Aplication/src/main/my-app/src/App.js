@@ -43,9 +43,9 @@ function App(prop) {
             <>
                 <div><TopBar setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount}/></div>
                 <div>
-                    {/*<AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}*/}
-                    {/*             myAccount={myAccount}/>*/}
-                    <Newsfeed/>
+                    <AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}
+                                myAccount={myAccount}/>
+                  { /* <Newsfeed/> */}
                 </div>
                 <div id={"messages"}><MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>
             </>

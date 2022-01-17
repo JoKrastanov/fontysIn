@@ -3,11 +3,16 @@ import { getAccount, getALlAccounts, isAccountVisible, makeConnectionRequest } f
 import OnePerson from './OnePerson';
 import Popup from '../components/Popup';
 import './AllPeople.css';
+import { url } from '../config/config';
+
+import axios from "axios";
 
 function AllPeople(prop) {
     const [accounts, setAccounts] = useState();
     const [buttonPopup, setButtonPopup] = useState(false);
     const [requestPcn, setRequestPcn] = useState();
+    const [stories, setStories]=useState([]);
+    
 
     useEffect(() => {
         let mounted = true;
@@ -20,36 +25,34 @@ function AllPeople(prop) {
         return () => mounted = false;
     }, [])
 
-    const redirectIfAccountIsVisible = async (pcn) => {
-        if (await isAccountVisible(pcn, getAccount().pcn)) {
-            prop.setPcnStates(pcn);
-        }
-        else {
-            console.log(pcn);
-            setRequestPcn(pcn);
-            setButtonPopup(true);
-        }
-    }
+    useEffect(() => { 
+        axios.get(url + `/story/account/${getAccount().pcn}`).then((response) => { 
+          if(response.status===200){
+         
+            setStories(response.data);
+            
+          }else{
+            console.log("stories are not loading")
+          }
+        }); 
+      }, []); 
+
+      console.log(stories);
+   
+    
 
     if (accounts != undefined) {
         return (
             <div id='AllPeopleWrapper'>
-                <div id="PepopeTxt">People</div>
-                {accounts.map(item => (
+                <div id="PepopeTxt">My stories</div>
+                {stories.map(story => (
                     <>
-                        {item.pcn != getAccount().pcn &&
-                            <OnePerson key={item.pcn} person={item} redirectIfAccountIsVisible={redirectIfAccountIsVisible} />
-                        }
+                        
+                            <OnePerson key={story.id} person={story}  />
+                        
                     </>
                 ))}
-                <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                    <div>You don't have a connection with this person. Do you want to send a connection request?</div>
-                    <button id="ConnectionButton" onClick={() => {
-                        console.log(getAccount().pcn);
-                        makeConnectionRequest(getAccount().pcn, requestPcn);
-                        setButtonPopup(false);
-                    }}>Send Connection request</button>
-                </Popup>
+               
             </div>
 
         )
