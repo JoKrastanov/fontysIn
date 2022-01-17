@@ -11,48 +11,47 @@ function AllPeople(prop) {
     const [accounts, setAccounts] = useState();
     const [buttonPopup, setButtonPopup] = useState(false);
     const [requestPcn, setRequestPcn] = useState();
-    const [stories, setStories]=useState([]);
-    
+    const [stories, setStories] = useState([]);
 
+    // useEffect(() => {
+    //     axios.get(url + `/story/account/${prop.pcn}`).then((response) => {
+    //         if (response.status === 200) {
+
+    //             setStories(response.data);
+
+    //         } else {
+    //             console.log("stories are not loading")
+    //         }
+    //     });
+    // }, []);
     useEffect(() => {
-        let mounted = true;
-        getALlAccounts()
-            .then(items => {
-                if (mounted) {
-                    setAccounts(items);
+        if (!prop.renderedStoryes.hasRendered4) {
+            prop.renderedStoryes.setHasRendered4(true);
+            axios.get(url + `/story/account/${prop.pcn}`).then((response) => {
+                if (response.status === 200) {
+
+                    setStories(response.data);
+
+                } else {
+                    console.log("stories are not loading")
                 }
-            })
-        return () => mounted = false;
-    }, [])
+            });
+            return;
+        }
+    })
 
-    useEffect(() => { 
-        axios.get(url + `/story/account/${getAccount().pcn}`).then((response) => { 
-          if(response.status===200){
-         
-            setStories(response.data);
-            
-          }else{
-            console.log("stories are not loading")
-          }
-        }); 
-      }, []); 
-
-      console.log(stories);
-   
-    
-
-    if (accounts != undefined) {
+    if (stories != undefined) {
         return (
             <div id='AllPeopleWrapper'>
                 <div id="PepopeTxt">Stories</div>
                 {stories.map(story => (
                     <>
-                        
-                            <OnePerson key={story.id} person={story}  />
-                        
+
+                        <OnePerson myAccount={prop.myAccount} key={story.id} person={story} />
+
                     </>
                 ))}
-               
+
             </div>
 
         )

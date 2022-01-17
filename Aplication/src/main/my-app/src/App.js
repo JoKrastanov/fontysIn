@@ -20,7 +20,9 @@ function App(prop) {
     const [hasRendered, setHasRendered] = useState(false);
     const [hasRendered2, setHasRendered2] = useState(false);
     const [hasRendered3, setHasRendered3] = useState(false);
+    const [hasRendered4, setHasRendered4] = useState(false);
     const rendered = {hasRendered, setHasRendered, hasRendered2, setHasRendered2, hasRendered3, setHasRendered3}
+    const renderedStoryes = { hasRendered4, setHasRendered4};
     const [myAccount, setMyAccount] = useState(true);
     const [openedChat, setOpenedChat] = useState(0);
 
@@ -35,6 +37,7 @@ function App(prop) {
         setHasRendered(false);
         setHasRendered2(false);
         setHasRendered3(false);
+        setHasRendered4(false);
         setMyAccount(false)
     }
 
@@ -44,7 +47,7 @@ function App(prop) {
                 <div><TopBar setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount}/></div>
                 <div>
                     <AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}
-                                myAccount={myAccount}/>
+                                myAccount={myAccount} renderedStoryes={renderedStoryes}/>
                   { /* <Newsfeed/> */}
                 </div>
                 <div id={"messages"}><MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>

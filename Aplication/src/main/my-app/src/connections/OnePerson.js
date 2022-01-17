@@ -9,7 +9,6 @@ function OnePerson(prop) {
         delete(url + `/story/${prop.person.id}`)
         .then((response) =>{
             if(response.status===200){
-                  console.log("success");
                   window.location.reload();
             }
         }
@@ -25,7 +24,11 @@ function OnePerson(prop) {
             <div id="storryAccountDate">
                   <p>Date: {prop.person.date}</p>
             </div>
+            {prop.myAccount ? 
             <buton id="deleteAccStoryButton" onClick={deleteStory}>Delete</buton>
+            : <></>
+            }
+            
         </div>
     )
 }
