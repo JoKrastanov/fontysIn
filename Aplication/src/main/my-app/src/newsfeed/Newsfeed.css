@@ -1,0 +1,69 @@
+.clear{
+    clear: both;
+}
+
+.NewsfeedWrapper{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.storyProfileInfo{
+    overflow: hidden;
+    position: relative;
+}
+
+.storyWrapper{
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    overflow: hidden;
+}
+
+.nameAndDate{
+    float: left;
+    height: 100%;
+    position: absolute;
+    left: 70px;
+    top: 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.nameAndDate .name{
+    color: black;
+    font-weight: bolder;
+}
+
+.storyBody{
+    color:black;
+}
+
+.imgHolder{
+    width: 60px;
+    height: 60px;
+    float:left;
+}
+
+.imgHolder img{
+    background-color: rgba(255,255,255,1);
+    border: 3px solid rgba(112,112,112,1);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.inputContainer{
+    float: left;
+}
+
+.inputContainer textarea{
+    display: block;
+    resize: none;
+    border: 1px solid black;
+    width: 100%;
+}

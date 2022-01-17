@@ -13,6 +13,7 @@ import Stomp from 'stompjs';
 import useSound from 'use-sound';
 import messageSound from "./media/juntos-607.mp3"
 import {getAccountChats} from "./services";
+import Newsfeed from "./newsfeed/Newsfeed";
 
 function App(prop) {
     const [pcn, setPcn] = useState(prop.pcn);
@@ -42,8 +43,9 @@ function App(prop) {
             <>
                 <div><TopBar setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount}/></div>
                 <div>
-                    <AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}
-                                 myAccount={myAccount}/>
+                    {/*<AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}*/}
+                    {/*             myAccount={myAccount}/>*/}
+                    <Newsfeed/>
                 </div>
                 <div id={"messages"}><MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>
             </>
