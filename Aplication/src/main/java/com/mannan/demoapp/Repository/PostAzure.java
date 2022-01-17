@@ -25,13 +25,14 @@ public class PostAzure implements IPostAzure {
         Connection connection = DriverManager.getConnection(con.getCon());
         try {
             LocalDate anotherSummerDay = LocalDate.now();
+            String date = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(anotherSummerDay).toString();
             PreparedStatement selectSql = connection.prepareStatement("INSERT  INTO Post " +
                     "(Title, Description, AccountPCN, Date) " +
                     "VALUES (?,?,?, ?)");
             selectSql.setString(1, post.getTitle());
             selectSql.setString(2, post.getDescription());
             selectSql.setLong(3, post.getAccountPCN());
-            selectSql.setString(4, DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(anotherSummerDay));
+            selectSql.setString(4, date);
 
             selectSql.executeUpdate();
             return true;
