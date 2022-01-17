@@ -48,7 +48,7 @@ function App(prop) {
                 <div><TopBar setNewsfeed={setOpenNewsfeed} setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount}/></div>
                 <div>
                     {!openNewsfeed ?
-                        <AccountPage pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}
+                        <AccountPage renderedStoryes={renderedStoryes} pcn={pcn} setPcn={setPcn} rendered={rendered} setPcnStates={setPcnStates}
                                      myAccount={myAccount}/>
                         :
                         <Newsfeed pcn={pcn}/>
