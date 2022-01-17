@@ -6,9 +6,10 @@ import com.mannan.demoapp.Repository.Interfaces.IPostAzure;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 @Repository
@@ -23,12 +24,15 @@ public class PostAzure implements IPostAzure {
     public boolean create(Post post) throws SQLException {
         Connection connection = DriverManager.getConnection(con.getCon());
         try {
+            LocalDate anotherSummerDay = LocalDate.now();
+            String date = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(anotherSummerDay).toString();
             PreparedStatement selectSql = connection.prepareStatement("INSERT  INTO Post " +
-                    "(Title, Description, AccountPCN) " +
-                    "VALUES (?,?,?)");
+                    "(Title, Description, AccountPCN, Date) " +
+                    "VALUES (?,?,?, ?)");
             selectSql.setString(1, post.getTitle());
             selectSql.setString(2, post.getDescription());
             selectSql.setLong(3, post.getAccountPCN());
+            selectSql.setString(4, date);
 
             selectSql.executeUpdate();
             return true;
