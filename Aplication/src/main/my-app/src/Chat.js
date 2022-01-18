@@ -34,16 +34,27 @@ function Chat(props) {
 
     document.addEventListener('build', function () {updateChat()});
 
-    const send = async () => {
-        const account = await getAccountData(getAccount().pcn)
-        const message = {
-            chatId : chat.id,
-            senderPCN : getAccount().pcn,
-            message : document.getElementById("text").value,
-            senderName : account.name
+
+    window.onkeypress = function(event) {
+        if (event.keyCode == 13) {
+            send();
         }
-        sendMessage(message);
-        document.getElementById('text').value = ''
+    }
+
+    const send = async () => {
+        let msg = document.getElementById("text").value.trim();
+        if(msg != "")
+        {
+            const account = await getAccountData(getAccount().pcn)
+            const message = {
+                chatId : chat.id,
+                senderPCN : getAccount().pcn,
+                message : msg,
+                senderName : account.name
+            }
+            sendMessage(message);
+            document.getElementById('text').value = ''
+        }
     }
 
     return (
