@@ -16,7 +16,7 @@ const ConcealedRadio = ({ value, selected }) =>
 class LanguageSwitch extends Component {
     state = {
         selected: this.props.selected,
-        firstSelected: this.props.selected
+        firstSelected1: this.props.selected
     };
 
 

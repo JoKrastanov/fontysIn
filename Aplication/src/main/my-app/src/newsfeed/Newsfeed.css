@@ -73,6 +73,7 @@
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     font-size: 1.5em;
     padding: 5px;
+    width: 100%;
 }
 
 .inputContainer input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
