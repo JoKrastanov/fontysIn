@@ -59,7 +59,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
     }
 
     const getnewLanguage = () => {
-        switch (account.Language) {
+        switch (account.language) {
             case 0:
                 return 'english';
             case 1:
@@ -162,9 +162,9 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
                                     }
                                     {myAcc ?
                                         <div className={showLanguageStyle()}>
-                                            <p>Language:</p>
+                                            <p id={"language-text"}>Language:</p>
                                             <LanguageSwitch values={['english', 'dutch']} selected={getnewLanguage()} setSubmit={setShowSubmit} setSelected={setSelLanguage} />
-                                            {showSubmit ? <button onClick={handleLanguageChange}>Change</button> : null}
+                                            {showSubmit ? <button id={"change-lang-button"} onClick={handleLanguageChange}>Change</button> : null}
                                         </div>
                                         :
                                         <></>
@@ -278,9 +278,9 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
                                     }
                                     {myAcc ?
                                         <div className={showLanguageStyle()}>
-                                            <p>Taal:</p>
+                                            <p id={"language-text"}>Taal:</p>
                                             <LanguageSwitch values={['english', 'dutch']} selected={getLanguage()} setSubmit={setShowSubmit} setSelected={setSelLanguage} />
-                                            {showSubmit ? <button onClick={handleLanguageChange}>Verander</button> : null}
+                                            {showSubmit ? <button id={"change-lang-button"} onClick={handleLanguageChange}>Verander</button> : null}
                                         </div>
                                         :
                                         <></>

@@ -10,7 +10,7 @@ function EditInterest(prop) {
     return (
         <div className={"edit-interest"}>
             <div className={"add"}>
-                <input id={"add-interest"} onChange={(e) => {setInput(e.target.value)}}></input>
+                <input id={"add-interest"} onChange={(e) => {setInput(e.target.value)}} maxLength={14}></input>
                 {getLanguage() === "ned"
                     ? <button id={"add-interest-button"} onClick={() => prop.addInterestAsync(input)}>➕</button>
                     : <button id={"add-interest-button"} onClick={() => prop.addInterestAsync(input)}>➕</button>

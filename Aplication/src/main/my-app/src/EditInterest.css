@@ -30,6 +30,9 @@
     text-decoration: none;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+.interest-item p {
+    margin-right: 10px;
+}
 #delete-interest-button{
     margin-right: 10px;
     color: rgb(130 130 130);

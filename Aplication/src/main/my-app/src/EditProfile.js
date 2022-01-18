@@ -35,7 +35,7 @@ function EditProfile(prop) {
                 <input id="NameInput" onChange={e => setName(e.target.value)} value={name} ></input> <br/>
                 <div id="BioDiv">Bio</div>
                 <textarea id="BioInput" onChange={e => setBio(e.target.value)} value={bio} ></textarea> <br/>
-                <button id="SaveButton" onClick={() => edit()} >edit</button>
+                <button id="SaveButton" onClick={() => edit()} >Edit</button>
             </div>
         )
     } else return "";

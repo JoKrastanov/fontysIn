@@ -161,10 +161,11 @@ img{
 .ProfilePic {
     background-color: cadetblue;
     border-radius: 50%;
+    margin-top: 10%;
     position: relative;
     overflow: hidden;
-    width: 20vw;
-    height: 20vw;
+    width: 18vw;
+    height: 18vw;
 }
 #Info {
     position: relative;
@@ -263,6 +264,17 @@ img{
     text-align: center;
     padding: 3px;
 }
+#change-lang-button {
+    border-radius: 5px;
+    background-color: #e4e4e4;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 30%), 0 1px rgb(255 255 255 / 10%);
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+}
 #IntertestsList {
     white-space: pre-wrap;
     grid-column: 2/6;
@@ -278,7 +290,9 @@ img{
     overflow-y: scroll;
     max-height: 100px;
 }
-
+#language-text{
+    font-size: 20px;
+}
 #edit-button-interests{
     display: block;
     width: 10%;
@@ -293,6 +307,7 @@ img{
     top: 50%;
     transform: translate(0, -50%);
 }
+
 #Skills {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -384,12 +399,20 @@ img{
 .disp-none{
     display: none;
 }
+.switch_language {
+    font-size: 20px;
+    left: 180px;
+    position: absolute;
+    display: inline-block;
+    z-index: 10;
 
+}
 .switch_visibility{
     font-size: 20px;
     margin-left: 10px;
-    position: relative;
+    position: absolute;
     display: inline-block;
+    z-index: 20;
 }
 .switch_visibility button{
     border-radius: 5px;
@@ -451,7 +474,7 @@ img{
 }
 
 .center-image-select{
-    bottom: 180px;
+    bottom: 1vw;
 }
 
 .select-pic input[type="file"]{
@@ -471,8 +494,8 @@ img{
 .edit-menu-wrapper{
     display: inline-block;
     position: absolute;
-    right: 6%;
-    bottom: 10px;
+    right: 10%;
+    top: 20px;
     user-select: none;
 }
 

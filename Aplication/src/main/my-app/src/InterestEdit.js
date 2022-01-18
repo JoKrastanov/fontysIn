@@ -5,7 +5,7 @@ function InterestEdit(prop) {
     if (getLanguage() === "ned")
         return (
             <>
-                <>{prop.interest.interest} </>
+                <p>{prop.interest.interest} </p>
                 <button id={"delete-interest-button"} onClick={() => prop.deleteInterestAsync(prop.interest.id)}>🗑</button>
             </>
         )
