@@ -149,7 +149,7 @@ function TopBar(prop) {
                     </div>
                     <div id="LoggedUser" className="LoggedUser">
                         <div className="small-panel">
-                            <button className="pending-requests-btn" onClick={showRequests}>Req</button>
+                            <button className="pending-requests-btn" onClick={showRequests}></button>
                             <PendingRequests showReq={showReq}/>
                         </div>
                         <div id="UserWrapper" onClick={() => {
