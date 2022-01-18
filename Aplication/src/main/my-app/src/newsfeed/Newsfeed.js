@@ -54,12 +54,12 @@ export default function Newsfeed(prop) {
                     {getLanguage() === "ned"
                         ? <>
                             <input placeholder="Titel" onChange={updateTitleVal} value={title} type="text" />
-                            <span className="textareaNed" id="storyDescriptionNed" role="textbox" contentEditable></span>
+                            <span className="textareaNed" id="storyDescription" role="textbox" contentEditable></span>
                             <button onClick={submitStory}>Verzend</button>
                         </>
                         : <>
                             <input placeholder="Title" onChange={updateTitleVal} value={title} type="text" />
-                            <span className="textareaEng" id="storyDescriptionEng" role="textbox" contentEditable></span>
+                            <span className="textareaEng" id="storyDescription" role="textbox" contentEditable></span>
                             <button onClick={submitStory}>Submit</button>
                         </>
                     }
