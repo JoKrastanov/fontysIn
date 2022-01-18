@@ -55,7 +55,7 @@ function App(prop) {
                     }
 
                 </div>
-                <div id={"messages"}><MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/></div>
+                <MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/>
             </>
         )
     }
