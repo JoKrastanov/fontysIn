@@ -269,7 +269,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
                                 <div className="edit-options">
                                     {myAcc ?
                                         <div className={showVisibilityStyle()}>
-                                            <p>Zichtbaarheidsniveau:</p>
+                                            <p>Zichtbaarheid:</p>
                                             <VisibilitySwitch values={['private', 'friends-only', 'public']} selected={getVisibility()} setSubmit={setShowSubmit} setSelected={setSelected} />
                                             {showSubmit ? <button id={"change-visibility-button"} onClick={handleVisibilityChange}>Verander</button> : null}
                                         </div>
@@ -451,16 +451,6 @@ function Profile(prop) {
                     />
                 )}
             </div>
-            /*<>
-                <p>{account.name}</p>
-                <p>{account.pcn}</p>
-                <p>{account.bio}</p>
-                {account.interests.map(item => (
-                    <Interest key={item.id} interest={item} />
-                ))}
-
-                <InterestDropdown interest={interests} accountId={account.id} />
-            </>*/
         )
     }
     else {
