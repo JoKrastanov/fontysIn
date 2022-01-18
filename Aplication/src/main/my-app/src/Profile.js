@@ -223,24 +223,25 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
                                                     <div id="InterestsBtnBg">
                                                         <div id="Interests_z">
                                                             <span>Interests</span>
+                                                            {myAcc === true &&
+                                                            <>
+                                                                <button onClick={() => setInterestPopup(true)}>Edit</button>
+                                                                <Popup trigger={interestPopup} setTrigger={setInterestPopup}>
+                                                                    <EditInterest interests={interests} pcn={account.pcn} addInterestAsync={addInterestAsync} deleteInterestAsync={deleteInterestAsync} />
+                                                                </Popup>
+                                                            </>
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>
 
                                             </div>
-                                            <div id="IntertestsList">
-                                                <span>{interests.map(item => (
-                                                    <Interest key={item.id} interest={item} />
-                                                ))}</span>
-                                            </div>
-                                            {myAcc === true &&
-                                                <>
-                                                    <button onClick={() => setInterestPopup(true)}>Edit</button>
-                                                    <Popup trigger={interestPopup} setTrigger={setInterestPopup}>
-                                                        <EditInterest interests={interests} pcn={account.pcn} addInterestAsync={addInterestAsync} deleteInterestAsync={deleteInterestAsync} />
-                                                    </Popup>
-                                                </>
-                                            }
+                                            <ol id="IntertestsList">
+                                                {interests.map(item => (
+                                                    <li><Interest key={item.id} interest={item}/></li>
+                                                ))}
+                                            </ol>
+
                                         </div>
                                     </div>
                                 </div>

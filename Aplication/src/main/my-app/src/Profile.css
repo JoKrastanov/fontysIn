@@ -116,12 +116,12 @@ margin-left: 50px;
     display: flex;
     flex-direction: column;
     flex-direction: column;
-
     overflow: visible;
-    width: 1230px;
+    width: 50%;
     height: max-content;
     left: 0px;
-
+    top: 50%;
+    transform: translate(0,-50%);
     padding: 2.5%;
 }
 img{
@@ -156,14 +156,15 @@ img{
     align-content: center;
     display: flex;
     user-select: none;
+    margin: 15px 0;
 }
 .ProfilePic {
     background-color: cadetblue;
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    width: 450px;
-    height: 450px;
+    width: 20vw;
+    height: 20vw;
 }
 #Info {
     position: relative;
@@ -179,7 +180,6 @@ img{
     font-family: Segoe UI;
     font-style: normal;
     font-weight: normal;
-    font-size: 36px;
     color: rgba(112,112,112,1);
 }
 #ExperienceBtn {
@@ -211,6 +211,7 @@ img{
 }
 #Bio {
     position: relative;
+    margin-bottom: 10px;
 }
 #BioBg {
     background-color: rgba(204,201,210,1);
@@ -226,12 +227,12 @@ img{
     font-family: Segoe UI;
     font-style: normal;
     font-weight: normal;
-    font-size: 35px;
+    font-size: 0.8em;
     color: rgba(112,112,112,1);
+    padding: 5px;
 }
 #Interests {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    font-size: 0.6em;
 
 }
 #InterestsBtn {
@@ -256,11 +257,11 @@ img{
     font-family: Segoe UI;
     font-style: normal;
     font-weight: normal;
-    font-size: 36px;
     background-color: rgba(204,201,210,1);
     border: 1px solid rgba(112,112,112,1);
     border-radius: 30px;
     text-align: center;
+    padding: 3px;
 }
 #IntertestsList {
     white-space: pre-wrap;
@@ -271,8 +272,26 @@ img{
     font-family: Segoe UI;
     font-style: normal;
     font-weight: normal;
-    font-size: 36px;
     color: rgba(112,112,112,1);
+    padding-left: 30px;
+    margin-top: 5px;
+    overflow-y: scroll;
+    max-height: 100px;
+}
+
+#Interests button{
+    display: block;
+    width: 10%;
+    padding: 3px;
+    border-radius: 20px;
+    margin: 0 auto;
+    background-color: #636;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translate(0, -50%);
 }
 #Skills {
     display: grid;
