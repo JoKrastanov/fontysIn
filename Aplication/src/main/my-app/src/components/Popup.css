@@ -12,6 +12,7 @@
 }
 
 .popup-inner{
+
     position: relative;
     padding: 32px;
     width: fit-content;
@@ -26,7 +27,7 @@
     position: absolute;
     top: 5%;
     right: 3%;
-    background: #e7e5e7;
+
 }
 #ConnectionButton{
     text-align: center;
@@ -35,3 +36,12 @@
     border-bottom: #4d4d4d 1px solid;
     width: inherit;
 }
+.close-button {
+    font-size: 20px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: white;
+    background-color: #636;
+}
+.fa fa-close {background-color: #636;}

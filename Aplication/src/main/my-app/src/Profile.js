@@ -225,7 +225,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
                                                             <span>Interests</span>
                                                             {myAcc === true &&
                                                             <>
-                                                                <button onClick={() => setInterestPopup(true)}>Edit</button>
+                                                                <button id={"edit-button-interests"} onClick={() => setInterestPopup(true)}>Edit</button>
                                                                 <Popup trigger={interestPopup} setTrigger={setInterestPopup}>
                                                                     <EditInterest interests={interests} pcn={account.pcn} addInterestAsync={addInterestAsync} deleteInterestAsync={deleteInterestAsync} />
                                                                 </Popup>
@@ -351,7 +351,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
                                             </div>
                                             {myAcc === true &&
                                                 <>
-                                                    <button onClick={() => setInterestPopup(true)}>Bewerken</button>
+                                                    <button id={"edit-button-interests"} onClick={() => setInterestPopup(true)}>Bewerken</button>
                                                     <Popup trigger={interestPopup} setTrigger={setInterestPopup}>
                                                         <EditInterest interests={interests} pcn={account.pcn} addInterestAsync={addInterestAsync} deleteInterestAsync={deleteInterestAsync} />
                                                     </Popup>

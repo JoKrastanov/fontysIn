@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import './EditInterest.css'
+
 import InterestEdit from './InterestEdit'
 import { addInterest, getLanguage } from './services'
 
@@ -6,18 +8,20 @@ function EditInterest(prop) {
     const [input, setInput] = useState()
     
     return (
-        <div>
-            <input onChange={(e) => {setInput(e.target.value)}}></input>
-            {getLanguage() === "ned"
-                    ? <button onClick={() => prop.addInterestAsync(input)}>Voeg een interese toe</button>
-                    : <button onClick={() => prop.addInterestAsync(input)}>add an interest</button>
+        <div className={"edit-interest"}>
+            <div className={"add"}>
+                <input id={"add-interest"} onChange={(e) => {setInput(e.target.value)}}></input>
+                {getLanguage() === "ned"
+                    ? <button id={"add-interest-button"} onClick={() => prop.addInterestAsync(input)}>➕</button>
+                    : <button id={"add-interest-button"} onClick={() => prop.addInterestAsync(input)}>➕</button>
                 }
+            </div>
             
-            <ul>
+            <div id={"interest-list"}>
                 {prop.interests.map(item => (
-                    <li><InterestEdit key={item.id} interest={item} deleteInterestAsync={prop.deleteInterestAsync}/> </li>
+                    <li className={"interest-item"}><InterestEdit key={item.id} interest={item} deleteInterestAsync={prop.deleteInterestAsync}/> </li>
                 ))}
-            </ul>
+            </div>
         </div>
     )
 }

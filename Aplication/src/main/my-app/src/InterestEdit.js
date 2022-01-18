@@ -6,14 +6,14 @@ function InterestEdit(prop) {
         return (
             <>
                 <>{prop.interest.interest} </>
-                <button onClick={() => prop.deleteInterestAsync(prop.interest.id)}>Verwijderen</button>
+                <button id={"delete-interest-button"} onClick={() => prop.deleteInterestAsync(prop.interest.id)}>🗑</button>
             </>
         )
     else {
         return (
             <>
                 <>{prop.interest.interest} </>
-                <button onClick={() => prop.deleteInterestAsync(prop.interest.id)}>Delete</button>
+                <button id={"delete-interest-button"} onClick={() => prop.deleteInterestAsync(prop.interest.id)}>🗑</button>
             </>
         )
     }
