@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getAccount, getALlAccounts, isAccountVisible, makeConnectionRequest } from '../services';
+import { getAccount, getALlAccounts, getLanguage, isAccountVisible, makeConnectionRequest } from '../services';
 import OnePerson from './OnePerson';
 import Popup from '../components/Popup';
 import './AllPeople.css';
@@ -43,7 +43,11 @@ function AllPeople(prop) {
     if (stories != undefined) {
         return (
             <div id='AllPeopleWrapper'>
-                <div id="PepopeTxt">Stories</div>
+                {getLanguage() === "ned"
+                    ? <div id="PepopeTxt">Verhalen</div>
+                    : <div id="PepopeTxt">Stories</div>
+                }
+
                 {stories.map(story => (
                     <>
 
