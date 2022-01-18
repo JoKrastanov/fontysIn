@@ -111,7 +111,22 @@
     line-height: 20px;
 }
 
-.textarea[contenteditable]:empty::before {
+.textareaEng[contenteditable]:empty::before {
     content: "Write what's on your mind...";
     color: gray;
 }
+
+.textareaNed[contenteditable]:empty::before {
+    content: "Wat houdt je bezig?";
+    color: gray;
+}
+
+/* #storyDescriptionNed[contenteditable]:empty::before {
+    content: "Wat houdt je bezig?";
+    color: gray;
+}
+
+#storyDescriptionEng[contenteditable]:empty::before {
+    content: "Write what's on your mind...";
+    color: gray;
+} */

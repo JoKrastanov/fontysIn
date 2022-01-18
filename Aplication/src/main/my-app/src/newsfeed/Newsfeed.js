@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./Newsfeed.css"
-import {postStory, getAccountData, getNewsfeed, getAccount} from "../services";
+import {postStory, getAccountData, getNewsfeed, getAccount, getLanguage} from "../services";
 
 
 
@@ -51,9 +51,18 @@ export default function Newsfeed(prop) {
                     <img src={myAccount.binaryImage} alt="profile picture"/>
                 </div>
                 <div className="inputContainer">
-                    <input placeholder="Title" onChange={updateTitleVal} value={title} type="text"/>
-                    <span className="textarea" id="storyDescription" role="textbox" contentEditable></span>
-                    <button onClick={submitStory}>Submit</button>
+                    {getLanguage() === "ned"
+                        ? <>
+                            <input placeholder="Titel" onChange={updateTitleVal} value={title} type="text" />
+                            <span className="textareaNed" id="storyDescriptionNed" role="textbox" contentEditable></span>
+                            <button onClick={submitStory}>Verzend</button>
+                        </>
+                        : <>
+                            <input placeholder="Title" onChange={updateTitleVal} value={title} type="text" />
+                            <span className="textareaEng" id="storyDescriptionEng" role="textbox" contentEditable></span>
+                            <button onClick={submitStory}>Submit</button>
+                        </>
+                    }
                 </div>
             </div>
             {stories.map(story => {
