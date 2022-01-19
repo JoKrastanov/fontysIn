@@ -3,6 +3,7 @@
     border: solid 1px #707070;
     position: absolute;
     top: 90px;
+    z-index: 20;
     border-radius: 10px;
     overflow: hidden;
     padding: 0;

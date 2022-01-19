@@ -8,6 +8,28 @@ const axios = require('axios');
 
 const ENDPOINT = url + "/chat";
 
+export function setCookie(cname, cvalue, exHours) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exHours * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+export function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 export const getAccount = () => {
     const value = "; " + document.Login;
@@ -49,6 +71,19 @@ export const updateAccount = (account, newVisibility) => {
             console.log(error);
         });
 };
+
+export const updateLanguage = (newLanguage) => {
+    setCookie("lang", newLanguage, 1000)
+};
+
+export const getLanguage = () => {
+    let lang = getCookie("lang")
+    if (lang === ""){
+        setCookie("lang", "eng", 1000)
+        return "eng"
+    }
+    else return lang
+}
 
 
 export const updateAccountPictrure = (account, newPic) => {
@@ -99,6 +134,24 @@ export const getAccountData = async (pcn) => {
         // Handle Error Here
         console.error(err);
     }
+};
+
+export const deleteAccount = async (pcn) => {
+
+    var config = {
+        method: 'delete',
+        url: url + '/account/' + pcn,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 };
 
 export const deleteProject = async (id, title, description, link, accountPCN) => {
@@ -389,4 +442,95 @@ export const searchForChats = async (name, pcn) => {
         console.log(err);
     }
 }
+
+export const addInterest = async (interest) => {
+    interest = JSON.parse(interest);
+    console.log(interest);
+    var data = JSON.stringify({
+        "interest": interest.interest,
+        "accountPCN": interest.pcn
+    });
+    console.log(data);
+
+    var config = {
+        method: 'post',
+        url: url + '/account/interests',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    return await axios(config)
+        .then(function (response) {
+            return true;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
+        });
+}
+
+export const deleteInterest = async (id) => {
+    console.log(id);
+    var data = JSON.stringify({
+        "id": id
+    });
+
+    var config = {
+        method: 'delete',
+        url: url + '/account/interests',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    return await axios(config)
+        .then(function (response) {
+            return true;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
+        });
+}
+
+export const getNewsfeed = async (pcn) => {
+    try {
+        const resp = await axios.get(url + `/story/feed/` + pcn)
+        return resp.data;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+export const postStory = async (title,description,pcn) => {
+    var data = JSON.stringify({
+        "title": title,
+        "description": description,
+        "accountPCN": pcn
+    });
+    console.log(data);
+
+    var config = {
+        method: 'post',
+        url: url + '/story',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    return await axios(config)
+        .then(function (response) {
+            return true;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
+        });
+}
+
 

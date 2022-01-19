@@ -88,9 +88,9 @@
     padding-block: .5%;
     padding-inline: 5%;
     position: relative;
-
 }
 #SingleStoryWrapper {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: #e7e5e7;
     border: 1px solid rgba(112,112,112,1);
 border-radius: 5px;
@@ -202,8 +202,10 @@ background-color: #e7e5e7;
     padding-top: 5px;
     padding-inline: 5%;
 }
+#AddWrapper {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 #Stories_s {
-    
     padding-top: 50px;
     position: relative;
     overflow: visible;
@@ -265,6 +267,8 @@ background-color: #e7e5e7;
     font-size: 25px;
     background-color: inherit;
 }
+#project-button-delete:hover{opacity: .8; cursor: pointer;}
+#project-button-edit:hover{opacity: .8; cursor: pointer;}
 #EditWrapper{
     justify-content: center;
 }
@@ -287,9 +291,12 @@ background-color: #e7e5e7;
     font-size: 30px;
 }
 #SaveButton{
+    background-color: #636;
+    color: white;
+    padding: 3px;
+    cursor: pointer;
     width: -moz-available;
     width: -webkit-fill-available;
-    background-color: #ccc9d2;
     resize: none;
     border: 1px solid #4d4d4d;
     border-radius: 5px;

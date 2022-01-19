@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {getAccount, getAccountData, getInterests, getALlAccounts, isAccountVisible} from "./services";
+import {getAccount, getAccountData, getInterests, getALlAccounts, isAccountVisible, makeConnectionRequest} from "./services";
 import './TopBar.css'
 import PendingRequests from "./connections/PendingRequests";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import Popup from "./components/Popup";
 
 function TopBar(prop) {
     const [account, setAccount] = useState();
@@ -10,6 +11,8 @@ function TopBar(prop) {
     const [showReq, setShowReq] = useState(true);
     const [allPeople, setAllpeople] = useState([]);
     const [typedText, setTypedText] = useState("");
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [requestPcn, setRequestPcn] = useState()
 
     const profileImage = (acc) =>
     {
@@ -74,15 +77,21 @@ function TopBar(prop) {
         setTypedText(item.name);
         if (await isAccountVisible(item.pcn, account.pcn)) {
             prop.setPcnStates(item.pcn);
+            prop.setNewsfeed(false);
         }
         else {
-            alert("You don't have access to this account!");
+            setRequestPcn(item.pcn);
+            setButtonPopup(true);
         }
 
     }
 
     const handleOnFocus = () => {
         //console.log('Focused')
+    }
+
+    const openNewsfeed = () => {
+        prop.setNewsfeed(true);
     }
 
     const formatResult = (pcn) => {
@@ -102,7 +111,7 @@ function TopBar(prop) {
             <div id="TopBar">
                 <div className="TopbarBg">
 
-                    <div id="Logo">
+                    <div onClick={openNewsfeed} id="Logo">
                         <span>Linkedtys</span>
                     </div>
 
@@ -129,22 +138,30 @@ function TopBar(prop) {
                             <div id="SearchBg">
                             </div>
                         </div>
-
+                        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                            <div>You don't have a connection with this person. Do you want to send a connection request?</div>
+                            <button id="ConnectionButton" onClick={() => {
+                                console.log(getAccount().pcn);
+                                makeConnectionRequest(getAccount().pcn, requestPcn);
+                                setButtonPopup(false);
+                            }}>Send Connection request</button>
+                        </Popup>
                     </div>
                     <div id="LoggedUser" className="LoggedUser">
                         <div className="small-panel">
-                            <button className="pending-requests-btn" onClick={showRequests}>Req</button>
+                            <button className="pending-requests-btn" onClick={showRequests}></button>
                             <PendingRequests showReq={showReq}/>
                         </div>
                         <div id="UserWrapper" onClick={() => {
                             prop.setPcnStates(getAccount().pcn);
                             prop.setMyAccount(true);
+                            prop.setNewsfeed(false);
                         }}>
                             <div id="UserName">
                                 <span>{account.name}</span>
                             </div>
                             <div className="UserPic">
-                                <img id="UserPic" src={profileImage(account)}>
+                                <img id="UserPic" alt="User" src={profileImage(account)}>
                                 </img>
                             </div>
                         </div>

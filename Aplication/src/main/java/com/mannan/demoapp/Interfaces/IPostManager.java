@@ -9,4 +9,5 @@ public interface IPostManager {
     Post getPost(Long id);
     List<Post> getAccountPosts(Long pcn);
     boolean deletePost(Long id);
+    List<Post> getNewsFeed(Long pcn);
 }

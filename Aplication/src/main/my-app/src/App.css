@@ -1,12 +1,13 @@
 .App {
   text-align: center;
+  background-color: #7c637c;
 }
 body{
   overflow-wrap: break-word;
-  background-color: rgb(246 245 249);
+  background-color: #7c637c;
   overflow-x: hidden;
 }
-
+.app {background-color: #7c637c;}
 iframe{
   width: 550px;
   height: 450px;

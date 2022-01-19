@@ -12,7 +12,8 @@ import {
     addProjectToAccount,
     deleteProject,
     editOneProject,
-    getChat
+    getChat,
+    getLanguage
 } from "./services";
 import AddProject from "./AddProject";
 import EditProject from "./EditProject";
@@ -33,7 +34,7 @@ function Stories(prop) {
     const [chat, setChat] = useState(undefined);
     const [openedChat, setOpenedChat] = useState(true);
 
-    function updateButton (){
+    function pdfHandler (){
        setButtonPopupPdf(true);
     }
 
@@ -81,20 +82,17 @@ function Stories(prop) {
         }
     })
 
-    if (projects.length != 0) {
+    if (projects.length != 0 && getLanguage() === "eng") {
         return (
             <div id="Stories">
                <div id="Stories_g">
-                 {(getAccount().pcn == prop.pcn) ? <div className="pdfButton">
-                   <button className="buttonExport"  onClick={updateButton}>Export portfolio to PDF</button>
                    <Popup trigger={buttonPopupPdf} setTrigger={setButtonPopupPdf}>
-                    <PDFViewer><ProjectsExporter/></PDFViewer>
-                    </Popup>
-                          </div> : <button onClick={() => {openChat()}} id={"send-msg-button"}>Message</button>}
+                       <PDFViewer><ProjectsExporter/></PDFViewer>
+                   </Popup>
+                 {(getAccount().pcn == prop.pcn) ? <></> : <button onClick={() => {openChat()}} id={"send-msg-button"}>Message</button>}
                     <div id="Profile" className="Profile">
                         <div id="StudentInfo">
-                       
-                            <Profile rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
+                            <Profile pdf={pdfHandler} rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
                         </div>
                     </div>
                     <div className="StoriesBg">
@@ -152,6 +150,73 @@ function Stories(prop) {
             </div>
         )
     }
+    else if(projects.length != 0 ){      
+        return (
+        <div id="Stories">
+           <div id="Stories_g">
+               <Popup trigger={buttonPopupPdf} setTrigger={setButtonPopupPdf}>
+                   <PDFViewer><ProjectsExporter/></PDFViewer>
+               </Popup>
+             {(getAccount().pcn == prop.pcn) ? <></> : <button onClick={() => {openChat()}} id={"send-msg-button"}>Berichten</button>}
+                <div id="Profile" className="Profile">
+                    <div id="StudentInfo">
+                        <Profile pdf={pdfHandler} rendered={prop.rendered} pcn={prop.pcn} myAccount={prop.myAccount} />
+                    </div>
+                </div>
+                <div className="StoriesBg">
+                    <rect id="StoriesBg" >
+                        <div id="Stories_s">
+                            <span>Projecten</span>
+                        </div>
+                        {prop.myAccount === true &&
+                            <div id="AddProject">
+                                <AddProject addProjectasync={addProjectasync} />
+                            </div>
+                        }
+                        {prop.myAccount === true && edit === true &&
+                            <div id="AddProject">
+                                <EditProject editProjectasync={editProjectasync} story={data}/>
+                            </div>
+                        }
+                        {prop.myAccount === true &&
+                            <div id="SingleStoriesWrapper">
+                                {projects.map(item => (
+                                    <div id="SingleStory">
+                                        <div className="SingleStoryWrapper">
+                                            <div id="SingleStoryWrapper" >
+                                                <button id='project-button-delete' onClick={e => deleteProjectasync(item)}>🗑</button>
+                                                <button id='project-button-edit' onClick={e => selectProject(item)}>✎</button>
+                                        <SingularStory key={item.id} story={item} />
+
+                                    </div>
+                                        </div>
+                                    </div>
+
+                                ))}
+                            </div>
+                        }
+                        {prop.myAccount === false &&
+                        <div id="SingleStoriesWrapper">
+                            {projects.map(item => (
+                                <div id="SingleStory">
+                                    <div className="SingleStoryWrapper">
+                                        <div id="SingleStoryWrapper" >
+                                            <SingularStory key={item.id} story={item} />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            ))}
+                        </div>
+                        }
+                    </rect>
+                </div>
+            </div>
+            <div style={{visibility : openedChat ? 'visible' : 'hidden'}}>
+                {chat !== undefined ? <ChatBox close={setOpenedChat} chat={(getAccount().pcn === chat.pcn1) ? chat.pcn2 : chat.pcn1}/> : ''}
+            </div>
+        </div>
+    )}
     else return(
         <div id="Stories">
                 <div id="Stories_g">
