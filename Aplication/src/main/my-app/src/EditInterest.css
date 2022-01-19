@@ -34,14 +34,18 @@
     margin-right: 10px;
 }
 #delete-interest-button{
+    cursor: pointer;
     margin-right: 10px;
     color: rgb(130 130 130);
     float: right;
     font-size: 30px;
     background-color: inherit;
 }
+#delete-interest-button:hover{
+    opacity: .8;}
 #add-interest-button:hover {background-color: #86639f}
 #add-interest-button {
+    cursor: pointer;
     border-radius: 50%;
     font-size: 25px;
     background-color: inherit;

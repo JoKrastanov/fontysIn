@@ -29,6 +29,7 @@
     top: 5%;
     right: 3%;
     background-color: #636;
+    cursor: pointer;
 }
 #ConnectionButton{
     text-align: center;
