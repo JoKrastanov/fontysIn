@@ -44,7 +44,7 @@ function App(prop) {
 
     if (pcn != undefined) {
         return (
-            <>
+            <div className={"app"}>
                 <div><TopBar setNewsfeed={setOpenNewsfeed} setPcn={setPcn} setPcnStates={setPcnStates} setMyAccount={setMyAccount}/></div>
                 <div>
                     {!openNewsfeed ?
@@ -56,7 +56,7 @@ function App(prop) {
 
                 </div>
                 <MessageIcon openChat={setOpenedChat} openedChat={openedChat} pcn={pcn}/>
-            </>
+            </div>
         )
     }
 }
