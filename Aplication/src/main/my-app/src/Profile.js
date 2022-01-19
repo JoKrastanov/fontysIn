@@ -293,7 +293,7 @@ function InfoPopup({ account, onClick, interests, myAcc, profileImage, pdf, addI
                                                 <ul className="edit-menu-list">
                                                     <li onClick={() => setButtonPopup(true)}>Verander Naam & Bio</li>
                                                     <li onClick={() => { pdf(); onClick() }}>Exporteer naar PDF</li>
-                                                    <li onClick={() => setButtonPopupDel(true)}>Verwijder mijn account</li>
+                                                    <li onClick={() => setButtonPopupDel(true)}>Verwijder account</li>
                                                 </ul>
                                             </div>
                                         </div>

@@ -498,13 +498,13 @@ img{
 .edit-menu-wrapper{
     display: inline-block;
     position: absolute;
-    right: 10%;
+    right: 15%;
     top: 20px;
     user-select: none;
 }
 
 .edit-menu{
-    overflow: hidden;
+    overflow: visible;
     font-size: 50%;
 }
 
@@ -537,7 +537,7 @@ img{
 
 .edit-menu-list{
     background-color: #fff;
-    width: 100%;
+    width: auto;
     padding: 3%;
     margin-top: 5px;
     max-height: 1px;
